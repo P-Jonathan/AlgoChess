@@ -1,4 +1,4 @@
-package com.AlgoChess.app;
+package fiuba.algo3.AlgoChess;
 
 /**
  * My app
