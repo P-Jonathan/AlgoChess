@@ -1,8 +1,8 @@
 package fiuba.algo3.AlgoChess;
 
 public class Casilla {
-	boolean ocupada;
-	Unidad unidad;
+	private boolean ocupada;
+	private Unidad unidad;
 	
 	public Casilla() {
 		ocupada = false;

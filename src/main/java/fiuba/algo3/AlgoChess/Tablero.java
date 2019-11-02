@@ -1,9 +1,9 @@
 package fiuba.algo3.AlgoChess;
 
 public class Tablero {
-	int filas;
-	int columnas;
-	Casilla[][] tablero;
+	private int filas;
+	private int columnas;
+	private Casilla[][] tablero;
 	
 	public Tablero(int filas, int columnas) {
 		this.filas = filas;
