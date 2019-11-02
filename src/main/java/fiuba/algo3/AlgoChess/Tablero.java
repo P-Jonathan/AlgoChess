@@ -12,7 +12,7 @@ public class Tablero {
 	}
 	
 	public void posicionarUnidad(Unidad unidad, int fila, int columna) {
-		if(tablero[fila][columna].ocupada()) {
+		if(!tablero[fila][columna].ocupada()) {
 			tablero[fila][columna].agregarUnidad(unidad);
 		}
 	}

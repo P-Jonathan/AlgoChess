@@ -1,23 +1,15 @@
 package fiuba.algo3.AlgoChess;
 
 public class UnidadDeInfanteria extends Unidad {
+	private int danio;
 	
 	public UnidadDeInfanteria() {
 		vida = 100;
-	}
-	
-	@Override
-	public int getVida() {
-		return vida;
-	}
-	
-	@Override
-	public void recibirDanio(int danio) {
-		vida -= danio;
+		danio = 10;
 	}
 
-	@Override
-	public void aumentarVida(int vida) {
-		this.vida += vida;
+	public void atacar(Unidad objetivo) {
+		objetivo.recibirDanio(danio);
 	}
+
 }

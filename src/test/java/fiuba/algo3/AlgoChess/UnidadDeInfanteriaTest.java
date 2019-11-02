@@ -18,4 +18,13 @@ public class UnidadDeInfanteriaTest {
 		soldado.aumentarVida(20);
 		assertEquals(soldado.getVida(), 120);
 	}
+
+	@Test
+	void creoUnidadLeQuito45DeVidaYSuVidaEs55() {
+		Jinete jinete = new Jinete();
+		assertEquals(jinete.getVida(), 100);
+		jinete.recibirDanio(45);
+		assertEquals(jinete.getVida(), 55);
+	}
+
 }

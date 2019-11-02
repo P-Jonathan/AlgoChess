@@ -1,8 +1,11 @@
 package fiuba.algo3.AlgoChess;
 
 public abstract class Unidad {
-	int vida;
-	public abstract void recibirDanio(int danio);
-	public abstract void aumentarVida(int vida);
-	public abstract int getVida();
+	protected int vida;
+
+	public void recibirDanio(int danio) { this.vida -= danio; };
+
+	public void aumentarVida(int vida) { this.vida += vida; };
+
+	public int getVida() { return vida; };
 }
