@@ -11,4 +11,11 @@ public class UnidadDeInfanteriaTest {
 		soldado.recibirDanio(50);
 		assertEquals(soldado.getVida(), 50);
 	}
+	
+	@Test void creoUnidadLeAumentoLaVidaEn20YSuVidaEs120() {
+		UnidadDeInfanteria soldado = new UnidadDeInfanteria();
+		assertEquals(soldado.getVida(), 100);
+		soldado.aumentarVida(20);
+		assertEquals(soldado.getVida(), 120);
+	}
 }
