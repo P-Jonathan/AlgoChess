@@ -1,5 +1,7 @@
 package fiuba.algo3.AlgoChess;
 
-public class TableroTest {
+import org.junit.jupiter.api.Test;
 
+public class TableroTest {
+	
 }
