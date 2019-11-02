@@ -14,6 +14,4 @@ public class UnidadDeInfanteria {
 	public void recibirDanio(int danio) {
 		this.vida -= danio;
 	}
-	
-	
 }
