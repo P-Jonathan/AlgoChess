@@ -25,7 +25,7 @@ public class CatapultaTest {
 	@Test
 	public void CatapultaAtacaAUnObjetivoYLeResta20DeVidaAlObjetivo() {
 		Catapulta catapulta = new Catapulta();
-		Catapulta objetivo = new UnidadDeInfanteria();
+		Unidad objetivo = new UnidadDeInfanteria();
 		assertEquals(objetivo.getvida(),100);
 		catapulta.atacarADistancia(objetivo);
 		assertEquals(objetivo.getvida(),80);
