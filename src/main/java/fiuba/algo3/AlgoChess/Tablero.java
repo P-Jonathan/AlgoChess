@@ -8,8 +8,18 @@ public class Tablero {
 	public Tablero(int filas, int columnas) {
 		this.filas = filas;
 		this.columnas = columnas;
-		tablero = new Casilla[filas][columnas];
+        setTablero();
 	}
+
+	private void setTablero() {
+        tablero = new Casilla[filas][columnas];
+
+	    for(int i = 0; i < filas; i++) {
+	        for(int j = 0; j < columnas; j++) {
+	            tablero[i][j] = new Casilla();
+            }
+        }
+    }
 	
 	public void posicionarUnidad(Unidad unidad, int fila, int columna) {
 		if(!tablero[fila][columna].ocupada()) {
@@ -20,4 +30,9 @@ public class Tablero {
 	public Unidad obtenerUnidad(int fila, int columna) {
 		return tablero[fila][columna].obtenerUnidad();
 	}
+
+	public Casilla getCasilla(Posicion2D posicion) {
+	    return tablero[ posicion.getX() - 1 ][ posicion.getY() - 1 ];
+	}
+
 }
