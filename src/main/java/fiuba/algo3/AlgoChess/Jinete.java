@@ -6,10 +6,9 @@ public class Jinete extends Unidad {
 
     public Jinete() {
         vida = 100;
-        danioMelee = 5;
         danioADistancia = 15;
+        danioMelee = 5;
     }
-
     public void atacarAMelee(Unidad objetivo) {
         objetivo.recibirDanio(danioMelee);
     }

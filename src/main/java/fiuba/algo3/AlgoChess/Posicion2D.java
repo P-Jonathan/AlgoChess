@@ -36,4 +36,13 @@ public class Posicion2D {
 		int distanciaEnY = abs(this.y - posicion.getY());
 		return distanciaEnX <= 1 && distanciaEnY <= 1;
 	}
+
+	/* Redondea para arriba (2.8 es 3) */
+	public int distanciaA(Posicion2D posicion) {
+		int cateto1 = this.x - posicion.getX();
+		int cateto2 = this.y - posicion.getY();
+		double hipotenusa = Math.sqrt(cateto1*cateto1 + cateto2*cateto2);
+
+		return (int) Math.round(hipotenusa);
+	}
 }
