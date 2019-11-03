@@ -1,5 +1,7 @@
 package fiuba.algo3.AlgoChess;
 
+import fiuba.algo3.AlgoChess.excepciones.CasillaOcupadaException;
+
 public class Tablero {
 	private int filas;
 	private int columnas;
@@ -21,9 +23,10 @@ public class Tablero {
         }
     }
 	
-	public void posicionarUnidad(Unidad unidad, int fila, int columna) {
-		if(!tablero[fila][columna].ocupada()) {
-			tablero[fila][columna].agregarUnidad(unidad);
+	public void posicionarUnidad(Unidad unidad, Posicion2D posicion) {
+		if(!tablero[ posicion.getX() - 1 ][ posicion.getY() - 1 ].ocupada()) {
+			tablero[ posicion.getX() - 1 ][ posicion.getY() - 1 ].agregarUnidad(unidad);
+			unidad.setPosicion(posicion);
 		}
 	}
 	
@@ -34,5 +37,19 @@ public class Tablero {
 	public Casilla getCasilla(Posicion2D posicion) {
 	    return tablero[ posicion.getX() - 1 ][ posicion.getY() - 1 ];
 	}
+
+	public void moverUnidad(Unidad unidad, Posicion2D posicion) {
+	    Casilla destino = getCasilla(posicion);
+
+	    if(destino.ocupada()) {
+	        throw new CasillaOcupadaException("Esta casilla ya tiene una unidad en ella");
+        }
+
+        Casilla origen = getCasilla(unidad.getPosicion());
+
+        origen.quitarUnidad();
+	    destino.agregarUnidad(unidad);
+	    unidad.setPosicion(posicion);
+    }
 
 }

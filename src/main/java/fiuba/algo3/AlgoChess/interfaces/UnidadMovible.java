@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface UnidadMovible {
 	public void mover(Posicion2D posicion);
-	public List<Posicion2D> posicionesDisponibles();
+	//public List<Posicion2D> posicionesDisponibles();
 }

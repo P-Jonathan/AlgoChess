@@ -16,6 +16,11 @@ public class Casilla {
 		this.unidad = unidad;
 		ocupada = true;
 	}
+
+	public void quitarUnidad() {
+		this.unidad = null;
+		ocupada = false;
+	}
 	
 	public Unidad obtenerUnidad() {
 		return unidad;

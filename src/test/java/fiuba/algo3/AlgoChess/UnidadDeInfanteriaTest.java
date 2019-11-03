@@ -27,4 +27,17 @@ public class UnidadDeInfanteriaTest {
 		assertEquals(jinete.getVida(), 55);
 	}
 
+
+	@Test
+	public void unaUnidadDeInfanteriaAtacaAOtraUnidadDeInfanteriaYDeberiaRestarle10DeVida() {
+		UnidadDeInfanteria soldadoAliado = new UnidadDeInfanteria();
+		UnidadDeInfanteria soldadoEnemigo = new UnidadDeInfanteria();
+
+		assertEquals(soldadoEnemigo.getVida(), 100);
+
+		soldadoAliado.atacar(soldadoEnemigo);
+
+		assertEquals(soldadoEnemigo.getVida(), 90);
+	}
+
 }

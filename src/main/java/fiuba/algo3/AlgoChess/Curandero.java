@@ -8,6 +8,12 @@ public class Curandero extends Unidad {
         curacion = 15;
     }
 
+    public Curandero(Tablero tablero) {
+        super(tablero);
+        vida = 75;
+        curacion = 15;
+    }
+
     public void curar(Unidad objetivo) {
         objetivo.aumentarVida(curacion);
     }
