@@ -34,7 +34,7 @@ public class UnidadMovibleTest {
 		UnidadMovible soldado = new UnidadDeInfanteria("Test", tablero, new Posicion2D(2, 2));
 
 		assertThrows(RuntimeException.class, ()->{
-			soldado.mover(new Posicion2D(1, 1));
+			soldado.mover(new Posicion2D(5, 5));
 		});
 	}
 	

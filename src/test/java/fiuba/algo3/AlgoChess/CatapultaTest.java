@@ -29,14 +29,16 @@ public class CatapultaTest {
 	}
 
 	@Test
-	public void CatapultaAtacaAUnObjetivoYLeResta20DeVidaAlObjetivo() {
+	public void catapultaAtacaAUnObjetivoYLeResta20DeVidaAlObjetivo() {
 		Tablero tablero = new Tablero();
 		Catapulta catapulta = new Catapulta("Test", tablero, new Posicion2D(0, 0));
 		Unidad objetivo = new UnidadDeInfanteria("Objetivo", tablero, new Posicion2D(0, 0));
 		
-		assertEquals(objetivo.getVida(), 100);
+		int vidaPrevia = objetivo.getVida();
+		
 		catapulta.atacar(objetivo);
-		assertEquals(objetivo.getVida(), 80);
+		
+		assertEquals(objetivo.getVida(), vidaPrevia - 20);
 	}
 
 }

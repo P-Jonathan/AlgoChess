@@ -44,7 +44,7 @@ public class Tablero {
 	}
 
 	public Casilla getCasilla(Posicion2D posicion) {
-		return tablero[posicion.getX() - 1][posicion.getY() - 1];
+		return tablero[posicion.getX()][posicion.getY()];
 	}
 
 	public void moverUnidad(Unidad unidad, Posicion2D posicion) {

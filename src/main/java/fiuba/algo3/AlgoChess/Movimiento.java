@@ -14,6 +14,8 @@ public class Movimiento {
 	public void mover(Posicion2D posicion) {
 		if (unidad.getPosicion().adyacente(posicion)) {
 			tablero.moverUnidad(unidad, posicion);
+		} else {
+			throw new RuntimeException();
 		}
 	}
 }
