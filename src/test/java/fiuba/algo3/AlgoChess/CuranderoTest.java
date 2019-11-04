@@ -32,7 +32,7 @@ public class CuranderoTest {
 
     @Test
     public void unCuranderoCuraAUnaUNidadDeInfanteriaYSuVidaDeberiaAumentarEn15() {
-        Curander curandero = new Curandero();
+        Curandero curandero = new Curandero();
         UnidadDeInfanteria soldado = new UnidadDeInfanteria();
         assertEquals(soldado.getVida(), 100);
         curandero.curar(soldado);
