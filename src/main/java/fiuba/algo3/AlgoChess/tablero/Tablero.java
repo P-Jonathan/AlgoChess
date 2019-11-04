@@ -1,5 +1,6 @@
-package fiuba.algo3.AlgoChess;
+package fiuba.algo3.AlgoChess.tablero;
 
+import fiuba.algo3.AlgoChess.Posicion2D;
 import fiuba.algo3.AlgoChess.excepciones.CasillaOcupadaException;
 import fiuba.algo3.AlgoChess.unidades.Unidad;
 

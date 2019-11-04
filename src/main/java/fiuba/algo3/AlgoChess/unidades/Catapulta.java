@@ -1,9 +1,9 @@
 package fiuba.algo3.AlgoChess.unidades;
 
-import fiuba.algo3.AlgoChess.Tablero;
 import fiuba.algo3.AlgoChess.ataques.*;
 import fiuba.algo3.AlgoChess.Posicion2D;
 import fiuba.algo3.AlgoChess.interfaces.UnidadOfensiva;
+import fiuba.algo3.AlgoChess.tablero.Tablero;
 
 public class Catapulta extends Unidad implements UnidadOfensiva {
 	private Ataque ataque;

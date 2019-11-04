@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import fiuba.algo3.AlgoChess.Posicion2D;
-import fiuba.algo3.AlgoChess.Tablero;
+import fiuba.algo3.AlgoChess.tablero.Tablero;
 
 public abstract class Unidad {
 	protected int vida;

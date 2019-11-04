@@ -1,4 +1,4 @@
-package fiuba.algo3.AlgoChess;
+package fiuba.algo3.AlgoChess.tablero;
 
 import fiuba.algo3.AlgoChess.unidades.Unidad;
 

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import fiuba.algo3.AlgoChess.tablero.Tablero;
 import fiuba.algo3.AlgoChess.unidades.Catapulta;
 import fiuba.algo3.AlgoChess.unidades.Unidad;
 import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;

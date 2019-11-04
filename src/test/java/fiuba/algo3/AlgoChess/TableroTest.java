@@ -2,6 +2,9 @@ package fiuba.algo3.AlgoChess;
 
 import org.junit.jupiter.api.Test;
 
+import fiuba.algo3.AlgoChess.tablero.Casilla;
+import fiuba.algo3.AlgoChess.tablero.Tablero;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TableroTest {

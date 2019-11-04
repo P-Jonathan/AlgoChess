@@ -1,5 +1,6 @@
 package fiuba.algo3.AlgoChess;
 
+import fiuba.algo3.AlgoChess.tablero.Tablero;
 import fiuba.algo3.AlgoChess.unidades.Unidad;
 
 public class Movimiento {

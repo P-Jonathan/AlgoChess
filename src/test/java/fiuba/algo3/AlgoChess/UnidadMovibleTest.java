@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import fiuba.algo3.AlgoChess.interfaces.UnidadMovible;
+import fiuba.algo3.AlgoChess.tablero.Tablero;
 import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
 
 public class UnidadMovibleTest {

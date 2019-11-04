@@ -2,6 +2,7 @@ package fiuba.algo3.AlgoChess;
 
 import org.junit.jupiter.api.Test;
 
+import fiuba.algo3.AlgoChess.tablero.Tablero;
 import fiuba.algo3.AlgoChess.unidades.Jinete;
 import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
 
