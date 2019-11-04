@@ -4,51 +4,36 @@ import org.junit.jupiter.api.Test;
 
 import fiuba.algo3.AlgoChess.tablero.Tablero;
 import fiuba.algo3.AlgoChess.unidades.Jinete;
+import fiuba.algo3.AlgoChess.unidades.Unidad;
 import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JineteTest {
 	@Test
-	public void creoUnidadYAlQuitarle50DeVidaLeQuedan50() {
-		Jinete jinete = new Jinete("Prueba", new Tablero(), new Posicion2D(0, 0));
-		assertEquals(jinete.getVida(), 100);
-		jinete.recibirDanio(50);
-		assertEquals(jinete.getVida(), 50);
-	}
-
-	@Test
-	void creoUnidadLeAumentoLaVidaEn20YSuVidaEs120() {
-		Jinete jinete = new Jinete("Prueba", new Tablero(), new Posicion2D(0, 0));
-		assertEquals(jinete.getVida(), 100);
-		jinete.aumentarVida(20);
-		assertEquals(jinete.getVida(), 120);
-	}
-
-	@Test
-	public void unJineteAtacaUnaUnidadDeInfanteriaADistanciaYDeberiaRestarle15DeVida() {
+	public void unJineteAtacaUnaUnidadADistanciaYDeberiaRestarle15DeVida() {
 		Tablero tablero = new Tablero();
 		Jinete jinete = new Jinete("Prueba", tablero, new Posicion2D(0, 0));
-		UnidadDeInfanteria soldado = new UnidadDeInfanteria("Enemigo", tablero, new Posicion2D(10, 10));
+		Unidad objetivo = new UnidadDeInfanteria("Enemigo", tablero, new Posicion2D(10, 10));
 
-		assertEquals(soldado.getVida(), 100);
+		int vidaPrevia = objetivo.getVida();
 
-		jinete.atacarADistancia(soldado);
+		jinete.atacarADistancia(objetivo);
 
-		assertEquals(soldado.getVida(), 85);
+		assertEquals(vidaPrevia - 15, objetivo.getVida());
 	}
 
 	@Test
 	public void unJineteAtacaUnaUnidadDeInfanteriaCuerpoACuerpoYDeberiaRestarle5DeVida() {
 		Tablero tablero = new Tablero();
 		Jinete jinete = new Jinete("Prueba", tablero, new Posicion2D(0, 0));
-		UnidadDeInfanteria soldado = new UnidadDeInfanteria("Enemigo", tablero, new Posicion2D(1, 1));
+		Unidad objetivo = new UnidadDeInfanteria("Enemigo", tablero, new Posicion2D(1, 1));
 
-		assertEquals(soldado.getVida(), 100);
+		int vidaPrevia = objetivo.getVida();
 
-		jinete.atacarAMelee(soldado);
+		jinete.atacarAMelee(objetivo);
 
-		assertEquals(soldado.getVida(), 95);
+		assertEquals(vidaPrevia - 5, objetivo.getVida());
 	}
 
 }

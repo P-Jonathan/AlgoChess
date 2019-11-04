@@ -8,19 +8,15 @@ import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
 
 public class UnidadDeInfanteriaTest {
 	@Test
-	public void creoUnidadYAlQuitarle50DeVidaLeQuedan50() {
-		UnidadDeInfanteria soldado = new UnidadDeInfanteria("Test", new Tablero(), new Posicion2D(0, 0));
-		assertEquals(100, soldado.getVida());
-		soldado.recibirDanio(50);
-		assertEquals(50, soldado.getVida());
-	}
+	public void unidadAtacaAUnidadEnemigaYLeQuitaVida() {
+		Tablero tablero = new Tablero();
+		UnidadDeInfanteria unidadOfensiva = new UnidadDeInfanteria("Test", tablero, new Posicion2D(1, 1));
+		UnidadDeInfanteria unidadEnemiga = new UnidadDeInfanteria("Enemigo", tablero, new Posicion2D(2, 2));
 
-	@Test
-	void creoUnidadLeAumentoLaVidaEn20YSuVidaEs120() {
-		UnidadDeInfanteria soldado = new UnidadDeInfanteria("Test", new Tablero(), new Posicion2D(0, 0));
+		int vidaPrevia = unidadEnemiga.getVida();
 
-		assertEquals(100, soldado.getVida());
-		soldado.aumentarVida(50);
-		assertEquals(150, soldado.getVida());
+		unidadOfensiva.atacar(unidadEnemiga);
+
+		assertEquals(vidaPrevia - 10, unidadEnemiga.getVida());
 	}
 }

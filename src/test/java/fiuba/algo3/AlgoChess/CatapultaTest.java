@@ -10,23 +10,15 @@ import fiuba.algo3.AlgoChess.unidades.Unidad;
 import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
 
 public class CatapultaTest {
-
 	@Test
-	public void creoCatapultaYAlQuitarle25DeVidaLeQuedan25() {
+	public void creoCatapultaLeAumentoLaVidaEn20PeroSuVidaSigueSiendoLaMisma() {
 		Catapulta catapulta = new Catapulta("Test", new Tablero(), new Posicion2D(0, 0));
 		
-		assertEquals(catapulta.getVida(), 50);
-		catapulta.recibirDanio(25);
-		assertEquals(catapulta.getVida(), 25);
-	}
-
-	@Test
-	public void creoCatapultaLeAumentoLaVidaEn20PeroSuVidaSigueSiendo50() {
-		Catapulta catapulta = new Catapulta("Test", new Tablero(), new Posicion2D(0, 0));
+		int vidaPrevia = catapulta.getVida();
 		
-		assertEquals(catapulta.getVida(), 50);
-		catapulta.aumentarVida(20);
-		assertEquals(catapulta.getVida(), 50);
+		catapulta.aumentarVida(50);
+		
+		assertEquals(vidaPrevia, catapulta.getVida());
 	}
 
 	@Test
