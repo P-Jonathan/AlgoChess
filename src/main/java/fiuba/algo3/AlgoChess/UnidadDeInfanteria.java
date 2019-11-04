@@ -23,5 +23,4 @@ public class UnidadDeInfanteria extends Unidad implements UnidadMovible {
 	public void atacar(Unidad objetivo) {
 		objetivo.recibirDanio(danio);
 	}
-
 }
