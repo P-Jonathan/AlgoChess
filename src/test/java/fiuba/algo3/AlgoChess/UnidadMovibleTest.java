@@ -10,7 +10,7 @@ import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
 
 public class UnidadMovibleTest {
 	@Test
-	public void creoUnaUnidadMovibleLaColocoEnElTableroNoLaMuevoYSuPosicionNoDeberiaCambiar() {
+	public void creoUnaUnidadMovibleNoLaMuevoYSuPosicionNoDeberiaCambiar() {
 		Tablero tablero = new Tablero();
 		UnidadMovible soldado = new UnidadDeInfanteria("Test", tablero, new Posicion2D(2, 2));
 
@@ -19,7 +19,7 @@ public class UnidadMovibleTest {
 	}
 	
 	@Test
-	public void creoUnaUnidadMovibleLaColocoEnElTableroLaMuevoYSuPosicionDeberiaCambiar() {
+	public void creoUnaUnidadMovibleLaMuevoYSuPosicionDeberiaCambiar() {
 		Tablero tablero = new Tablero();
 		UnidadMovible soldado = new UnidadDeInfanteria("Test", tablero, new Posicion2D(2, 2));
 
