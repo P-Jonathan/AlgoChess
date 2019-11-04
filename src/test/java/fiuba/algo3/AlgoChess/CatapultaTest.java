@@ -4,33 +4,39 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import fiuba.algo3.AlgoChess.unidades.Catapulta;
+import fiuba.algo3.AlgoChess.unidades.Unidad;
+import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
+
 public class CatapultaTest {
 
 	@Test
 	public void creoCatapultaYAlQuitarle25DeVidaLeQuedan25() {
-		Catapulta catapulta = new Catapulta();
+		Catapulta catapulta = new Catapulta("Test", new Tablero(), new Posicion2D(0, 0));
+		
 		assertEquals(catapulta.getVida(), 50);
 		catapulta.recibirDanio(25);
 		assertEquals(catapulta.getVida(), 25);
 	}
-	
-	@Test 
+
+	@Test
 	public void creoCatapultaLeAumentoLaVidaEn20PeroSuVidaSigueSiendo50() {
-		Catapulta catapulta = new Catapulta();
+		Catapulta catapulta = new Catapulta("Test", new Tablero(), new Posicion2D(0, 0));
+		
 		assertEquals(catapulta.getVida(), 50);
 		catapulta.aumentarVida(20);
 		assertEquals(catapulta.getVida(), 50);
 	}
-	
+
 	@Test
 	public void CatapultaAtacaAUnObjetivoYLeResta20DeVidaAlObjetivo() {
-		Catapulta catapulta = new Catapulta();
-		Unidad objetivo = new UnidadDeInfanteria();
-		assertEquals(objetivo.getVida(),100);
-		catapulta.atacarADistancia(objetivo);
-		assertEquals(objetivo.getVida(),80);
+		Tablero tablero = new Tablero();
+		Catapulta catapulta = new Catapulta("Test", tablero, new Posicion2D(0, 0));
+		Unidad objetivo = new UnidadDeInfanteria("Objetivo", tablero, new Posicion2D(0, 0));
+		
+		assertEquals(objetivo.getVida(), 100);
+		catapulta.atacar(objetivo);
+		assertEquals(objetivo.getVida(), 80);
 	}
-
-
 
 }

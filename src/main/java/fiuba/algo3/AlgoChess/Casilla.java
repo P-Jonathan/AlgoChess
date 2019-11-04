@@ -1,5 +1,7 @@
 package fiuba.algo3.AlgoChess;
 
+import fiuba.algo3.AlgoChess.unidades.Unidad;
+
 public class Casilla {
 	private boolean ocupada;
 	private Unidad unidad;
@@ -12,17 +14,17 @@ public class Casilla {
 		return ocupada;
 	}
 	
-	public void agregarUnidad(Unidad unidad) {
+	public void setUnidad(Unidad unidad) {
 		this.unidad = unidad;
 		ocupada = true;
 	}
 
-	public void quitarUnidad() {
+	public Unidad getUnidad() {
+		return unidad;
+	}
+
+	public void popUnidad() {
 		this.unidad = null;
 		ocupada = false;
-	}
-	
-	public Unidad obtenerUnidad() {
-		return unidad;
 	}
 }
