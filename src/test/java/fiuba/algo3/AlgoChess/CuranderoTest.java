@@ -10,7 +10,7 @@ public class CuranderoTest {
         Curandero curandero = new Curandero();
         assertEquals(curandero.getVida(), 75);
         curandero.recibirDanio(50);
-        assertEquals(curandero.getVida(), 50);
+        assertEquals(curandero.getVida(), 25);
     }
 
     @Test
@@ -18,7 +18,7 @@ public class CuranderoTest {
         Curandero curandero = new Curandero();
         assertEquals(curandero.getVida(), 75);
         curandero.aumentarVida(20);
-        assertEquals(curandero.getVida(), 120);
+        assertEquals(curandero.getVida(), 95);
     }
 
     @Test
