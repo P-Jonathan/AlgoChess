@@ -35,7 +35,7 @@ public class CuranderoTest {
         Curander curandero = new Curandero();
         UnidadDeInfanteria soldado = new UnidadDeInfanteria();
         assertEquals(soldado.getVida(), 100);
-        curandero.curar(soldado)
+        curandero.curar(soldado);
         assertEquals(soldado.getVida(), 115);
     }
 
