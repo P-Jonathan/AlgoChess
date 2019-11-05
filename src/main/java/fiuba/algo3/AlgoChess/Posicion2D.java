@@ -1,6 +1,7 @@
 package fiuba.algo3.AlgoChess;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.sqrt;
 
 public class Posicion2D {
 	private int x;
@@ -37,12 +38,13 @@ public class Posicion2D {
 		return distanciaEnX <= 1 && distanciaEnY <= 1;
 	}
 
-	/* Redondea para arriba (2.8 es 3) */
-	public int distanciaA(Posicion2D posicion) {
-		int cateto1 = this.x - posicion.getX();
-		int cateto2 = this.y - posicion.getY();
-		double hipotenusa = Math.sqrt(cateto1*cateto1 + cateto2*cateto2);
 
-		return (int) Math.round(hipotenusa);
+	public double distancia(Posicion2D posicion) {
+		int diferenciaEnX = this.x - posicion.getX();
+		int diferenciaEnY = this.y - posicion.getY();
+		
+		double distancia = sqrt((diferenciaEnX * diferenciaEnX) + (diferenciaEnY * diferenciaEnY));
+
+		return distancia;
 	}
 }

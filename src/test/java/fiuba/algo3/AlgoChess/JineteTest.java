@@ -18,22 +18,21 @@ public class JineteTest {
 
 		int vidaPrevia = objetivo.getVida();
 
-		jinete.atacarADistancia(objetivo);
+		jinete.atacar(objetivo);
 
 		assertEquals(vidaPrevia - 15, objetivo.getVida());
 	}
 
 	@Test
-	public void unJineteAtacaUnaUnidadDeInfanteriaCuerpoACuerpoYDeberiaRestarle5DeVida() {
+	public void unJineteAtacaUnaUnidadCuerpoACuerpoYDeberiaRestarle5DeVida() {
 		Tablero tablero = new Tablero();
 		Jinete jinete = new Jinete("Prueba", tablero, new Posicion2D(0, 0));
 		Unidad objetivo = new UnidadDeInfanteria("Enemigo", tablero, new Posicion2D(1, 1));
 
 		int vidaPrevia = objetivo.getVida();
 
-		jinete.atacarAMelee(objetivo);
+		jinete.atacar(objetivo);
 
 		assertEquals(vidaPrevia - 5, objetivo.getVida());
 	}
-
 }

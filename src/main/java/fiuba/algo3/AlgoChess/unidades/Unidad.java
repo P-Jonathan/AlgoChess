@@ -11,6 +11,9 @@ public abstract class Unidad {
 	protected String bando;
 	protected Tablero tablero;
 	protected Posicion2D posicion;
+	
+	protected int DISTANCIA_CERCANA_MAX = 2;
+	protected int DISTANCIA_MEDIA_MAX = 5;
 
 	public Unidad(String bando, Tablero tablero, Posicion2D posicion, int vida) {
 		this.vida = vida;
@@ -48,10 +51,6 @@ public abstract class Unidad {
 		return this.bando == unidad.bando;
 	}
 
-	public boolean esAdyacente(Unidad unidad) {
-		return this.getPosicion().adyacente(unidad.getPosicion());
-	}
-
 	public List<Unidad> unidadesAdyacentes() {
 		List<Unidad> unidades = new LinkedList<Unidad>();
 		
@@ -63,5 +62,24 @@ public abstract class Unidad {
 		}
 
 		return unidades;
+	}
+	
+	public boolean esAdyacente(Unidad unidad) {
+		return this.getPosicion().adyacente(unidad.getPosicion());
+	}
+	
+	public boolean estaACortaDistancia(Unidad objetivo) {
+		double distancia = this.getPosicion().distancia(objetivo.getPosicion());
+		return distancia <= DISTANCIA_CERCANA_MAX;
+	}
+
+	public boolean estaAMediaDistancia(Unidad objetivo) {
+		double distancia = this.getPosicion().distancia(objetivo.getPosicion());
+		return distancia > DISTANCIA_CERCANA_MAX && distancia <= DISTANCIA_MEDIA_MAX;
+	}
+	
+	public boolean estaALargaDistancia(Unidad objetivo) {
+		double distancia = this.getPosicion().distancia(objetivo.getPosicion());
+		return distancia > DISTANCIA_MEDIA_MAX;
 	}
 }
