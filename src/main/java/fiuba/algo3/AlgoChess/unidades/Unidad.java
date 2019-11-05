@@ -8,6 +8,7 @@ import fiuba.algo3.AlgoChess.tablero.Tablero;
 
 public abstract class Unidad {
 	protected int vida;
+	protected int costo;
 	protected String bando;
 	protected Tablero tablero;
 	protected Posicion2D posicion;
@@ -15,8 +16,9 @@ public abstract class Unidad {
 	protected int DISTANCIA_CERCANA_MAX = 2;
 	protected int DISTANCIA_MEDIA_MAX = 5;
 
-	public Unidad(String bando, Tablero tablero, Posicion2D posicion, int vida) {
+	public Unidad(String bando, Tablero tablero, Posicion2D posicion, int vida, int costo) {
 		this.vida = vida;
+		this.costo = costo;
 		this.bando = bando;
 		this.tablero = tablero;
 		this.posicion = posicion;
@@ -46,6 +48,8 @@ public abstract class Unidad {
 	public int getVida() {
 		return vida;
 	};
+
+	public int getCosto(){return costo;};
 
 	public boolean aliado(Unidad unidad) {
 		return this.bando == unidad.bando;

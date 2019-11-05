@@ -7,7 +7,7 @@ public class Curandero extends Unidad {
 	private int curacion;
 
 	public Curandero(String bando, Tablero tablero, Posicion2D posicion) {
-		super(bando, tablero, posicion, 75);
+		super(bando, tablero, posicion, 75, 2);
 		curacion = 15;
 	}
 

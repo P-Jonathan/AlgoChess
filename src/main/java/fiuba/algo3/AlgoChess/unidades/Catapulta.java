@@ -9,7 +9,7 @@ public class Catapulta extends Unidad implements UnidadOfensiva {
 	private Ataque ataque;
 
 	public Catapulta(String bando, Tablero tablero, Posicion2D posicion) {
-		super(bando, tablero, posicion, 50);
+		super(bando, tablero, posicion, 50,  5);
 		ataque = new AtaqueEncadenadoADistancia();
 	}
 
