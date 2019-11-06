@@ -3,6 +3,7 @@ package fiuba.algo3.AlgoChess.unidades;
 import java.util.LinkedList;
 import java.util.List;
 
+import fiuba.algo3.AlgoChess.Jugador;
 import fiuba.algo3.AlgoChess.Posicion2D;
 import fiuba.algo3.AlgoChess.tablero.Tablero;
 
@@ -12,6 +13,7 @@ public abstract class Unidad {
 	protected String bando;
 	protected Tablero tablero;
 	protected Posicion2D posicion;
+	protected Jugador jugador;
 	
 	protected int DISTANCIA_CERCANA_MAX = 2;
 	protected int DISTANCIA_MEDIA_MAX = 5;
@@ -35,6 +37,10 @@ public abstract class Unidad {
 
 	public void recibirDanio(int danio) {
 		this.vida -= danio;
+
+		if(this.vida <= 0) {
+			jugador.descartarUnidad(this);
+		}
 	};
 
 	public void aumentarVida(int vida) {
@@ -88,5 +94,9 @@ public abstract class Unidad {
 	public boolean estaALargaDistancia(Unidad objetivo) {
 		double distancia = this.getPosicion().distancia(objetivo.getPosicion());
 		return distancia > DISTANCIA_MEDIA_MAX;
+	}
+
+	public void setJugador(Jugador jugador) {
+		this.jugador = jugador;
 	}
 }
