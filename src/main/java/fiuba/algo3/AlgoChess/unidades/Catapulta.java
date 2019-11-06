@@ -6,24 +6,26 @@ import fiuba.algo3.AlgoChess.interfaces.UnidadOfensiva;
 import fiuba.algo3.AlgoChess.tablero.Tablero;
 
 public class Catapulta extends Unidad implements UnidadOfensiva {
-	private Ataque ataque;
+	private final static int VIDA_INICIAL = 50;
+	private final static int COSTO = 5;
+
+	private Ataque ataqueStrategy;
 
 	public Catapulta(String bando, Tablero tablero, Posicion2D posicion) {
-		super(bando, tablero, posicion, 50,  5);
-		ataque = new AtaqueEncadenadoADistancia();
+		super(bando, tablero, posicion, VIDA_INICIAL, COSTO);
+		ataqueStrategy = new AtaqueEncadenadoADistancia();
 	}
 
 	public void atacar(Unidad objetivo) {
-		ataque.atacar(this, objetivo);
-	}
-	
-	public void aumentarVida(int vida) {
-		//Habria que tirar una Excepción.
+		ataqueStrategy.atacar(this, objetivo);
 	}
 
+	public void aumentarVida(int vida) {
+		// Habria que tirar una Excepción.
+	}
 
 	@Override
 	public void setAtaqueStrategy(Ataque ataque) {
-		this.ataque = ataque;
+		this.ataqueStrategy = ataque;
 	}
 }

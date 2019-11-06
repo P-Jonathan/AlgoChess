@@ -14,7 +14,7 @@ public class JineteTest {
 	public void unJineteAtacaUnaUnidadADistanciaYDeberiaRestarle15DeVida() {
 		Tablero tablero = new Tablero();
 		Jinete jinete = new Jinete("Prueba", tablero, new Posicion2D(0, 0));
-		Unidad objetivo = new UnidadDeInfanteria("Enemigo", tablero, new Posicion2D(10, 10));
+		Unidad objetivo = new UnidadDeInfanteria("Enemigo", tablero, new Posicion2D(0, 4));
 
 		int vidaPrevia = objetivo.getVida();
 
