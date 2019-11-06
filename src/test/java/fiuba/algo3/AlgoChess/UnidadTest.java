@@ -2,6 +2,10 @@ package fiuba.algo3.AlgoChess;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,4 +56,20 @@ public class UnidadTest {
 		
 		assertEquals(vidaPrevia + 100, unidad.getVida());
 	}
+	
+	@Test
+	public void coloco3UnidadesAdyacentesYAlComprobarUnaTieneALasOtrasAdyacentes() {
+		Tablero tablero = new Tablero();
+		Unidad unidad1 = new Jinete("Test", tablero, new Posicion2D(1, 1));
+		Unidad unidad2 = new Jinete("Test", tablero, new Posicion2D(1, 2));
+		Unidad unidad3 = new Jinete("Test", tablero, new Posicion2D(1, 0));
+		List<Unidad> unidades = unidad1.unidadesAdyacentes();
+		List<Unidad> unidadesTest = new LinkedList<Unidad>();
+		unidadesTest.add(unidad2);
+		unidadesTest.add(unidad3);
+		assertTrue(unidades.containsAll(unidadesTest));
+	}
+	
 }
+	
+	

@@ -17,7 +17,7 @@ public abstract class Unidad {
 	protected int DISTANCIA_MEDIA_MAX = 5;
 
 	public Unidad(String bando, Tablero tablero, Posicion2D posicion, int vida, int costo) {
-		this.vida = vida;
+		this.setVida(vida);
 		this.costo = costo;
 		this.bando = bando;
 		this.tablero = tablero;
@@ -58,10 +58,13 @@ public abstract class Unidad {
 	public List<Unidad> unidadesAdyacentes() {
 		List<Unidad> unidades = new LinkedList<Unidad>();
 		
-		for (int i = posicion.getX() - 1; i < posicion.getX() + 1; i++) {
-			for (int j = posicion.getY() - 1; j < posicion.getY() + 1; j++) {
+		for (int i = posicion.getX() - 1; i <= posicion.getX() + 1; i++) {
+			for (int j = posicion.getY() - 1; j <= posicion.getY() + 1; j++) {
+				
 				Unidad unidad = tablero.getUnidad(new Posicion2D(i, j));
-				unidades.add(unidad);
+				if(unidad != null && unidad != this) {
+					unidades.add(unidad);
+				}
 			}
 		}
 
