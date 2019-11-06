@@ -11,14 +11,27 @@ public class Tablero {
 	private Casilla[][] tablero;
 	private int columnas;
 	private int filas;
+	
+	private String bandoA;
+	private String bandoB;
 
-	public Tablero() {
+	public Tablero(String bandoA, String bandoB) {
+		this.bandoA = bandoA;
+		this.bandoB = bandoB;
 		this.filas = FILAS_DEFAULT;
 		this.columnas = COLUMNAS_DEFUALT;
 		setTablero();
 	}
 
 	public Tablero(int filas, int columnas) {
+		this.filas = filas;
+		this.columnas = columnas;
+		setTablero();
+	}
+	
+	public Tablero(String bandoA, String bandoB, int filas, int columnas) {
+		this.bandoA = bandoA;
+		this.bandoB = bandoB;
 		this.filas = filas;
 		this.columnas = columnas;
 		setTablero();
@@ -30,12 +43,21 @@ public class Tablero {
 		for (int i = 0; i < filas; i++) {
 			for (int j = 0; j < columnas; j++) {
 				tablero[i][j] = new Casilla();
+
+				if(i < filas/2) {
+					tablero[i][j].setBando(bandoA);
+				} else {
+					tablero[i][j].setBando(bandoB);
+				}
 			}
 		}
 	}
 
 	public void posicionarUnidad(Unidad unidad, Posicion2D posicion) {
 		Casilla casilla = getCasilla(posicion);
+		if(unidad.getBando() != casilla.getBando()) {
+			throw new RuntimeException();
+		}
 		casilla.setUnidad(unidad);
 		unidad.setPosicion(posicion);
 	}

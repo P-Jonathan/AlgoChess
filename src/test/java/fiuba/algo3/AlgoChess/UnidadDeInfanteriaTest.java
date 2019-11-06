@@ -9,9 +9,9 @@ import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
 public class UnidadDeInfanteriaTest {
 	@Test
 	public void unidadAtacaAUnidadEnemigaYLeQuitaVida() {
-		Tablero tablero = new Tablero();
-		UnidadDeInfanteria unidadOfensiva = new UnidadDeInfanteria("Test", tablero, new Posicion2D(1, 1));
-		UnidadDeInfanteria unidadEnemiga = new UnidadDeInfanteria("Enemigo", tablero, new Posicion2D(2, 2));
+		Tablero tablero = new Tablero("Test", "Enemigo", 2, 5);
+		UnidadDeInfanteria unidadOfensiva = new UnidadDeInfanteria("Test", tablero, new Posicion2D(0, 1));
+		UnidadDeInfanteria unidadEnemiga = new UnidadDeInfanteria("Enemigo", tablero, new Posicion2D(1, 2));
 
 		int vidaPrevia = unidadEnemiga.getVida();
 

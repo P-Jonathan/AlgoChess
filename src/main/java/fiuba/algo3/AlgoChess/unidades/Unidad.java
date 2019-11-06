@@ -99,4 +99,8 @@ public abstract class Unidad {
 	public void setJugador(Jugador jugador) {
 		this.jugador = jugador;
 	}
+
+	public String getBando() {
+		return bando;
+	}
 }

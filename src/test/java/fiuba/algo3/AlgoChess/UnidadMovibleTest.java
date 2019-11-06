@@ -11,7 +11,7 @@ import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
 public class UnidadMovibleTest {
 	@Test
 	public void creoUnaUnidadMovibleNoLaMuevoYSuPosicionNoDeberiaCambiar() {
-		Tablero tablero = new Tablero();
+		Tablero tablero = new Tablero("Test", "Enemigo");
 		UnidadMovible soldado = new UnidadDeInfanteria("Test", tablero, new Posicion2D(2, 2));
 
 		assertEquals(soldado.getPosicion().getX(), 2);
@@ -20,7 +20,7 @@ public class UnidadMovibleTest {
 	
 	@Test
 	public void creoUnaUnidadMovibleLaMuevoYSuPosicionDeberiaCambiar() {
-		Tablero tablero = new Tablero();
+		Tablero tablero = new Tablero("Test", "Enemigo");
 		UnidadMovible soldado = new UnidadDeInfanteria("Test", tablero, new Posicion2D(2, 2));
 
 		soldado.mover(new Posicion2D(1, 1));
@@ -31,7 +31,7 @@ public class UnidadMovibleTest {
 	
 	@Test
 	public void unaUnidadMovibleNoDeberiaMoverseMasDeUnCasillero() {
-		Tablero tablero = new Tablero();
+		Tablero tablero = new Tablero("Test", "Enemigo");
 		UnidadMovible soldado = new UnidadDeInfanteria("Test", tablero, new Posicion2D(2, 2));
 
 		assertThrows(RuntimeException.class, ()->{
@@ -41,7 +41,7 @@ public class UnidadMovibleTest {
 	
 	@Test
 	public void unaUnidadMovibleNoDeberiaMoverseAUnCasilleroOcupado() {
-		Tablero tablero = new Tablero();
+		Tablero tablero = new Tablero("Test", "Enemigo");
 		UnidadMovible soldado1 = new UnidadDeInfanteria("Test", tablero, new Posicion2D(2, 2));
 		@SuppressWarnings("unused")
 		UnidadMovible soldado2 = new UnidadDeInfanteria("Test", tablero, new Posicion2D(2, 3));

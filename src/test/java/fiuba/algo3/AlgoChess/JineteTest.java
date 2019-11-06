@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class JineteTest {
 	@Test
 	public void unJineteAtacaUnaUnidadADistanciaYDeberiaRestarle15DeVida() {
-		Tablero tablero = new Tablero();
-		Jinete jinete = new Jinete("Prueba", tablero, new Posicion2D(0, 0));
-		Unidad objetivo = new UnidadDeInfanteria("Enemigo", tablero, new Posicion2D(0, 4));
+		Tablero tablero = new Tablero("Test", "Enemigo", 2, 5);
+		Jinete jinete = new Jinete("Test", tablero, new Posicion2D(0, 0));
+		Unidad objetivo = new UnidadDeInfanteria("Enemigo", tablero, new Posicion2D(1, 4));
 
 		int vidaPrevia = objetivo.getVida();
 
@@ -25,8 +25,8 @@ public class JineteTest {
 
 	@Test
 	public void unJineteAtacaUnaUnidadCuerpoACuerpoYDeberiaRestarle5DeVida() {
-		Tablero tablero = new Tablero();
-		Jinete jinete = new Jinete("Prueba", tablero, new Posicion2D(0, 0));
+		Tablero tablero = new Tablero("Test", "Enemigo", 2, 5);
+		Jinete jinete = new Jinete("Test", tablero, new Posicion2D(0, 0));
 		Unidad objetivo = new UnidadDeInfanteria("Enemigo", tablero, new Posicion2D(1, 1));
 
 		int vidaPrevia = objetivo.getVida();
