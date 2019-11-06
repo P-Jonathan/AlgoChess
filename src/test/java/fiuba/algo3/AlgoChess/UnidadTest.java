@@ -58,6 +58,14 @@ public class UnidadTest {
 	}
 	
 	@Test
+	public void coloco2UnidadesAdyacentesYPuedoComprobarQueEstanAdyacentes() {
+		Tablero tablero = new Tablero();
+		Unidad unidad1 = new Jinete("Test", tablero, new Posicion2D(1, 1));
+		Unidad unidad2 = new Jinete("Test", tablero, new Posicion2D(1, 2));
+		assertTrue(unidad1.esAdyacente(unidad2));
+	}
+	
+	@Test
 	public void coloco3UnidadesAdyacentesYAlComprobarUnaTieneALasOtrasAdyacentes() {
 		Tablero tablero = new Tablero();
 		Unidad unidad1 = new Jinete("Test", tablero, new Posicion2D(1, 1));

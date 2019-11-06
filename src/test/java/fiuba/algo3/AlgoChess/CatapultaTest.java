@@ -20,12 +20,25 @@ public class CatapultaTest {
 		
 		assertEquals(vidaPrevia, catapulta.getVida());
 	}
-
+	
+	@Test
+	public void catapultaIntentaAtacarAUnObjetivoPeroNoEstaEnRango() {
+		Tablero tablero = new Tablero();
+		Catapulta catapulta = new Catapulta("Test", tablero, new Posicion2D(0, 0));
+		Unidad objetivo = new UnidadDeInfanteria("Objetivo", tablero, new Posicion2D(1, 0));
+		
+		int vidaPrevia = objetivo.getVida();
+		
+		catapulta.atacar(objetivo);
+		
+		assertEquals(objetivo.getVida(), vidaPrevia);
+	}
+	
 	@Test
 	public void catapultaAtacaAUnObjetivoYLeResta20DeVidaAlObjetivo() {
 		Tablero tablero = new Tablero();
 		Catapulta catapulta = new Catapulta("Test", tablero, new Posicion2D(0, 0));
-		Unidad objetivo = new UnidadDeInfanteria("Objetivo", tablero, new Posicion2D(0, 0));
+		Unidad objetivo = new UnidadDeInfanteria("Objetivo", tablero, new Posicion2D(8, 0));
 		
 		int vidaPrevia = objetivo.getVida();
 		
