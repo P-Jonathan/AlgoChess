@@ -16,8 +16,8 @@ public class UnidadDeInfanteria extends Unidad implements UnidadMovible, UnidadO
 	private Movimiento movimientoStrategy;
 	private Ataque ataqueStrategy;
 
-	public UnidadDeInfanteria(String bando, Tablero tablero, Posicion2D posicion) {
-		super(bando, tablero, posicion, VIDA_INICIAL, COSTO);
+	public UnidadDeInfanteria(String bando, Posicion2D posicion) {
+		super(bando, posicion, VIDA_INICIAL, COSTO);
 		movimientoStrategy = new Movimiento(tablero, this);
 		ataqueStrategy = new AtaqueACortaDistancia(DANIO_INICIAL);
 	}

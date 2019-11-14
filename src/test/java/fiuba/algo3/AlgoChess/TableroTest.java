@@ -22,7 +22,8 @@ public class TableroTest {
 	public void seColocaUnaUnidadAliadaEnUnCasilleroDelSectorAliadoVacioConExito() {
 		Tablero tablero = new Tablero("Aliado", "Enemigo", 2, 5);
 		Posicion2D posicion = new Posicion2D(0, 2);
-		Unidad unidad = new UnidadDeInfanteria("Aliado", tablero, posicion);
+		Unidad unidad = new UnidadDeInfanteria("Aliado", posicion);
+		tablero.posicionarUnidad(unidad);
 
 		assertEquals(unidad, tablero.getUnidad(posicion));
 	}
@@ -32,11 +33,13 @@ public class TableroTest {
 		Tablero tablero = new Tablero("Aliado", "Enemigo", 2, 5);
 		Posicion2D posicion = new Posicion2D(0, 2);
 		@SuppressWarnings("unused")
-		Unidad unidad = new UnidadDeInfanteria("Aliado", tablero, posicion);
+		Unidad unidad = new UnidadDeInfanteria("Aliado", posicion);
+		tablero.posicionarUnidad(unidad);
+		Unidad unidad2 = new UnidadDeInfanteria("Aliado", posicion);
 
 		assertThrows(RuntimeException.class, ()->{
-			@SuppressWarnings("unused")
-			Unidad unidad2 = new UnidadDeInfanteria("Aliado", tablero, posicion);
+
+			tablero.posicionarUnidad(unidad2);
 		});
 	}
 	
@@ -44,11 +47,12 @@ public class TableroTest {
 	public void seVerificaQueNoSePuedeColocarUnaPiezaAliadaEnUnCasilleroDelSectorEnemigo() {
 		Tablero tablero = new Tablero("Aliado", "Enemigo", 2, 5);
 		@SuppressWarnings("unused")
-		Unidad unidad = new UnidadDeInfanteria("Aliado", tablero, new Posicion2D(0, 2));
-
+		Unidad unidad = new UnidadDeInfanteria("Aliado", new Posicion2D(0, 2));
+		tablero.posicionarUnidad(unidad);
+		Unidad unidad2 = new UnidadDeInfanteria("Enemigo", new Posicion2D(0, 3));
 		assertThrows(RuntimeException.class, ()->{
-			@SuppressWarnings("unused")
-			Unidad unidad2 = new UnidadDeInfanteria("Enemigo", tablero, new Posicion2D(0, 3));
+
+			tablero.posicionarUnidad(unidad2);
 		});
 	}
 }

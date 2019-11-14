@@ -11,8 +11,8 @@ public class Curandero extends Unidad {
 	private Movimiento movimientoStrategy;
 	private int curacion;
 
-	public Curandero(String bando, Tablero tablero, Posicion2D posicion) {
-		super(bando, tablero, posicion, VIDA_INICIAL, COSTO);
+	public Curandero(String bando, Posicion2D posicion) {
+		super(bando, posicion, VIDA_INICIAL, COSTO);
 		movimientoStrategy = new Movimiento(tablero, this);
 		curacion = 15;
 	}

@@ -13,9 +13,10 @@ public class JineteTest {
 	@Test
 	public void unJineteAtacaUnaUnidadADistanciaYDeberiaRestarle15DeVida() {
 		Tablero tablero = new Tablero("Test", "Enemigo", 2, 5);
-		Jinete jinete = new Jinete("Test", tablero, new Posicion2D(0, 0));
-		Unidad objetivo = new UnidadDeInfanteria("Enemigo", tablero, new Posicion2D(1, 4));
-
+		Jinete jinete = new Jinete("Test", new Posicion2D(0, 0));
+		Unidad objetivo = new UnidadDeInfanteria("Enemigo", new Posicion2D(1, 4));
+		tablero.posicionarUnidad(jinete);
+		tablero.posicionarUnidad(objetivo);
 		int vidaPrevia = objetivo.getVida();
 
 		jinete.atacar(objetivo);
@@ -26,9 +27,10 @@ public class JineteTest {
 	@Test
 	public void unJineteAtacaUnaUnidadCuerpoACuerpoYDeberiaRestarle5DeVida() {
 		Tablero tablero = new Tablero("Test", "Enemigo", 2, 5);
-		Jinete jinete = new Jinete("Test", tablero, new Posicion2D(0, 0));
-		Unidad objetivo = new UnidadDeInfanteria("Enemigo", tablero, new Posicion2D(1, 1));
-
+		Jinete jinete = new Jinete("Test", new Posicion2D(0, 0));
+		Unidad objetivo = new UnidadDeInfanteria("Enemigo",  new Posicion2D(1, 1));
+		tablero.posicionarUnidad(jinete);
+		tablero.posicionarUnidad(objetivo);
 		int vidaPrevia = objetivo.getVida();
 
 		jinete.atacar(objetivo);

@@ -4,6 +4,10 @@ import fiuba.algo3.AlgoChess.Posicion2D;
 import fiuba.algo3.AlgoChess.excepciones.CasillaOcupadaException;
 import fiuba.algo3.AlgoChess.unidades.Unidad;
 
+import javax.swing.*;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Tablero {
 	private final int FILAS_DEFAULT = 20;
 	private final int COLUMNAS_DEFUALT = 20;
@@ -53,7 +57,8 @@ public class Tablero {
 		}
 	}
 
-	public void posicionarUnidad(Unidad unidad, Posicion2D posicion) {
+	public void posicionarUnidad(Unidad unidad) {
+        Posicion2D posicion = unidad.getPosicion();
 		Casilla casilla = getCasilla(posicion);
 		if(unidad.getBando() != casilla.getBando()) {
 			throw new RuntimeException();
@@ -71,6 +76,9 @@ public class Tablero {
 	}
 
 	public void moverUnidad(Unidad unidad, Posicion2D posicion) {
+		if(posicion.getX() > filas || posicion.getY() > columnas){
+			throw new RuntimeException();
+		}
 		Casilla origen = getCasilla(unidad.getPosicion());
 		Casilla destino = getCasilla(posicion);
 
@@ -82,5 +90,19 @@ public class Tablero {
 		destino.setUnidad(unidad);
 		unidad.setPosicion(posicion);
 	}
+	public List<Unidad> unidadesAdyacentes(Unidad unidad) {
+		List<Unidad> unidades = new LinkedList<Unidad>();
+		Posicion2D posicion = unidad.getPosicion();
+		for (int i = posicion.getX() - 1; i <= posicion.getX() + 1; i++) {
+			for (int j = posicion.getY() - 1; j <= posicion.getY() + 1; j++) {
 
+				Unidad unidad2 = this.getUnidad(new Posicion2D(i, j));
+				if(unidad2 != null && unidad2 != unidad) {
+					unidades.add(unidad2);
+				}
+			}
+		}
+
+		return unidades;
+	}
 }

@@ -15,8 +15,8 @@ public class Jinete extends Unidad implements UnidadMovible, UnidadOfensiva {
 	private Movimiento movimientoStrategy;
 	private Ataque ataqueStrategy;
 
-	public Jinete(String bando, Tablero tablero, Posicion2D posicion) {
-		super(bando, tablero, posicion, VIDA_INICIAL, COSTO);
+	public Jinete(String bando, Posicion2D posicion) {
+		super(bando, posicion, VIDA_INICIAL, COSTO);
 		setAtaqueStrategy(new AtaqueJinete());
 		movimientoStrategy = new Movimiento(tablero, this);
 	}

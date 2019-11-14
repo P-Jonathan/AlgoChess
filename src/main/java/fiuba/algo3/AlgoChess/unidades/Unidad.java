@@ -18,13 +18,12 @@ public abstract class Unidad {
 	protected int DISTANCIA_CERCANA_MAX = 2;
 	protected int DISTANCIA_MEDIA_MAX = 5;
 
-	public Unidad(String bando, Tablero tablero, Posicion2D posicion, int vida, int costo) {
+	public Unidad(String bando , Posicion2D posicion, int vida, int costo) {
 		this.setVida(vida);
 		this.costo = costo;
 		this.bando = bando;
-		this.tablero = tablero;
 		this.posicion = posicion;
-		tablero.posicionarUnidad(this, posicion);
+
 	}
 
 	public void setPosicion(Posicion2D posicion) {
