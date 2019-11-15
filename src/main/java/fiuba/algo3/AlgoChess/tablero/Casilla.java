@@ -1,6 +1,8 @@
 package fiuba.algo3.AlgoChess.tablero;
 
+import fiuba.algo3.AlgoChess.excepciones.CasillaOcupadaException;
 import fiuba.algo3.AlgoChess.unidades.Unidad;
+import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
 
 public class Casilla {
 	private boolean ocupada;
@@ -39,4 +41,5 @@ public class Casilla {
 	public String getBando() {
 		return bando;
 	}
+
 }
