@@ -23,10 +23,9 @@ public class Unidad2 {
     }
 
     public void moverAdelante(Casilla2[][] casillas) {
-        ArrayList<Casilla2> casillasPosible = casillaActual.getAdyacentes(casillas);
         Casilla2 destino = casillaActual.casillaAdelante(casillas);
 
-        if(casillasPosible.contains(destino)){
+        if(destino != null){
             casillaActual.desocupar();
             destino.ocuparCon(this);
             casillaActual = destino;
@@ -35,10 +34,9 @@ public class Unidad2 {
     }
 
     public void moverDerecha(Casilla2[][] casillas) {
-        ArrayList<Casilla2> casillasPosible = casillaActual.getAdyacentes(casillas);
         Casilla2 destino = casillaActual.casillaDerecha(casillas);
 
-        if(casillasPosible.contains(destino)){
+        if(destino != null){
             casillaActual.desocupar();
             destino.ocuparCon(this);
             casillaActual = destino;
@@ -47,10 +45,9 @@ public class Unidad2 {
     }
 
     public void moverAbajo(Casilla2[][] casillas) {
-        ArrayList<Casilla2> casillasPosible = casillaActual.getAdyacentes(casillas);
         Casilla2 destino = casillaActual.casillaTrasera(casillas);
 
-        if(casillasPosible.contains(destino)){
+        if(destino != null){
             casillaActual.desocupar();
             destino.ocuparCon(this);
             casillaActual = destino;
@@ -59,10 +56,9 @@ public class Unidad2 {
     }
 
     public void moverIzquierda(Casilla2[][] casillas) {
-        ArrayList<Casilla2> casillasPosible = casillaActual.getAdyacentes(casillas);
         Casilla2 destino = casillaActual.casillaIzquierda(casillas);
 
-        if(casillasPosible.contains(destino)){
+        if(destino != null){
             casillaActual.desocupar();
             destino.ocuparCon(this);
             casillaActual = destino;

@@ -33,4 +33,15 @@ public class Unidad2Test {
 
         assertEquals(unidad.getCoords(), "4 ; 2");
     }
+
+    @Test
+    public void muevoUnaUnidadAlBordeDelTableroYNoSeMueveNiLanzaExcepcion() {
+        Tablero2 t = new Tablero2();
+        Unidad2 unidad = new Unidad2();
+        t.posicionarUnidad(unidad, 19,19);
+
+        t.moverUnidadDerecha(unidad);
+
+        assertEquals(unidad.getCoords(), "19 ; 19");
+    }
 }
