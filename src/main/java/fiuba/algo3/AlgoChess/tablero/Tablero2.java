@@ -49,4 +49,8 @@ public class Tablero2 {
             }
         }
     }
+
+    public void atacarConUnidadA(Unidad2 atacante, Unidad2 objetivo) {
+        atacante.atacar(objetivo, casillas);
+    }
 }

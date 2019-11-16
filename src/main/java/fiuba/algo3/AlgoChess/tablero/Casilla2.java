@@ -75,4 +75,27 @@ public class Casilla2 {
         return null;
     }
 
+    private boolean ocupadaCon(Unidad2 ocupante) {
+        return this.ocupante == ocupante;
+    }
+
+    private double distanciaA(int fila, int columna) {
+        int distanciaEnFilas = Math.abs(this.fila - fila);
+        int distanciaEnColumnas = Math.abs(this.columna - columna);
+
+        int distancia = distanciaEnFilas * distanciaEnFilas + distanciaEnColumnas * distanciaEnColumnas;
+
+        return Math.sqrt(distancia);
+    }
+
+    public void distanciaA(Unidad2 objetivo, Casilla2[][] casillas) {
+        for(int i = 0; i < 20; i++){
+            for(int j = 0; j < 20; j++){
+                if(casillas[i][j].ocupadaCon(objetivo)){
+                    ocupante.setAtaqueStrategyParaObjetivoADistancia(distanciaA(i,j));
+                }
+            }
+        }
+    }
+
 }

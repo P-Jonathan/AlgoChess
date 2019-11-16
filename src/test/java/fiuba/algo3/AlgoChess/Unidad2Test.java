@@ -44,4 +44,47 @@ public class Unidad2Test {
 
         assertEquals(unidad.getCoords(), "19 ; 19");
     }
+
+    @Test
+    public void atacoAUnaUnidadPosiccionadaEnElTableroADistanciaCortaYDeberiaRestarle10DeVidaALaAtacada() {
+        Tablero2 t = new Tablero2();
+        Unidad2 u1 = new Unidad2();
+        Unidad2 u2 = new Unidad2();
+
+        t.posicionarUnidad(u1, 5,5);
+        t.posicionarUnidad(u2, 5,6);
+
+        t.atacarConUnidadA(u1,u2);
+
+        assertEquals(u2.getHp(), 90);
+    }
+
+    @Test
+    public void atacoAUnaUnidadPosiccionadaEnElTableroADistanciaMediaYDeberiaRestarle20DeVidaALaAtacada() {
+        Tablero2 t = new Tablero2();
+        Unidad2 u1 = new Unidad2();
+        Unidad2 u2 = new Unidad2();
+
+        t.posicionarUnidad(u1, 5,5);
+        t.posicionarUnidad(u2, 9,9);
+
+        t.atacarConUnidadA(u1,u2);
+
+        assertEquals(u2.getHp(), 80);
+    }
+
+    @Test
+    public void atacoAUnaUnidadPosicionadaEnElTableroADistanciaLargaYNoDeberiaQuitarleVida() {
+        Tablero2 t = new Tablero2();
+        Unidad2 u1 = new Unidad2();
+        Unidad2 u2 = new Unidad2();
+
+        t.posicionarUnidad(u1, 5,5);
+        t.posicionarUnidad(u2, 19,19);
+
+        t.atacarConUnidadA(u1,u2);
+
+        assertEquals(u2.getHp(), 100);
+    }
+
 }
