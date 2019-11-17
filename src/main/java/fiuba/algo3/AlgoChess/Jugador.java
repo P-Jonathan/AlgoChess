@@ -20,7 +20,7 @@ public class Jugador {
 
     public void comprarUnidad(Unidad unidad){
         if( puntos < unidad.getCosto() ) {
-            throw new PuntosInsuficientesException("Puntos insuficientes");
+            throw new PuntosInsuficientesException();
         }
 
         puntos = puntos - unidad.getCosto();
@@ -32,16 +32,12 @@ public class Jugador {
         return puntos;
     }
 
-    public int cantidadUnidades() {
-        return unidades.size();
-    }
-
-    public void descartarUnidad(Unidad unidad) {
+    public void remover(Unidad unidad) {
         unidades.remove(unidad);
 
         if(unidades.isEmpty()) {
             System.out.println(nombre + " se ha quedado sin unidades y no puede continuar");
-            throw new FinDelJuegoException("Fin del juego");
+            throw new FinDelJuegoException();
         }
     }
 }

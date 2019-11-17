@@ -10,9 +10,7 @@ public class AtaqueAMediaDistancia extends Ataque {
 	}
 
 	@Override
-	public void atacar(Unidad atacante, Unidad objetivo) {
-		if (!atacante.aliado(objetivo) && atacante.estaAMediaDistancia(objetivo)) {
-			objetivo.recibirDanio(this.danio);
-		}
+	public void atacar(Unidad objetivo) {
+		objetivo.recibirDanio(danio);
 	}
 }

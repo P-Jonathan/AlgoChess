@@ -1,105 +1,72 @@
 package fiuba.algo3.AlgoChess.unidades;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import fiuba.algo3.AlgoChess.Jugador;
-import fiuba.algo3.AlgoChess.Posicion2D;
-import fiuba.algo3.AlgoChess.tablero.Tablero;
+import fiuba.algo3.AlgoChess.tablero.Casilla;
 
 public abstract class Unidad {
-	protected int vida;
-	protected int costo;
-	protected String bando;
-	protected Tablero tablero;
-	protected Posicion2D posicion;
-	protected Jugador jugador;
-	
-	protected int DISTANCIA_CERCANA_MAX = 2;
-	protected int DISTANCIA_MEDIA_MAX = 5;
+    // Atributos de inicializacion
+    private int vida;
+    private int costo;
+    protected String bando;
 
-	public Unidad(String bando , Posicion2D posicion, int vida, int costo) {
-		this.setVida(vida);
-		this.costo = costo;
-		this.bando = bando;
-		this.posicion = posicion;
+    // Atributos de posicionamiento
+    protected Casilla casillaActual;
+    protected int filaActual;
+    protected int columnaActual;
 
-	}
+    private Jugador jugador;
 
-	public void setPosicion(Posicion2D posicion) {
-		this.posicion = posicion;
-	}
+    public Unidad(String bando, int vida, int costo) {
+            this.vida = vida;
+            this.costo = costo;
+            this.bando = bando;
+    }
 
-	public Posicion2D getPosicion() {
-		return posicion;
-	}
+    public int getVida() {
+        return vida;
+    }
 
-	public void recibirDanio(int danio) {
-		this.vida -= danio;
+    public int getCosto() {
+        return costo;
+    }
 
-		if(this.vida <= 0) {
-			jugador.descartarUnidad(this);
-		}
-	};
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
+    }
 
-	public void aumentarVida(int vida) {
-		this.vida += vida;
-	};
+    public void recibirDanio(int danio) {
+        vida -= danio;
 
-	public void setVida(int vida) {
-		this.vida = vida;
-	}
+        if( vida <= 0)
+            notificarJugador(jugador);
+    }
 
-	public int getVida() {
-		return vida;
-	};
+    public void notificarJugador(Jugador jugador) {
+        jugador.remover(this);
+    }
 
-	public int getCosto(){return costo;};
+    public void setCasillaActual(Casilla casilla){
+        casillaActual = casilla;
+    }
 
-	public boolean aliado(Unidad unidad) {
-		return this.bando == unidad.bando;
-	}
+    public void setCoords(int fila, int columna) {
+        filaActual = fila;
+        columnaActual = columna;
+    }
 
-	public List<Unidad> unidadesAdyacentes() {
-		List<Unidad> unidades = new LinkedList<Unidad>();
-		
-		for (int i = posicion.getX() - 1; i <= posicion.getX() + 1; i++) {
-			for (int j = posicion.getY() - 1; j <= posicion.getY() + 1; j++) {
-				
-				Unidad unidad = tablero.getUnidad(new Posicion2D(i, j));
-				if(unidad != null && unidad != this) {
-					unidades.add(unidad);
-				}
-			}
-		}
+    public String getCoords(){
+        return (filaActual + " ; " + columnaActual);
+    }
 
-		return unidades;
-	}
-	
-	public boolean esAdyacente(Unidad unidad) {
-		return this.getPosicion().adyacente(unidad.getPosicion());
-	}
-	
-	public boolean estaACortaDistancia(Unidad objetivo) {
-		double distancia = this.getPosicion().distancia(objetivo.getPosicion());
-		return distancia <= DISTANCIA_CERCANA_MAX;
-	}
+    public void aumentarVida(int vida) {
+        this.vida += vida;
+    };
 
-	public boolean estaAMediaDistancia(Unidad objetivo) {
-		double distancia = this.getPosicion().distancia(objetivo.getPosicion());
-		return distancia > DISTANCIA_CERCANA_MAX && distancia <= DISTANCIA_MEDIA_MAX;
-	}
-	
-	public boolean estaALargaDistancia(Unidad objetivo) {
-		double distancia = this.getPosicion().distancia(objetivo.getPosicion());
-		return distancia > DISTANCIA_MEDIA_MAX;
-	}
+    public void setBando(String bando) {
+        this.bando = bando;
+    }
 
-	public void setJugador(Jugador jugador) {
-		this.jugador = jugador;
-	}
-
-	public String getBando() {
-		return bando;
-	}
+    public String getBando() {
+        return bando;
+    }
 }

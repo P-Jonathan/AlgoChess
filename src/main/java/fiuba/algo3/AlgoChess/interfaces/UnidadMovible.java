@@ -1,8 +1,10 @@
 package fiuba.algo3.AlgoChess.interfaces;
 
-import fiuba.algo3.AlgoChess.Posicion2D;
+import fiuba.algo3.AlgoChess.tablero.Casilla;
 
 public interface UnidadMovible {
-	public void mover(Posicion2D posicion);
-	public Posicion2D getPosicion();
+	public void moverAdelante(Casilla[][] casillas);
+	public void moverDerecha(Casilla[][] casillas);
+	public void moverAbajo(Casilla[][] casillas);
+	public void moverIzquierda(Casilla[][] casillas);
 }

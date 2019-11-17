@@ -10,31 +10,37 @@ import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JineteTest {
-	@Test
-	public void unJineteAtacaUnaUnidadADistanciaYDeberiaRestarle15DeVida() {
-		Tablero tablero = new Tablero("Test", "Enemigo", 2, 5);
-		Jinete jinete = new Jinete("Test", new Posicion2D(0, 0));
-		Unidad objetivo = new UnidadDeInfanteria("Enemigo", new Posicion2D(1, 4));
-		tablero.posicionarUnidad(jinete);
-		tablero.posicionarUnidad(objetivo);
-		int vidaPrevia = objetivo.getVida();
+    @Test
+    public void unJineteAtacaUnaUnidadADistanciaYDeberiaRestarle15DeVida() {
+        Tablero tablero = new Tablero();
 
-		jinete.atacar(objetivo);
+        Jinete jinete = new Jinete();
+        Unidad objetivo = new UnidadDeInfanteria();
 
-		assertEquals(vidaPrevia - 15, objetivo.getVida());
-	}
+        tablero.posicionarUnidad(jinete, 2,2);
+        tablero.posicionarUnidad(objetivo, 6,2);
 
-	@Test
-	public void unJineteAtacaUnaUnidadCuerpoACuerpoYDeberiaRestarle5DeVida() {
-		Tablero tablero = new Tablero("Test", "Enemigo", 2, 5);
-		Jinete jinete = new Jinete("Test", new Posicion2D(0, 0));
-		Unidad objetivo = new UnidadDeInfanteria("Enemigo",  new Posicion2D(1, 1));
-		tablero.posicionarUnidad(jinete);
-		tablero.posicionarUnidad(objetivo);
-		int vidaPrevia = objetivo.getVida();
+        int vidaPrevia = objetivo.getVida();
 
-		jinete.atacar(objetivo);
+        tablero.atacarConUnidadAUnidad(jinete, objetivo);
 
-		assertEquals(vidaPrevia - 5, objetivo.getVida());
-	}
+        assertEquals(vidaPrevia - 15, objetivo.getVida());
+    }
+
+    @Test
+    public void unJineteAtacaUnaUnidadCuerpoACuerpoYDeberiaRestarle5DeVida() {
+        Tablero tablero = new Tablero();
+
+        Jinete jinete = new Jinete();
+        Unidad objetivo = new UnidadDeInfanteria();
+
+        tablero.posicionarUnidad(jinete, 2,2);
+        tablero.posicionarUnidad(objetivo, 4,4);
+
+        int vidaPrevia = objetivo.getVida();
+
+        tablero.atacarConUnidadAUnidad(jinete, objetivo);
+
+        assertEquals(vidaPrevia - 5, objetivo.getVida());
+    }
 }

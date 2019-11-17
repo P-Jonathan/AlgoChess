@@ -1,24 +1,62 @@
 package fiuba.algo3.AlgoChess.unidades;
 
-import fiuba.algo3.AlgoChess.Movimiento;
-import fiuba.algo3.AlgoChess.Posicion2D;
-import fiuba.algo3.AlgoChess.tablero.Tablero;
+import fiuba.algo3.AlgoChess.interfaces.UnidadMovible;
+import fiuba.algo3.AlgoChess.tablero.Casilla;
 
-public class Curandero extends Unidad {
+public class Curandero extends Unidad implements UnidadMovible {
 	private final static int VIDA_INICIAL = 75;
 	private final static int COSTO = 2;
-	
-	private Movimiento movimientoStrategy;
+
 	private int curacion;
 
-	public Curandero(String bando, Posicion2D posicion) {
-		super(bando, posicion, VIDA_INICIAL, COSTO);
-		movimientoStrategy = new Movimiento(tablero, this);
+	public Curandero(String bando) {
+		super(bando, VIDA_INICIAL, COSTO);
 		curacion = 15;
 	}
-	
-	public void mover(Posicion2D posicion) {
-		movimientoStrategy.mover(posicion);
+
+	public Curandero() {
+		super("", VIDA_INICIAL, COSTO);
+		curacion = 15;
+	}
+
+	@Override
+	public void moverAdelante(Casilla[][] casillas) {
+		Casilla destino = casillaActual.casillaAdelante(casillas);
+
+		destino.ocuparCon(this);
+		casillaActual.desocupar();
+		casillaActual = destino;
+		filaActual++;
+	}
+
+	@Override
+	public void moverDerecha(Casilla[][] casillas) {
+		Casilla destino = casillaActual.casillaDerecha(casillas);
+
+		destino.ocuparCon(this);
+		casillaActual.desocupar();
+		casillaActual = destino;
+		columnaActual++;
+	}
+
+	@Override
+	public void moverAbajo(Casilla[][] casillas) {
+		Casilla destino = casillaActual.casillaTrasera(casillas);
+
+		destino.ocuparCon(this);
+		casillaActual.desocupar();
+		casillaActual = destino;
+		filaActual--;
+	}
+
+	@Override
+	public void moverIzquierda(Casilla[][] casillas) {
+		Casilla destino = casillaActual.casillaIzquierda(casillas);
+
+		destino.ocuparCon(this);
+		casillaActual.desocupar();
+		casillaActual = destino;
+		columnaActual--;
 	}
 
 	public void curar(Unidad objetivo) {

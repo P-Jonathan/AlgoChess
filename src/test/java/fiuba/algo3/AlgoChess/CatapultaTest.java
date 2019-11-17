@@ -1,18 +1,17 @@
 package fiuba.algo3.AlgoChess;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import fiuba.algo3.AlgoChess.tablero.Tablero;
 import org.junit.jupiter.api.Test;
 
-import fiuba.algo3.AlgoChess.tablero.Tablero;
 import fiuba.algo3.AlgoChess.unidades.Catapulta;
-import fiuba.algo3.AlgoChess.unidades.Unidad;
 import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CatapultaTest {
 	@Test
 	public void creoCatapultaLeAumentoLaVidaEn20PeroSuVidaSigueSiendoLaMisma() {
-		Catapulta catapulta = new Catapulta("Test", new Posicion2D(0, 0));
+		Catapulta catapulta = new Catapulta();
 		
 		int vidaPrevia = catapulta.getVida();
 		
@@ -23,25 +22,31 @@ public class CatapultaTest {
 	
 	@Test
 	public void catapultaIntentaAtacarAUnObjetivoPeroNoEstaEnRango() {
-		Tablero tablero = new Tablero("Test", "Enemigo", 2, 5);
-		Catapulta catapulta = new Catapulta("Test", new Posicion2D(0, 0));
-		tablero.posicionarUnidad(catapulta);
-		Unidad objetivo = new UnidadDeInfanteria("Enemigo", new Posicion2D(1, 0));
-        tablero.posicionarUnidad(objetivo);
+		Tablero tablero = new Tablero();
+
+		Catapulta catapulta = new Catapulta();
+		tablero.posicionarUnidad(catapulta, 0,0);
+
+		UnidadDeInfanteria objetivo = new UnidadDeInfanteria();
+        tablero.posicionarUnidad(objetivo, 1, 1);
+
 		int vidaPrevia = objetivo.getVida();
 		
-		catapulta.atacar(objetivo);
+		tablero.atacarConUnidadAUnidad(catapulta, objetivo);
 		
 		assertEquals(objetivo.getVida(), vidaPrevia);
 	}
 	
 	@Test
 	public void catapultaAtacaAUnObjetivoYLeResta20DeVidaAlObjetivo() {
-		Tablero tablero = new Tablero("Test", "Enemigo", 2, 10);
-		Catapulta catapulta = new Catapulta("Test", new Posicion2D(0, 0));
-		tablero.posicionarUnidad(catapulta);
-		Unidad objetivo = new UnidadDeInfanteria("Enemigo", new Posicion2D(1, 9));
-		tablero.posicionarUnidad(objetivo);
+		Tablero tablero = new Tablero();
+
+		Catapulta catapulta = new Catapulta();
+		tablero.posicionarUnidad(catapulta, 0,0);
+
+		UnidadDeInfanteria objetivo = new UnidadDeInfanteria();
+		tablero.posicionarUnidad(objetivo, 11, 11);
+
 		int vidaPrevia = objetivo.getVida();
 		
 		catapulta.atacar(objetivo);

@@ -1,96 +1,105 @@
 package fiuba.algo3.AlgoChess.tablero;
 
-import fiuba.algo3.AlgoChess.Posicion2D;
-import fiuba.algo3.AlgoChess.excepciones.CasillaOcupadaException;
+import fiuba.algo3.AlgoChess.interfaces.UnidadMovible;
+import fiuba.algo3.AlgoChess.interfaces.UnidadOfensiva;
 import fiuba.algo3.AlgoChess.unidades.Unidad;
 
-import javax.swing.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Tablero {
-	private final int FILAS_DEFAULT = 20;
-	private final int COLUMNAS_DEFUALT = 20;
+    private final int FILAS = 20;
+    private final int COLUMNAS = 20;
 
-	private Casilla[][] tablero;
-	private int columnas;
-	private int filas;
-	
-	private String bandoA;
-	private String bandoB;
+    private Casilla[][] casillas;
+    private List<Unidad> unidades;
 
-	public Tablero(String bandoA, String bandoB) {
-		this.bandoA = bandoA;
-		this.bandoB = bandoB;
-		this.filas = FILAS_DEFAULT;
-		this.columnas = COLUMNAS_DEFUALT;
-		setTablero();
-	}
+    private String bandoA;
+    private String bandoB;
 
-	public Tablero(int filas, int columnas) {
-		this.filas = filas;
-		this.columnas = columnas;
-		setTablero();
-	}
-	
-	public Tablero(String bandoA, String bandoB, int filas, int columnas) {
-		this.bandoA = bandoA;
-		this.bandoB = bandoB;
-		this.filas = filas;
-		this.columnas = columnas;
-		setTablero();
-	}
+    public Tablero(String bandoA, String bandoB) {
+        unidades = new ArrayList<Unidad>();
+        this.bandoA = bandoA;
+        this.bandoB = bandoB;
+        inicializarCasillas();
+    }
 
-	private void setTablero() {
-		tablero = new Casilla[filas][columnas];
+    public Tablero() {
+        unidades = new ArrayList<Unidad>();
+        this.bandoA = "";
+        this.bandoB = "";
+        inicializarCasillas();
+    }
 
-		for (int i = 0; i < filas; i++) {
-			for (int j = 0; j < columnas; j++) {
-				tablero[i][j] = new Casilla();
+    public void posicionarUnidad(Unidad unidad, int fila, int columna) {
+        if(unidad.getBando() != casillas[fila][columna].getBando()) {
+            throw new RuntimeException();
+        }
 
-				if(i < filas/2) {
-					tablero[i][j].setBando(bandoA);
-				} else {
-					tablero[i][j].setBando(bandoB);
-				}
-			}
-		}
-	}
+        unidades.add(unidad);
+        unidad.setCoords(fila, columna);
+        casillas[fila][columna].ocuparCon(unidad);
+        unidad.setCasillaActual(casillas[fila][columna]);
+    }
 
-	public void posicionarUnidad(Unidad unidad) {
-        Posicion2D posicion = unidad.getPosicion();
-		Casilla casilla = getCasilla(posicion);
-		if(unidad.getBando() != casilla.getBando()) {
-			throw new RuntimeException();
-		}
-		casilla.setUnidad(unidad);
-		unidad.setPosicion(posicion);
-	}
+    public void moverUnidadAdelante(UnidadMovible unidad) {
+        unidad.moverAdelante(casillas);
+    }
 
-	public Unidad getUnidad(Posicion2D posicion) {
-		return getCasilla(posicion).getUnidad();
-	}
+    public void moverUnidadAtras(UnidadMovible unidad) {
+        unidad.moverAbajo(casillas);
+    }
 
-	public Casilla getCasilla(Posicion2D posicion) {
-		return tablero[posicion.getX()][posicion.getY()];
-	}
+    public void moverUnidadDerecha(UnidadMovible unidad) {
+        unidad.moverDerecha(casillas);
+    }
 
-	public void moverUnidad(Unidad unidad, Posicion2D posicion) {
-		if(posicion.getX() > filas || posicion.getY() > columnas){
-			throw new RuntimeException();
-		}
-		Casilla origen = getCasilla(unidad.getPosicion());
-		Casilla destino = getCasilla(posicion);
+    public void moverUnidadIzquierda(UnidadMovible unidad) {
+        unidad.moverIzquierda(casillas);
+    }
 
-		if (destino.ocupada()) {
-			throw new CasillaOcupadaException("Esta casilla ya tiene una unidad en ella");
-		}
+    private void inicializarCasillas() {
+        casillas = new Casilla[FILAS][COLUMNAS];
 
-		origen.popUnidad();
-		destino.setUnidad(unidad);
-		unidad.setPosicion(posicion);
-	}
-	public List<Unidad> unidadesAdyacentes(Unidad unidad) {
+        for(int i = 0; i < FILAS; i++){
+            for(int j = 0; j < COLUMNAS; j++){
+                casillas[i][j] = new Casilla(i,j);
+
+                if(i < FILAS/2) {
+                    casillas[i][j].setBando(bandoA);
+                } else {
+                    casillas[i][j].setBando(bandoB);
+                }
+            }
+        }
+    }
+
+    public void atacarConUnidadAUnidad(UnidadOfensiva atacante, Unidad objetivo) {
+        Casilla casillaAtacante = new Casilla();
+        int filaObjetivo = 0;
+        int columnaObjetivo = 0;
+        double distancia;
+
+        for(int i = 0; i < 20; i++){
+            for(int j = 0; j < 20; j++){
+                if(casillas[i][j].ocupadaCon(atacante)){
+                    casillaAtacante = casillas[i][j];
+                }
+
+                if(casillas[i][j].ocupadaCon(objetivo)){
+                    filaObjetivo = i;
+                    columnaObjetivo = j;
+                }
+            }
+        }
+
+        distancia = casillaAtacante.distanciaA(filaObjetivo, columnaObjetivo);
+        atacante.prepararAtaqueADistancia(distancia);
+        atacante.atacar(objetivo);
+    }
+
+    /*
+    	public List<Unidad> unidadesAdyacentes(Unidad unidad) {
 		List<Unidad> unidades = new LinkedList<Unidad>();
 		Posicion2D posicion = unidad.getPosicion();
 		for (int i = posicion.getX() - 1; i <= posicion.getX() + 1; i++) {
@@ -105,4 +114,5 @@ public class Tablero {
 
 		return unidades;
 	}
+     */
 }

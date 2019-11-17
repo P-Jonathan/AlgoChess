@@ -11,114 +11,120 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class JugadorTest {
-	@Test
-	public void UnJugadorCompraUnaUnidadDeInfanteriaYBajaLaCantidadDePuntoQueTieneElJugadorEn1() {
-		Jugador jugador = new Jugador("Test");
-		Tablero tablero = new Tablero("Test", "Enemigo");
-		UnidadDeInfanteria unidad = new UnidadDeInfanteria("Test", new Posicion2D(1, 1));
-		int puntosPrevios = jugador.getPuntos();
-		jugador.comprarUnidad(unidad);
+    @Test
+    public void UnJugadorCompraUnaUnidadDeInfanteriaYBajaLaCantidadDePuntoQueTieneElJugadorEn1() {
+        Jugador jugador = new Jugador("Test");
+        Tablero tablero = new Tablero();
 
-		assertEquals(puntosPrevios - 1, jugador.getPuntos());
-	}
+        UnidadDeInfanteria unidad = new UnidadDeInfanteria();
 
-	@Test
-	public void UnJugadorCompraUnJineteYBajaLaCantidadDePuntoQueTieneElJugadorEn3() {
-		Jugador jugador = new Jugador("Test");
+        int puntosPrevios = jugador.getPuntos();
 
-		Jinete jinete = new Jinete("Test", new Posicion2D(1, 1));
-		int puntosPrevios = jugador.getPuntos();
-		jugador.comprarUnidad(jinete);
+        jugador.comprarUnidad(unidad);
 
-		assertEquals(puntosPrevios - 3, jugador.getPuntos());
-	}
+        assertEquals(puntosPrevios - 1, jugador.getPuntos());
+    }
 
-	@Test
-	public void UnJugadorCompraUnCuranderoYBajaLaCantidadDePuntoQueTieneElJugadorEn2() {
-		Jugador jugador = new Jugador("Test");
+    @Test
+    public void UnJugadorCompraUnJineteYBajaLaCantidadDePuntoQueTieneElJugadorEn3() {
+        Jugador jugador = new Jugador("Test");
 
-		Curandero curandero = new Curandero("Test", new Posicion2D(1, 1));
-		int puntosPrevios = jugador.getPuntos();
-		jugador.comprarUnidad(curandero);
+        Jinete jinete = new Jinete();
+        int puntosPrevios = jugador.getPuntos();
+        jugador.comprarUnidad(jinete);
 
-		assertEquals(puntosPrevios - 2, jugador.getPuntos());
-	}
+        assertEquals(puntosPrevios - 3, jugador.getPuntos());
+    }
 
-	@Test
-	public void UnJugadorCompraUnaCatapultaYBajaLaCantidadDePuntoQueTieneElJugadorEn5() {
-		Jugador jugador = new Jugador("Test");
+    @Test
+    public void UnJugadorCompraUnCuranderoYBajaLaCantidadDePuntoQueTieneElJugadorEn2() {
+        Jugador jugador = new Jugador("Test");
 
-		Catapulta catapulta = new Catapulta("Test", new Posicion2D(1, 1));
-		int puntosPrevios = jugador.getPuntos();
-		jugador.comprarUnidad(catapulta);
+        Curandero curandero = new Curandero();
 
-		assertEquals(puntosPrevios - 5, jugador.getPuntos());
-	}
+        int puntosPrevios = jugador.getPuntos();
 
-	@Test
-	public void unJugadorCompraUnidadesCon0PuntosYDeberiaLanzarUnaPuntosInsuficientesException() {
-		Jugador jugador = new Jugador("Test"); // El jugador es creado con 20 puntos para comprar unidades
+        jugador.comprarUnidad(curandero);
 
-		ArrayList<Unidad> unidades = new ArrayList<Unidad>();
-		Unidad ultimaUnidad = new UnidadDeInfanteria("Test",  new Posicion2D(0, 0));
+        assertEquals(puntosPrevios - 2, jugador.getPuntos());
+    }
 
-		for (int i = 0; i < 20; i++) {
-			unidades.add(new UnidadDeInfanteria("Test", new Posicion2D(1, i)));
-		}
+    @Test
+    public void UnJugadorCompraUnaCatapultaYBajaLaCantidadDePuntoQueTieneElJugadorEn5() {
+        Jugador jugador = new Jugador("Test");
 
-		for (Unidad unidad : unidades) {
-			jugador.comprarUnidad(unidad); // Cada unidad de infanteria cuesta 1 punto
-		}
+        Catapulta catapulta = new Catapulta();
 
-		assertEquals(jugador.getPuntos(), 0);
+        int puntosPrevios = jugador.getPuntos();
 
-		assertThrows(PuntosInsuficientesException.class, () -> {
-			jugador.comprarUnidad(ultimaUnidad);
-		});
-	}
+        jugador.comprarUnidad(catapulta);
 
-	@Test
-	public void unJugadorCompraUnaUnidadConPuntosInsuficientesYDeberiaTirarPuntosInsuficientesException() {
-		Jugador jugador = new Jugador("Test"); // El jugador es creado con 20 puntos para comprar unidades
+        assertEquals(puntosPrevios - 5, jugador.getPuntos());
+    }
 
+    @Test
+    public void unJugadorCompraUnidadesCon0PuntosYDeberiaLanzarUnaPuntosInsuficientesException() {
+        Jugador jugador = new Jugador("Test"); // El jugador es creado con 20 puntos para comprar unidades
 
-		UnidadDeInfanteria soldado = new UnidadDeInfanteria("Test",  new Posicion2D(1, 1));
-		Catapulta catapulta1 = new Catapulta("Test",  new Posicion2D(5, 5));
-		Catapulta catapulta2 = new Catapulta("Test",  new Posicion2D(6, 5));
-		Catapulta catapulta3 = new Catapulta("Test",  new Posicion2D(7, 5));
-		Catapulta catapulta4 = new Catapulta("Test",  new Posicion2D(8, 5));
+        ArrayList<Unidad> unidades = new ArrayList<Unidad>();
+        Unidad ultimaUnidad = new UnidadDeInfanteria();
 
-		jugador.comprarUnidad(catapulta1); // Cada catapulta cuesta 5 puntos
-		jugador.comprarUnidad(catapulta2);
-		jugador.comprarUnidad(catapulta3);
-		jugador.comprarUnidad(soldado); // Cada unidad de infanteria cuesta 1 punto
+        for (int i = 0; i < 20; i++) {
+            unidades.add(new UnidadDeInfanteria());
+        }
 
-		assertEquals(jugador.getPuntos(), 4);
+        for (Unidad unidad : unidades) {
+            jugador.comprarUnidad(unidad); // Cada unidad de infanteria cuesta 1 punto
+        }
 
-		assertThrows(PuntosInsuficientesException.class, () -> {
-			jugador.comprarUnidad(catapulta4);
-		});
-	}
+        assertEquals(jugador.getPuntos(), 0);
 
-	@Test
-	public void jugadorManuPierdeCuandoSeQuedaSinUnidades() {
-		Jugador manu = new Jugador("Manu");
-		Jugador pepe = new Jugador("Pepe");
+        assertThrows(PuntosInsuficientesException.class, () -> {
+            jugador.comprarUnidad(ultimaUnidad);
+        });
+    }
+
+    @Test
+    public void unJugadorCompraUnaUnidadConPuntosInsuficientesYDeberiaTirarPuntosInsuficientesException() {
+        Jugador jugador = new Jugador("Test"); // El jugador es creado con 20 puntos para comprar unidades
 
 
-		UnidadDeInfanteria unidadManu = new UnidadDeInfanteria("Manu",  new Posicion2D(0, 1));
-		UnidadDeInfanteria unidadPepe = new UnidadDeInfanteria("Pepe",  new Posicion2D(1, 2));
+        UnidadDeInfanteria soldado = new UnidadDeInfanteria();
+        Catapulta catapulta1 = new Catapulta();
+        Catapulta catapulta2 = new Catapulta();
+        Catapulta catapulta3 = new Catapulta();
+        Catapulta catapulta4 = new Catapulta();
 
-		manu.comprarUnidad(unidadManu);
-		pepe.comprarUnidad(unidadPepe);
+        jugador.comprarUnidad(catapulta1); // Cada catapulta cuesta 5 puntos
+        jugador.comprarUnidad(catapulta2);
+        jugador.comprarUnidad(catapulta3);
+        jugador.comprarUnidad(soldado); // Cada unidad de infanteria cuesta 1 punto
 
-		for (int i = 0; i < 9; i++) {
-			unidadPepe.atacar(unidadManu);
-		}
+        assertEquals(jugador.getPuntos(), 4);
 
-		assertThrows(FinDelJuegoException.class, () -> {
-			unidadPepe.atacar(unidadManu);
-		});
-	}
+        assertThrows(PuntosInsuficientesException.class, () -> {
+            jugador.comprarUnidad(catapulta4);
+        });
+    }
 
+    @Test
+    public void jugadorManuPierdeCuandoSeQuedaSinUnidades() {
+        Jugador manu = new Jugador("Manu");
+        Jugador pepe = new Jugador("Pepe");
+
+
+        UnidadDeInfanteria unidadManu = new UnidadDeInfanteria("Manu");
+        UnidadDeInfanteria unidadPepe = new UnidadDeInfanteria("Pepe");
+
+        manu.comprarUnidad(unidadManu);
+        pepe.comprarUnidad(unidadPepe);
+
+        for (int i = 0; i < 9; i++) {
+            unidadPepe.atacar(unidadManu);
+        }
+
+        assertThrows(FinDelJuegoException.class, () -> {
+            unidadPepe.atacar(unidadManu);
+        });
+    }
 }
