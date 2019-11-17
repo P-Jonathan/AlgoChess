@@ -1,10 +1,12 @@
 package fiuba.algo3.AlgoChess;
 
+import fiuba.algo3.AlgoChess.excepciones.CasillaOcupadaException;
 import fiuba.algo3.AlgoChess.tablero.Tablero2;
 import fiuba.algo3.AlgoChess.unidades.Unidad2;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class Unidad2Test {
     @Test
@@ -40,9 +42,9 @@ public class Unidad2Test {
         Unidad2 unidad = new Unidad2();
         t.posicionarUnidad(unidad, 19,19);
 
-        t.moverUnidadDerecha(unidad);
-
-        assertEquals(unidad.getCoords(), "19 ; 19");
+        assertThrows(Exception.class, () -> {
+        	t.moverUnidadDerecha(unidad);
+        });
     }
 
     @Test

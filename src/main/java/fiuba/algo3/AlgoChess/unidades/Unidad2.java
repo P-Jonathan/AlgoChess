@@ -50,45 +50,37 @@ public class Unidad2 {
 
     public void moverAdelante(Casilla2[][] casillas) {
         Casilla2 destino = casillaActual.casillaAdelante(casillas);
-
-        if(destino != null){
-            casillaActual.desocupar();
-            destino.ocuparCon(this);
-            casillaActual = destino;
-            filaActual++;
-        }
+        
+        destino.ocuparCon(this);
+        casillaActual.desocupar();        
+        casillaActual = destino;
+        filaActual++;
     }
 
     public void moverDerecha(Casilla2[][] casillas) {
         Casilla2 destino = casillaActual.casillaDerecha(casillas);
-
-        if(destino != null){
-            casillaActual.desocupar();
-            destino.ocuparCon(this);
-            casillaActual = destino;
-            columnaActual++;
-        }
+       
+        destino.ocuparCon(this);
+        casillaActual.desocupar();
+        casillaActual = destino;
+        columnaActual++;
     }
 
     public void moverAbajo(Casilla2[][] casillas) {
         Casilla2 destino = casillaActual.casillaTrasera(casillas);
-
-        if(destino != null){
-            casillaActual.desocupar();
-            destino.ocuparCon(this);
-            casillaActual = destino;
-            filaActual--;
-        }
+           
+        destino.ocuparCon(this);
+        casillaActual.desocupar();
+        casillaActual = destino;
+        filaActual--;
     }
 
     public void moverIzquierda(Casilla2[][] casillas) {
         Casilla2 destino = casillaActual.casillaIzquierda(casillas);
-
-        if(destino != null){
-            casillaActual.desocupar();
-            destino.ocuparCon(this);
-            casillaActual = destino;
-            columnaActual--;
-        }
+		
+        destino.ocuparCon(this);
+        casillaActual.desocupar();
+		casillaActual = destino;
+		columnaActual--;
     }
 }

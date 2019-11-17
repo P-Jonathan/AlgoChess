@@ -26,7 +26,7 @@ public class Casilla2 {
     }
 
     public void ocuparCon(Unidad2 ocupante) {
-        if ( this.ocupante != null )
+        if ( this.ocupante != null && this !=null )
             throw new CasillaOcupadaException("KKKK");
         this.ocupante = ocupante;
         ocupante.setCasillaActual(this);
