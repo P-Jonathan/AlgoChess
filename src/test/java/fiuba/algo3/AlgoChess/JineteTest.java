@@ -104,4 +104,24 @@ public class JineteTest {
 
         assertEquals(vidaPrevia - 5, infanteriaEnemiga2.getVida());
     }
+
+    @Test
+    public void unJineteAtacaAUnEnemigoADistanciaMediaTeniendoUnJineteAliadoCercaYNoDeberiaQuitarlePuntosDeVida() {
+        Tablero tablero = new Tablero("P1", "P2");
+
+        Jinete jinete = new Jinete("P1");
+        Unidad jineteAliado = new UnidadDeInfanteria("P1");
+        Unidad infanteriaEnemiga = new UnidadDeInfanteria("P2");
+
+        tablero.posicionarUnidad(jinete, 9,9);
+        tablero.posicionarUnidad(jineteAliado, 9,8);
+        tablero.posicionarUnidad(infanteriaEnemiga, 14,14);
+
+
+        int vidaPrevia = infanteriaEnemiga.getVida();
+
+        tablero.atacarConUnidadAUnidad(jinete, infanteriaEnemiga);
+
+        assertEquals(vidaPrevia, infanteriaEnemiga.getVida());
+    }
 }

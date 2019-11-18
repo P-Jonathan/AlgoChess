@@ -37,9 +37,7 @@ public class Tablero {
         }
 
         unidades.add(unidad);
-        unidad.setCoords(fila, columna);
         casillas[fila][columna].ocuparCon(unidad);
-        unidad.setCasillaActual(casillas[fila][columna]);
     }
 
     public void moverUnidadAdelante(UnidadMovible unidad) {

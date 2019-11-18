@@ -1,6 +1,7 @@
 package fiuba.algo3.AlgoChess.unidades;
 
 import fiuba.algo3.AlgoChess.ataques.*;
+import fiuba.algo3.AlgoChess.excepciones.CasillaOcupadaException;
 import fiuba.algo3.AlgoChess.interfaces.UnidadMovible;
 import fiuba.algo3.AlgoChess.interfaces.UnidadOfensiva;
 import fiuba.algo3.AlgoChess.tablero.Casilla;
@@ -24,50 +25,38 @@ public class UnidadDeInfanteria extends Unidad implements UnidadMovible, UnidadO
 
 	@Override
 	public void moverAdelante(Casilla[][] casillas) {
-		Casilla destino = casillaActual.casillaAdelante(casillas);
+		Casilla casillaDestino = casillaActual.casillaAdelante(casillas);
+        Casilla casillaAnterior = casillaActual;
 
-		destino.ocuparCon(this);
-		casillaActual.desocupar();
-		casillaActual = destino;
-		filaActual++;
+        casillaDestino.ocuparCon(this);
+        casillaAnterior.desocupar();
 	}
 
 	@Override
 	public void moverDerecha(Casilla[][] casillas) {
-		Casilla destino = casillaActual.casillaDerecha(casillas);
+		Casilla casillaDestino = casillaActual.casillaDerecha(casillas);
+        Casilla casillaAnterior = casillaActual;
 
-		destino.ocuparCon(this);
-		casillaActual.desocupar();
-		casillaActual = destino;
-		columnaActual++;
+        casillaDestino.ocuparCon(this);
+        casillaAnterior.desocupar();
 	}
 
 	@Override
 	public void moverAbajo(Casilla[][] casillas) {
-		Casilla destino = casillaActual.casillaTrasera(casillas);
+		Casilla casillaDestino = casillaActual.casillaTrasera(casillas);
+        Casilla casillaAnterior = casillaActual;
 
-		destino.ocuparCon(this);
-		casillaActual.desocupar();
-		casillaActual = destino;
-		filaActual--;
+        casillaDestino.ocuparCon(this);
+        casillaAnterior.desocupar();
 	}
 
 	@Override
 	public void moverIzquierda(Casilla[][] casillas) {
-		Casilla destino = casillaActual.casillaIzquierda(casillas);
+		Casilla casillaDestino = casillaActual.casillaIzquierda(casillas);
+        Casilla casillaAnterior = casillaActual;
 
-		destino.ocuparCon(this);
-		casillaActual.desocupar();
-		casillaActual = destino;
-		columnaActual--;
-	}
-
-
-	public void prepararAtaqueADistancia(double distancia) {
-		if(distancia > 6)
-			ataque = new AtaqueEncadenadoADistancia();
-		else
-			ataque = new AtaqueNull();
+        casillaDestino.ocuparCon(this);
+        casillaAnterior.desocupar();
 	}
 
 	@Override

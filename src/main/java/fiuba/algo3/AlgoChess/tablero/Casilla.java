@@ -3,7 +3,6 @@ package fiuba.algo3.AlgoChess.tablero;
 import fiuba.algo3.AlgoChess.excepciones.CasillaOcupadaException;
 import fiuba.algo3.AlgoChess.interfaces.UnidadOfensiva;
 import fiuba.algo3.AlgoChess.unidades.Unidad;
-import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
 
 import java.util.ArrayList;
 
@@ -29,8 +28,9 @@ public class Casilla {
     }
 
     public void ocuparCon(Unidad ocupante) {
-        if ( this.ocupante != null && this !=null )
+        if ( this.ocupante != null )
             throw new CasillaOcupadaException();
+
         this.ocupante = ocupante;
         ocupante.setCasillaActual(this);
     }
@@ -50,7 +50,19 @@ public class Casilla {
 
         return casillasCercanas;
     }
+/*
+    public ArrayList<Casilla> getCasillasAdyacentes(Casilla[][] casillas) {
+        ArrayList<Casilla> casillasAdyacentes = new ArrayList<Casilla>();
 
+        for(int i = ((fila - 1 >= 0)?(fila - 1):0) ; i < ((fila + 1 < 20)?(fila + 1):20) ; i++){
+            for(int j = ((columna - 1 >= 0)?(columna - 1):0) ; j < ((columna + 1 < 20)?(columna + 1):20) ; j++){
+                casillasAdyacentes.add(casillas[i][j]);
+            }
+        }
+
+        return casillasAdyacentes;
+    }
+*/
     public boolean ocupadaConUnidadAliada(String bando){
         return (ocupante != null) && (ocupante.getBando().equals(bando));
     }

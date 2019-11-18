@@ -11,8 +11,6 @@ public abstract class Unidad {
 
     // Atributos de posicionamiento
     protected Casilla casillaActual;
-    protected int filaActual;
-    protected int columnaActual;
 
     private Jugador jugador;
 
@@ -47,15 +45,6 @@ public abstract class Unidad {
 
     public void setCasillaActual(Casilla casilla){
         casillaActual = casilla;
-    }
-
-    public void setCoords(int fila, int columna) {
-        filaActual = fila;
-        columnaActual = columna;
-    }
-
-    public String getCoords(){
-        return (filaActual + " ; " + columnaActual);
     }
 
     public void aumentarVida(int vida) {

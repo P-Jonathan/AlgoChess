@@ -19,45 +19,41 @@ public class Curandero extends Unidad implements UnidadMovible {
 		curacion = 15;
 	}
 
-	@Override
-	public void moverAdelante(Casilla[][] casillas) {
-		Casilla destino = casillaActual.casillaAdelante(casillas);
+    @Override
+    public void moverAdelante(Casilla[][] casillas) {
+        Casilla casillaDestino = casillaActual.casillaAdelante(casillas);
+        Casilla casillaAnterior = casillaActual;
 
-		destino.ocuparCon(this);
-		casillaActual.desocupar();
-		casillaActual = destino;
-		filaActual++;
-	}
+        casillaDestino.ocuparCon(this);
+        casillaAnterior.desocupar();
+    }
 
-	@Override
-	public void moverDerecha(Casilla[][] casillas) {
-		Casilla destino = casillaActual.casillaDerecha(casillas);
+    @Override
+    public void moverDerecha(Casilla[][] casillas) {
+        Casilla casillaDestino = casillaActual.casillaDerecha(casillas);
+        Casilla casillaAnterior = casillaActual;
 
-		destino.ocuparCon(this);
-		casillaActual.desocupar();
-		casillaActual = destino;
-		columnaActual++;
-	}
+        casillaDestino.ocuparCon(this);
+        casillaAnterior.desocupar();
+    }
 
-	@Override
-	public void moverAbajo(Casilla[][] casillas) {
-		Casilla destino = casillaActual.casillaTrasera(casillas);
+    @Override
+    public void moverAbajo(Casilla[][] casillas) {
+        Casilla casillaDestino = casillaActual.casillaTrasera(casillas);
+        Casilla casillaAnterior = casillaActual;
 
-		destino.ocuparCon(this);
-		casillaActual.desocupar();
-		casillaActual = destino;
-		filaActual--;
-	}
+        casillaDestino.ocuparCon(this);
+        casillaAnterior.desocupar();
+    }
 
-	@Override
-	public void moverIzquierda(Casilla[][] casillas) {
-		Casilla destino = casillaActual.casillaIzquierda(casillas);
+    @Override
+    public void moverIzquierda(Casilla[][] casillas) {
+        Casilla casillaDestino = casillaActual.casillaIzquierda(casillas);
+        Casilla casillaAnterior = casillaActual;
 
-		destino.ocuparCon(this);
-		casillaActual.desocupar();
-		casillaActual = destino;
-		columnaActual--;
-	}
+        casillaDestino.ocuparCon(this);
+        casillaAnterior.desocupar();
+    }
 
 	public void curar(Unidad objetivo) {
 		objetivo.aumentarVida(curacion);

@@ -31,42 +31,38 @@ public class Jinete extends Unidad implements UnidadMovible, UnidadOfensiva {
 
 	@Override
 	public void moverAdelante(Casilla[][] casillas) {
-		Casilla destino = casillaActual.casillaAdelante(casillas);
+		Casilla casillaDestino = casillaActual.casillaAdelante(casillas);
+		Casilla casillaAnterior = casillaActual;
 
-		destino.ocuparCon(this);
-		casillaActual.desocupar();
-		casillaActual = destino;
-		filaActual++;
+		casillaDestino.ocuparCon(this);
+		casillaAnterior.desocupar();
 	}
 
 	@Override
 	public void moverDerecha(Casilla[][] casillas) {
-		Casilla destino = casillaActual.casillaDerecha(casillas);
+		Casilla casillaDestino = casillaActual.casillaDerecha(casillas);
+		Casilla casillaAnterior = casillaActual;
 
-		destino.ocuparCon(this);
-		casillaActual.desocupar();
-		casillaActual = destino;
-		columnaActual++;
+		casillaDestino.ocuparCon(this);
+		casillaAnterior.desocupar();
 	}
 
 	@Override
 	public void moverAbajo(Casilla[][] casillas) {
-		Casilla destino = casillaActual.casillaTrasera(casillas);
+		Casilla casillaDestino = casillaActual.casillaTrasera(casillas);
+		Casilla casillaAnterior = casillaActual;
 
-		destino.ocuparCon(this);
-		casillaActual.desocupar();
-		casillaActual = destino;
-		filaActual--;
+		casillaDestino.ocuparCon(this);
+		casillaAnterior.desocupar();
 	}
 
 	@Override
 	public void moverIzquierda(Casilla[][] casillas) {
-		Casilla destino = casillaActual.casillaIzquierda(casillas);
+		Casilla casillaDestino = casillaActual.casillaIzquierda(casillas);
+		Casilla casillaAnterior = casillaActual;
 
-		destino.ocuparCon(this);
-		casillaActual.desocupar();
-		casillaActual = destino;
-		columnaActual--;
+		casillaDestino.ocuparCon(this);
+		casillaAnterior.desocupar();
 	}
 
 	@Override
