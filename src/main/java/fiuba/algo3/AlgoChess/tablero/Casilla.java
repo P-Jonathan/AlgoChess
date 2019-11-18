@@ -3,6 +3,9 @@ package fiuba.algo3.AlgoChess.tablero;
 import fiuba.algo3.AlgoChess.excepciones.CasillaOcupadaException;
 import fiuba.algo3.AlgoChess.interfaces.UnidadOfensiva;
 import fiuba.algo3.AlgoChess.unidades.Unidad;
+import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
+
+import java.util.ArrayList;
 
 public class Casilla {
     private Unidad ocupante;
@@ -35,44 +38,41 @@ public class Casilla {
     public void desocupar() {
         this.ocupante = null;
     }
-/*
-    public ArrayList<Casilla> getAdyacentes(Casilla[][] casillas) {
-        ArrayList<Casilla> adyacentes = new ArrayList<Casilla>();
 
-        if(fila + 1 < 20)
-            adyacentes.add(casillas[fila+1][columna]);
-        if(fila - 1 >= 0)
-            adyacentes.add(casillas[fila-1][columna]);
-        if(columna + 1 < 20)
-            adyacentes.add(casillas[fila][columna+1]);
-        if(columna - 1 >= 0)
-            adyacentes.add(casillas[fila][columna-1]);
+    public ArrayList<Casilla> getCasillasCercanas(Casilla[][] casillas) { //Casillas a distancia <= 3
+        ArrayList<Casilla> casillasCercanas = new ArrayList<Casilla>();
 
-        return adyacentes;
+        for(int i = ((fila - 3 >= 0)?(fila - 3):0) ; i < ((fila + 3 < 20)?(fila + 3):20) ; i++){
+            for(int j = ((columna - 3 >= 0)?(columna - 3):0) ; j < ((columna + 3 < 20)?(columna + 3):20) ; j++){
+                casillasCercanas.add(casillas[i][j]);
+            }
+        }
+
+        return casillasCercanas;
     }
-*/
+
+    public boolean ocupadaConUnidadAliada(String bando){
+        return (ocupante != null) && (ocupante.getBando().equals(bando));
+    }
+
+    public boolean ocupadaConUnidadEnemiga(String bando){
+        return (ocupante != null) && (!ocupante.getBando().equals(bando));
+    }
+
     public Casilla casillaAdelante(Casilla[][] casillas) {
-        if(fila+1 < 20)
-            return casillas[fila+1][columna];
-        return null;
+        return ( (fila+1 < 20)?(casillas[fila+1][columna]):null );
     }
 
     public Casilla casillaTrasera(Casilla[][] casillas) {
-        if(fila-1 >= 0)
-            return casillas[fila-1][columna];
-        return null;
+        return ( (fila-1 >= 0)?(casillas[fila-1][columna]):null );
     }
 
     public Casilla casillaDerecha(Casilla[][] casillas) {
-        if(columna+1 < 20)
-            return casillas[fila][columna+1];
-        return null;
+        return ( (columna+1 < 20)?(casillas[fila][columna+1]):null );
     }
 
     public Casilla casillaIzquierda(Casilla[][] casillas) {
-        if(columna-1 >= 0)
-            return casillas[fila][columna-1];
-        return null;
+        return ( (columna-1 < 20)?(casillas[fila][columna-1]):null );
     }
 
     public boolean ocupadaCon(Unidad ocupante) {
@@ -89,6 +89,22 @@ public class Casilla {
         int distancia = distanciaEnFilas * distanciaEnFilas + distanciaEnColumnas * distanciaEnColumnas;
 
         return Math.sqrt(distancia);
+    }
+
+    public double distanciaAUnidad(Casilla[][] casillas, Unidad unidad) {
+        int filaUnidad = 0;
+        int columnaUnidad = 0;
+
+        for(int i = 0; i < 20; i++){
+            for(int j = 0; j < 20; j++) {
+                if (casillas[i][j].ocupadaCon(unidad)) {
+                    filaUnidad = i;
+                    columnaUnidad = j;
+                }
+            }
+        }
+
+        return distanciaA(filaUnidad,columnaUnidad);
     }
 
     public void setBando(String bando) {

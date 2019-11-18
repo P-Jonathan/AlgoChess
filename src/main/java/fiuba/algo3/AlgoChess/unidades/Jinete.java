@@ -1,9 +1,14 @@
 package fiuba.algo3.AlgoChess.unidades;
 
 import fiuba.algo3.AlgoChess.ataques.*;
+import fiuba.algo3.AlgoChess.excepciones.CasillaOcupadaException;
 import fiuba.algo3.AlgoChess.interfaces.UnidadMovible;
 import fiuba.algo3.AlgoChess.interfaces.UnidadOfensiva;
 import fiuba.algo3.AlgoChess.tablero.Casilla;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Jinete extends Unidad implements UnidadMovible, UnidadOfensiva {
 	private final static int VIDA_INICIAL = 100;
@@ -65,17 +70,34 @@ public class Jinete extends Unidad implements UnidadMovible, UnidadOfensiva {
 	}
 
 	@Override
-	public void prepararAtaqueADistancia(double distancia) {
-		if(distancia > 0 && distancia <= 3)
-			ataque = new AtaqueACortaDistancia(DANIO_CORTA_DISTANCIA);
-		else if(distancia > 3 && distancia <= 6)
-			ataque = new AtaqueAMediaDistancia(DANIO_MEDIA_DISTANCIA);
-		else
+	public void prepararAtaque(Casilla[][] casillas, Unidad objetivo) {
+		ArrayList<Casilla> casillasCercanas;
+		double distanciaAObjetivo = casillaActual.distanciaAUnidad(casillas, objetivo);
+
+		if(distanciaAObjetivo > 6) {
 			ataque = new AtaqueNull();
+		} else {
+			casillasCercanas = casillaActual.getCasillasCercanas(casillas);
+			ArrayList<Boolean> enemigosCerca = new ArrayList<Boolean>();
+			ArrayList<Boolean> aliadosCerca = new ArrayList<Boolean>();
+
+			for(Casilla casillaCercana : casillasCercanas){
+				enemigosCerca.add(casillaCercana.ocupadaConUnidadEnemiga(bando));
+				aliadosCerca.add(casillaCercana.ocupadaConUnidadAliada(bando));
+			}
+
+			if(enemigosCerca.contains(true) && distanciaAObjetivo <= 3){
+				ataque = new AtaqueACortaDistancia(DANIO_CORTA_DISTANCIA);
+			} else if(enemigosCerca.contains(true) && distanciaAObjetivo > 3){
+				ataque = new AtaqueNull();
+			} else if ((aliadosCerca.contains(true) || !enemigosCerca.contains(true)) && distanciaAObjetivo > 3){
+				ataque = new AtaqueAMediaDistancia(DANIO_MEDIA_DISTANCIA);
+			}
+		}
 	}
 
 	@Override
-	public void atacar(Unidad enemigo) {
-		ataque.atacar(enemigo);
+	public void atacar(Unidad objetivo) {
+		ataque.atacar(objetivo);
 	}
 }

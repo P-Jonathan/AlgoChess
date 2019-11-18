@@ -62,9 +62,19 @@ public class UnidadDeInfanteria extends Unidad implements UnidadMovible, UnidadO
 		columnaActual--;
 	}
 
-	@Override
+
 	public void prepararAtaqueADistancia(double distancia) {
-		if(distancia > 0 && distancia <= 3)
+		if(distancia > 6)
+			ataque = new AtaqueEncadenadoADistancia();
+		else
+			ataque = new AtaqueNull();
+	}
+
+	@Override
+	public void prepararAtaque(Casilla[][] casillas, Unidad objetivo) {
+		double distanciaAObjetivo = casillaActual.distanciaAUnidad(casillas, objetivo);
+
+		if(distanciaAObjetivo > 0 && distanciaAObjetivo <= 3)
 			ataque = new AtaqueACortaDistancia(DANIO_INICIAL);
 		else
 			ataque = new AtaqueNull();

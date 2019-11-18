@@ -75,26 +75,7 @@ public class Tablero {
     }
 
     public void atacarConUnidadAUnidad(UnidadOfensiva atacante, Unidad objetivo) {
-        Casilla casillaAtacante = new Casilla();
-        int filaObjetivo = 0;
-        int columnaObjetivo = 0;
-        double distancia;
-
-        for(int i = 0; i < 20; i++){
-            for(int j = 0; j < 20; j++){
-                if(casillas[i][j].ocupadaCon(atacante)){
-                    casillaAtacante = casillas[i][j];
-                }
-
-                if(casillas[i][j].ocupadaCon(objetivo)){
-                    filaObjetivo = i;
-                    columnaObjetivo = j;
-                }
-            }
-        }
-
-        distancia = casillaAtacante.distanciaA(filaObjetivo, columnaObjetivo);
-        atacante.prepararAtaqueADistancia(distancia);
+        atacante.prepararAtaque(casillas, objetivo);
         atacante.atacar(objetivo);
     }
 
