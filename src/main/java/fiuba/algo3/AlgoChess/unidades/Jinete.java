@@ -30,6 +30,9 @@ public class Jinete extends Unidad implements UnidadMovible, UnidadOfensiva {
 	}
 
 	@Override
+	public void agregateA(Batallon batallon) {}
+
+	@Override
 	public void moverAdelante(Casilla[][] casillas) {
 		Casilla casillaDestino = casillaActual.casillaAdelante(casillas);
 		Casilla casillaAnterior = casillaActual;

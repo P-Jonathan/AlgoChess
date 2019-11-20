@@ -20,6 +20,9 @@ public class Curandero extends Unidad implements UnidadMovible {
 	}
 
     @Override
+    public void agregateA(Batallon batallon) {}
+
+    @Override
     public void moverAdelante(Casilla[][] casillas) {
         Casilla casillaDestino = casillaActual.casillaAdelante(casillas);
         Casilla casillaAnterior = casillaActual;

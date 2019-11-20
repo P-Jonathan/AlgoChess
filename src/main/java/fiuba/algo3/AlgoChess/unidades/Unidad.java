@@ -58,4 +58,6 @@ public abstract class Unidad {
     public String getBando() {
         return bando;
     }
+
+    public abstract void agregateA(Batallon batallon);
 }

@@ -23,6 +23,9 @@ public class Catapulta extends Unidad implements UnidadOfensiva {
 	}
 
 	@Override
+	public void agregateA(Batallon batallon) {}
+
+	@Override
 	public void prepararAtaque(Casilla[][] casillas, Unidad objetivo) {
 		double distanciaAObjetivo = casillaActual.distanciaAUnidad(casillas, objetivo);
 

@@ -2,7 +2,9 @@ package fiuba.algo3.AlgoChess.tablero;
 
 import fiuba.algo3.AlgoChess.excepciones.CasillaOcupadaException;
 import fiuba.algo3.AlgoChess.interfaces.UnidadOfensiva;
+import fiuba.algo3.AlgoChess.unidades.Batallon;
 import fiuba.algo3.AlgoChess.unidades.Unidad;
+import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
 
 import java.util.ArrayList;
 
@@ -127,4 +129,33 @@ public class Casilla {
         return bando;
     }
 
+    public Batallon armarBatallon(Casilla[][] casillas) {
+        Batallon batallon = new Batallon();
+
+        agregarOcupante(batallon);
+
+        casillaDerecha(casillas).agregarOcupante(batallon);
+        casillaIzquierda(casillas).agregarOcupante(batallon);
+        casillaDerecha(casillas).casillaDerecha(casillas).agregarOcupante(batallon);
+
+        if(!batallon.lleno()) {
+            batallon.vaciar();
+            agregarOcupante(batallon);
+            casillaAdelante(casillas).agregarOcupante(batallon);
+            casillaTrasera(casillas).agregarOcupante(batallon);
+            casillaAdelante(casillas).casillaAdelante(casillas).agregarOcupante(batallon);
+        }
+
+        if(!batallon.lleno()) {
+            batallon.vaciar();
+            agregarOcupante(batallon);
+        }
+
+        return batallon;
+    }
+
+    public void agregarOcupante(Batallon batallon) {
+        if(ocupante != null)
+            ocupante.agregateA(batallon);
+    }
 }

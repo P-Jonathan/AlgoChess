@@ -24,16 +24,31 @@ public class UnidadDeInfanteria extends Unidad implements UnidadMovible, UnidadO
 	}
 
 	@Override
-	public void moverAdelante(Casilla[][] casillas) {
-		Casilla casillaDestino = casillaActual.casillaAdelante(casillas);
-        Casilla casillaAnterior = casillaActual;
+    public void agregateA(Batallon batallon) {
+	    batallon.agregar(this);
+    }
 
-        casillaDestino.ocuparCon(this);
-        casillaAnterior.desocupar();
+	@Override
+    public void moverAdelante(Casilla[][] casillas) {
+        Batallon batallon = casillaActual.armarBatallon(casillas);
+        batallon.moverAdelante(casillas);
+    }
+
+	public void avanzarNorte(Casilla[][] casillas) {
+		Casilla casillaDestino = casillaActual.casillaAdelante(casillas);
+		Casilla casillaAnterior = casillaActual;
+
+		casillaDestino.ocuparCon(this);
+		casillaAnterior.desocupar();
 	}
 
 	@Override
 	public void moverDerecha(Casilla[][] casillas) {
+		Batallon batallon = casillaActual.armarBatallon(casillas);
+		batallon.moverDerecha(casillas);
+	}
+
+	public void avanzarEste(Casilla[][] casillas) {
 		Casilla casillaDestino = casillaActual.casillaDerecha(casillas);
         Casilla casillaAnterior = casillaActual;
 
@@ -43,6 +58,11 @@ public class UnidadDeInfanteria extends Unidad implements UnidadMovible, UnidadO
 
 	@Override
 	public void moverAbajo(Casilla[][] casillas) {
+		Batallon batallon = casillaActual.armarBatallon(casillas);
+		batallon.moverAbajo(casillas);
+	}
+
+	public void avanzarSur(Casilla[][] casillas) {
 		Casilla casillaDestino = casillaActual.casillaTrasera(casillas);
         Casilla casillaAnterior = casillaActual;
 
@@ -52,6 +72,11 @@ public class UnidadDeInfanteria extends Unidad implements UnidadMovible, UnidadO
 
 	@Override
 	public void moverIzquierda(Casilla[][] casillas) {
+		Batallon batallon = casillaActual.armarBatallon(casillas);
+		batallon.moverIzquierda(casillas);
+	}
+
+	public void avanzarOeste(Casilla[][] casillas) {
 		Casilla casillaDestino = casillaActual.casillaIzquierda(casillas);
         Casilla casillaAnterior = casillaActual;
 
