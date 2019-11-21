@@ -62,47 +62,4 @@ public class UnidadMovibleTest {
             tablero.moverUnidadAdelante(soldado2);
         });
     }
-
-    @Test
-    public void muevoUnCuranderoAdelanteYSuPosicionDeberiaCambiar() {
-        Tablero t = new Tablero();
-        Curandero c1 = new Curandero();
-        Curandero c2 = new Curandero();
-
-        t.posicionarUnidad(c1, 5, 5);
-        t.moverUnidadAdelante(c1);
-
-        assertDoesNotThrow( ()->{
-            t.posicionarUnidad(c2, 5, 5);
-        });
-    }
-
-    @Test
-    public void muevoUnCuranderoAtrasYSuPosicionDeberiaCambiar() {
-        Tablero t = new Tablero();
-        Curandero c1 = new Curandero();
-        Curandero c2 = new Curandero();
-
-        t.posicionarUnidad(c1, 5, 5);
-        t.moverUnidadAtras(c1);
-
-        assertDoesNotThrow( ()->{
-            t.posicionarUnidad(c2, 5, 5);
-        });
-    }
-
-    @Test
-    public void muevoUnCuranderoHaciaLaDerechaYSuPosicionDeberiaCambiar() {
-        Tablero t = new Tablero();
-        Curandero c1 = new Curandero();
-        Curandero c2 = new Curandero();
-
-        t.posicionarUnidad(c1, 5, 5);
-        t.moverUnidadDerecha(c1);
-
-        assertDoesNotThrow( ()->{
-            t.posicionarUnidad(c2, 5, 5);
-        });
-    }
-
 }

@@ -22,6 +22,16 @@ public class CasillaTest {
 	}
 
 	@Test
+	public void creoUnaCasillaConUnaUndiadEnElConstructorYNoPuedoOcuparla() {
+		Casilla casilla = new Casilla( new UnidadDeInfanteria() );
+		UnidadDeInfanteria unidad = new UnidadDeInfanteria();
+
+		assertThrows(CasillaOcupadaException.class, ()->{
+			casilla.ocuparCon(unidad);
+		});
+	}
+
+	@Test
 	public void intentoPosicionarUnidadEnCasillaOcupadaYLanzaUnaException() {
 		Casilla casilla = new Casilla();
 		Unidad u = new UnidadDeInfanteria();
