@@ -4,11 +4,10 @@ import fiuba.algo3.AlgoChess.unidades.Unidad;
 
 public class AtaqueEncadenadoADistancia extends Ataque {
 	private final static int DANIO = 20;
-	
-	private final static Ataque ataque = new AtaqueALargaDistancia(DANIO);
+	private final static int DANIO_DE_PROPAGACION = 15;
 
 	@Override
 	public void atacar(Unidad objetivo) {
-		ataque.atacar(objetivo);
+		objetivo.recibirDanio(DANIO);
 	}
 }

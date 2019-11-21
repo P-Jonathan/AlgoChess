@@ -132,11 +132,40 @@ public class Casilla {
     public Batallon armarBatallon(Casilla[][] casillas) {
         Batallon batallon = new Batallon();
 
+        for(int i = ((fila-2>0)?(fila-2):0); i < ((fila+2<20)?(fila+2):20); i++){
+            casillas[i][columna].agregarOcupante(batallon);
+        }
+
+        if(!batallon.lleno()) {
+            batallon = new Batallon();
+
+            for (int j = ((columna - 2 > 0) ? (columna - 2) : 0); j < ((columna + 2 < 20) ? (columna + 2) : 20); j++) {
+                casillas[fila][j].agregarOcupante(batallon);
+            }
+        }
+
+        if(!batallon.lleno()) {
+            batallon = new Batallon();
+
+            agregarOcupante(batallon);
+        }
+
+        return batallon;
+        /*
+
         agregarOcupante(batallon);
 
         casillaDerecha(casillas).agregarOcupante(batallon);
         casillaIzquierda(casillas).agregarOcupante(batallon);
         casillaDerecha(casillas).casillaDerecha(casillas).agregarOcupante(batallon);
+
+        if(!batallon.lleno()) {
+            batallon.vaciar();
+            agregarOcupante(batallon);
+            casillaIzquierda(casillas).agregarOcupante(batallon);
+            casillaDerecha(casillas).agregarOcupante(batallon);
+            casillaIzquierda(casillas).casillaIzquierda(casillas).agregarOcupante(batallon);
+        }
 
         if(!batallon.lleno()) {
             batallon.vaciar();
@@ -149,9 +178,16 @@ public class Casilla {
         if(!batallon.lleno()) {
             batallon.vaciar();
             agregarOcupante(batallon);
+            casillaTrasera(casillas).agregarOcupante(batallon);
+            casillaAdelante(casillas).agregarOcupante(batallon);
+            casillaTrasera(casillas).casillaTrasera(casillas).agregarOcupante(batallon);
         }
 
+        if(!batallon.lleno()) {
+            return null;
+        }
         return batallon;
+        */
     }
 
     public void agregarOcupante(Batallon batallon) {
