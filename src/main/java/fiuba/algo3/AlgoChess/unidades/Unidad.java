@@ -61,11 +61,12 @@ public abstract class Unidad {
         return bando;
     }
 
-    public abstract void agregateA(Batallon batallon);
-
 	public ArrayList<Unidad> getUnidadesAdyacentes(Casilla[][] casillas) {
 		ArrayList<Unidad> unidadesAdyacentes;
 		unidadesAdyacentes = casillaActual.getUnidadesAdyacentes(casillas, this);
 		return unidadesAdyacentes;
 	}
+
+    
+    public abstract void agregateA(Batallon batallon);
 }
