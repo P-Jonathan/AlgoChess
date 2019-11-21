@@ -1,5 +1,7 @@
 package fiuba.algo3.AlgoChess.unidades;
 
+import java.util.ArrayList;
+
 import fiuba.algo3.AlgoChess.Jugador;
 import fiuba.algo3.AlgoChess.tablero.Casilla;
 
@@ -60,4 +62,10 @@ public abstract class Unidad {
     }
 
     public abstract void agregateA(Batallon batallon);
+
+	public ArrayList<Unidad> getUnidadesAdyacentes(Casilla[][] casillas) {
+		ArrayList<Unidad> unidadesAdyacentes;
+		unidadesAdyacentes = casillaActual.getUnidadesAdyacentes(casillas, this);
+		return unidadesAdyacentes;
+	}
 }

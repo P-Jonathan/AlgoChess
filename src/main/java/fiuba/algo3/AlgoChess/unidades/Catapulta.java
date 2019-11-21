@@ -28,9 +28,9 @@ public class Catapulta extends Unidad implements UnidadOfensiva {
 	@Override
 	public void prepararAtaque(Casilla[][] casillas, Unidad objetivo) {
 		double distanciaAObjetivo = casillaActual.distanciaAUnidad(casillas, objetivo);
-
+		ArrayList<Unidad> enemigosAdyacentes = objetivo.getUnidadesAdyacentes(casillas);
 		if(distanciaAObjetivo > 6)
-			ataque = new AtaqueEncadenadoADistancia();
+			ataque = new AtaqueEncadenadoADistancia(enemigosAdyacentes);
 		else
 			ataque = new AtaqueNull();
 	}
@@ -39,8 +39,8 @@ public class Catapulta extends Unidad implements UnidadOfensiva {
 	public void atacar(Unidad objetivo) {
 		ataque.atacar(objetivo);
 	}
-
+	
+	@Override
 	public void aumentarVida(int vida) {
-		// Habria que tirar una Excepción.
 	}
 }
