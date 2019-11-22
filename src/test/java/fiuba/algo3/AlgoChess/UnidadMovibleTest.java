@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import fiuba.algo3.AlgoChess.excepciones.CasillaOcupadaException;
-import fiuba.algo3.AlgoChess.unidades.Curandero;
 import org.junit.jupiter.api.Test;
 
 import fiuba.algo3.AlgoChess.tablero.Tablero;

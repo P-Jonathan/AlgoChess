@@ -1,5 +1,7 @@
 package fiuba.algo3.AlgoChess.unidades;
 
+import java.util.ArrayList;
+
 import fiuba.algo3.AlgoChess.Jugador;
 import fiuba.algo3.AlgoChess.tablero.Casilla;
 
@@ -59,4 +61,14 @@ public abstract class Unidad {
 
     public boolean pertenceA(String bando) { return this.bando == bando;
     }
+
+    public String getBando() {
+        return bando;
+    }
+
+	public ArrayList<Unidad> getUnidadesAdyacentes(Casilla[][] casillas) {
+		ArrayList<Unidad> unidadesAdyacentes;
+		unidadesAdyacentes = casillaActual.getUnidadesAdyacentes(casillas, this);
+		return unidadesAdyacentes;
+	}
 }

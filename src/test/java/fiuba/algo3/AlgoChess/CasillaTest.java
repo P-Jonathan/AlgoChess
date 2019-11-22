@@ -10,6 +10,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CasillaTest {
 	@Test
+	public void casillaOcupadaConUnidad() {
+		Casilla c = new Casilla();
+		Unidad u = new UnidadDeInfanteria();
+
+		c.ocuparCon(u);
+
+		assertTrue(c.ocupadaCon(u));
+	}
+
+	@Test
 	public void creoCasillaYPuedoOcuparlaConUnaUnidadLoQueSignificaQueSeCreaVacia() {
 		Casilla casilla = new Casilla();
 		Unidad u = new UnidadDeInfanteria();
@@ -19,16 +29,6 @@ public class CasillaTest {
 		});
 
 		assertTrue(casilla.ocupadaCon(u));
-	}
-
-	@Test
-	public void creoUnaCasillaConUnaUndiadEnElConstructorYNoPuedoOcuparla() {
-		Casilla casilla = new Casilla( new UnidadDeInfanteria() );
-		UnidadDeInfanteria unidad = new UnidadDeInfanteria();
-
-		assertThrows(CasillaOcupadaException.class, ()->{
-			casilla.ocuparCon(unidad);
-		});
 	}
 
 	@Test

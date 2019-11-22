@@ -100,6 +100,10 @@ public class Casilla {
         return aliadosCerca;
     }
 
+    public boolean ocupadaConUnidadEnemiga(String bando){
+        return !estado.ocupante().pertenceA(bando);
+    }
+
     public Casilla casillaAdelante(Casilla[][] casillas) {
         return ((fila + 1 < 20) ? (casillas[fila + 1][columna]) : null);
     }
@@ -135,7 +139,7 @@ public class Casilla {
         int columnaUnidad = 0;
 
         for (int i = 0; i < ANCHO_TABLERO; i++) {
-            for (int j = 0; j < 20; j++) {
+            for (int j = 0; j < ANCHO_TABLERO; j++) {
                 if (casillas[i][j].ocupadaCon(unidad)) {
                     filaUnidad = i;
                     columnaUnidad = j;
@@ -185,4 +189,19 @@ public class Casilla {
             ocupante.agregateA(batallon);
          */
     }
+    
+
+	
+    public ArrayList<Unidad> getUnidadesAdyacentes(Casilla[][] casillas,Unidad unidad) {
+    	ArrayList<Unidad> unidadesAdyacentes = new ArrayList<Unidad>();
+    	
+        for(int i = fila-1; i <= ((fila + 1 < 20)?(fila + 1):20) ; i++){
+            for(int j = columna-1 ; j <= ((columna + 1 < 20)?(columna + 1):20) ; j++){
+            	unidadesAdyacentes.add(casillas[i][j].estado.ocupante());
+            	unidadesAdyacentes.remove(null);
+            }
+        }
+        unidadesAdyacentes.remove(unidad);
+        return unidadesAdyacentes;
+	}
 }

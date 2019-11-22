@@ -8,7 +8,7 @@ public class EstadoCasillaVacia extends EstadoCasilla {
 
     @Override
     public Unidad ocupante() {
-        return ocupante;
+        return null;
     }
 
     @Override
