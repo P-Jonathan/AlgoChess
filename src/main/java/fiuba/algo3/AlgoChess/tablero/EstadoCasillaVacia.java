@@ -12,7 +12,8 @@ public class EstadoCasillaVacia extends EstadoCasilla {
     }
 
     @Override
-    public EstadoCasilla ocuparCon(Unidad ocupante) {
+    public EstadoCasilla ocuparCon(Casilla casilla, Unidad ocupante) {
+        ocupante.setCasillaActual(casilla);
         return new EstadoCasillaOcupada(ocupante);
     }
 

@@ -40,7 +40,7 @@ public class Casilla {
 
          this.ocupante = ocupante;
          */
-        estado = estado.ocuparCon(ocupante);
+        estado = estado.ocuparCon(this, ocupante);
     }
 
     public void desocupar() {

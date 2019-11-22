@@ -37,13 +37,7 @@ public class CasillaTest {
 		Unidad u = new UnidadDeInfanteria();
 		Unidad p = new UnidadDeInfanteria();
 
-		assertDoesNotThrow( () -> {
-			casilla.ocuparCon(u);
-		});
-
-		assertThrows(CasillaOcupadaException.class, ()->{
-			casilla.ocuparCon(p);
-		});
+		casilla.ocuparCon(u);
 
 		assertTrue(casilla.ocupadaCon(u));
 		assertFalse(casilla.ocupadaCon(p));

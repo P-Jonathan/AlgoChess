@@ -16,7 +16,7 @@ public class EstadoCasillaOcupada extends EstadoCasilla {
     }
 
     @Override
-    public EstadoCasilla ocuparCon(Unidad ocupante) {
+    public EstadoCasilla ocuparCon(Casilla casilla, Unidad ocupante) {
         return this;
     }
 
