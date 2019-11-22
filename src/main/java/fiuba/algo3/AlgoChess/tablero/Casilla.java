@@ -1,99 +1,124 @@
 package fiuba.algo3.AlgoChess.tablero;
 
 import fiuba.algo3.AlgoChess.excepciones.CasillaOcupadaException;
-import fiuba.algo3.AlgoChess.interfaces.UnidadOfensiva;
 import fiuba.algo3.AlgoChess.unidades.Batallon;
 import fiuba.algo3.AlgoChess.unidades.Unidad;
-import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
 
 import java.util.ArrayList;
 
 public class Casilla {
-    private Unidad ocupante;
+    static int ANCHO_TABLERO = 20;
+    private EstadoCasilla estado;
+    //private Unidad ocupante;
     private String bando;
     private int fila;
     private int columna;
 
-    public Casilla(Unidad unOcupante) {
-        ocupante = unOcupante;
+    public Casilla(Unidad ocupante) {
+        //this.ocupante = ocupante;
+        estado = new EstadoCasillaOcupada(ocupante);
     }
 
     public Casilla(int fila, int columna) {
-        ocupante = null;
+        //ocupante = null;
+        estado = new EstadoCasillaVacia();
         this.bando = "";
         this.fila = fila;
         this.columna = columna;
     }
 
     public Casilla() {
-        this.ocupante = null;
+        //ocupante = null;
+        estado = new EstadoCasillaVacia();
     }
 
     public void ocuparCon(Unidad ocupante) {
-        if ( this.ocupante != null )
+        /*
+        if(ocupante != null){
             throw new CasillaOcupadaException();
+         }
 
-        this.ocupante = ocupante;
-        ocupante.setCasillaActual(this);
+         this.ocupante = ocupante;
+         */
+        estado = estado.ocuparCon(ocupante);
     }
 
     public void desocupar() {
-        this.ocupante = null;
+        // ocupante = null;
+        estado = estado.desocupar();
     }
 
     public ArrayList<Casilla> getCasillasCercanas(Casilla[][] casillas) { //Casillas a distancia <= 3
         ArrayList<Casilla> casillasCercanas = new ArrayList<Casilla>();
 
-        for(int i = ((fila - 3 >= 0)?(fila - 3):0) ; i < ((fila + 3 < 20)?(fila + 3):20) ; i++){
-            for(int j = ((columna - 3 >= 0)?(columna - 3):0) ; j < ((columna + 3 < 20)?(columna + 3):20) ; j++){
+        for (int i = noSesobrepasaLimiteTablero(fila); i < noSesobrepasaLimiteTableroSuperior(fila, 3); i++) {
+            for (int j = (noSesobrepasaLimiteTablero(columna)); j < (noSesobrepasaLimiteTableroSuperior(columna, 3)); j++) {
                 casillasCercanas.add(casillas[i][j]);
             }
         }
 
         return casillasCercanas;
     }
-/*
-    public ArrayList<Casilla> getCasillasAdyacentes(Casilla[][] casillas) {
-        ArrayList<Casilla> casillasAdyacentes = new ArrayList<Casilla>();
 
-        for(int i = ((fila - 1 >= 0)?(fila - 1):0) ; i < ((fila + 1 < 20)?(fila + 1):20) ; i++){
-            for(int j = ((columna - 1 >= 0)?(columna - 1):0) ; j < ((columna + 1 < 20)?(columna + 1):20) ; j++){
-                casillasAdyacentes.add(casillas[i][j]);
-            }
+    private int noSesobrepasaLimiteTableroSuperior(int fila, int i) {
+        return (fila + i < 20) ? (fila + i) : 20;
+    }
+
+    private int noSesobrepasaLimiteTablero(int fila) {
+        return (fila - 3 >= 0) ? (fila - 3) : 0;
+    }
+
+    private boolean ocupanteEnemigo(String bando) {
+        // return ocupante != null && !ocupante.pertenceA(bando);
+        return !estado.ocupante().pertenceA(bando);
+    }
+
+    public ArrayList<Boolean> enemigosCerca(String bando, Casilla[][] casillas) {
+        ArrayList<Casilla> casillasCercanas = getCasillasCercanas(casillas);
+        ArrayList<Boolean> enemigosCerca = new ArrayList<Boolean>();
+
+        for (Casilla casillaCercana : casillasCercanas) {
+            enemigosCerca.add(casillaCercana.ocupanteEnemigo(bando));
         }
 
-        return casillasAdyacentes;
-    }
-*/
-    public boolean ocupadaConUnidadAliada(String bando){
-        return (ocupante != null) && (ocupante.getBando().equals(bando));
+        return enemigosCerca;
     }
 
-    public boolean ocupadaConUnidadEnemiga(String bando){
-        return (ocupante != null) && (!ocupante.getBando().equals(bando));
+    private boolean ocupanteAliado(String bando) {
+        // return ocupante != null && ocupante.pertenceA(bando);
+        return estado.ocupante().pertenceA(bando);
+    }
+
+    public ArrayList<Boolean> aliadosCerca(String bando, Casilla[][] casillas) {
+        ArrayList<Casilla> casillasCercanas = getCasillasCercanas(casillas);
+        ArrayList<Boolean> aliadosCerca = new ArrayList<Boolean>();
+
+        for (Casilla casillaCercana : casillasCercanas) {
+            aliadosCerca.add(casillaCercana.ocupanteAliado(bando));
+        }
+
+        return aliadosCerca;
     }
 
     public Casilla casillaAdelante(Casilla[][] casillas) {
-        return ( (fila+1 < 20)?(casillas[fila+1][columna]):null );
+        return ((fila + 1 < 20) ? (casillas[fila + 1][columna]) : null);
     }
 
     public Casilla casillaTrasera(Casilla[][] casillas) {
-        return ( (fila-1 >= 0)?(casillas[fila-1][columna]):null );
+        return ((fila - 1 >= 0) ? (casillas[fila - 1][columna]) : null);
     }
 
     public Casilla casillaDerecha(Casilla[][] casillas) {
-        return ( (columna+1 < 20)?(casillas[fila][columna+1]):null );
+        return ((columna + 1 < 20) ? (casillas[fila][columna + 1]) : null);
     }
 
     public Casilla casillaIzquierda(Casilla[][] casillas) {
-        return ( (columna-1 < 20)?(casillas[fila][columna-1]):null );
+        return ((columna - 1 < 20) ? (casillas[fila][columna - 1]) : null);
     }
 
     public boolean ocupadaCon(Unidad ocupante) {
-        return this.ocupante == ocupante;
-    }
-    public boolean ocupadaCon(UnidadOfensiva ocupante) {
-        return this.ocupante == ocupante;
+        // return this.ocupante == ocupante;
+        return estado.ocupante() == ocupante;
     }
 
     public double distanciaA(int fila, int columna) {
@@ -109,8 +134,8 @@ public class Casilla {
         int filaUnidad = 0;
         int columnaUnidad = 0;
 
-        for(int i = 0; i < 20; i++){
-            for(int j = 0; j < 20; j++) {
+        for (int i = 0; i < ANCHO_TABLERO; i++) {
+            for (int j = 0; j < 20; j++) {
                 if (casillas[i][j].ocupadaCon(unidad)) {
                     filaUnidad = i;
                     columnaUnidad = j;
@@ -118,7 +143,7 @@ public class Casilla {
             }
         }
 
-        return distanciaA(filaUnidad,columnaUnidad);
+        return distanciaA(filaUnidad, columnaUnidad);
     }
 
     public void setBando(String bando) {
@@ -132,66 +157,32 @@ public class Casilla {
     public Batallon armarBatallon(Casilla[][] casillas) {
         Batallon batallon = new Batallon();
 
-        for(int i = ((fila-2>0)?(fila-2):0); i < ((fila+2<20)?(fila+2):20); i++){
+        for (int i = ((fila - 2 > 0) ? (fila - 2) : 0); i < (noSesobrepasaLimiteTableroSuperior(fila, 2)); i++) {
             casillas[i][columna].agregarOcupante(batallon);
         }
 
-        if(!batallon.lleno()) {
+        if (!batallon.lleno()) {
             batallon = new Batallon();
 
-            for (int j = ((columna - 2 > 0) ? (columna - 2) : 0); j < ((columna + 2 < 20) ? (columna + 2) : 20); j++) {
+            for (int j = ((columna - 2 > 0) ? (columna - 2) : 0); j < (noSesobrepasaLimiteTableroSuperior(columna, 2)); j++) {
                 casillas[fila][j].agregarOcupante(batallon);
             }
         }
 
-        if(!batallon.lleno()) {
+        if (!batallon.lleno()) {
             batallon = new Batallon();
 
             agregarOcupante(batallon);
         }
 
         return batallon;
-        /*
-
-        agregarOcupante(batallon);
-
-        casillaDerecha(casillas).agregarOcupante(batallon);
-        casillaIzquierda(casillas).agregarOcupante(batallon);
-        casillaDerecha(casillas).casillaDerecha(casillas).agregarOcupante(batallon);
-
-        if(!batallon.lleno()) {
-            batallon.vaciar();
-            agregarOcupante(batallon);
-            casillaIzquierda(casillas).agregarOcupante(batallon);
-            casillaDerecha(casillas).agregarOcupante(batallon);
-            casillaIzquierda(casillas).casillaIzquierda(casillas).agregarOcupante(batallon);
-        }
-
-        if(!batallon.lleno()) {
-            batallon.vaciar();
-            agregarOcupante(batallon);
-            casillaAdelante(casillas).agregarOcupante(batallon);
-            casillaTrasera(casillas).agregarOcupante(batallon);
-            casillaAdelante(casillas).casillaAdelante(casillas).agregarOcupante(batallon);
-        }
-
-        if(!batallon.lleno()) {
-            batallon.vaciar();
-            agregarOcupante(batallon);
-            casillaTrasera(casillas).agregarOcupante(batallon);
-            casillaAdelante(casillas).agregarOcupante(batallon);
-            casillaTrasera(casillas).casillaTrasera(casillas).agregarOcupante(batallon);
-        }
-
-        if(!batallon.lleno()) {
-            return null;
-        }
-        return batallon;
-        */
     }
 
     public void agregarOcupante(Batallon batallon) {
-        if(ocupante != null)
+        estado.ocupante().agregateA(batallon);
+        /*
+        if (ocupante != null)
             ocupante.agregateA(batallon);
+         */
     }
 }

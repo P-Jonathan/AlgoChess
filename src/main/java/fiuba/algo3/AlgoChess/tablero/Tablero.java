@@ -32,7 +32,7 @@ public class Tablero {
     }
 
     public void posicionarUnidad(Unidad unidad, int fila, int columna) {
-        if(unidad.getBando() != casillas[fila][columna].getBando()) {
+        if(!unidad.pertenceA(casillas[fila][columna].getBando())) {
             throw new RuntimeException();
         }
 

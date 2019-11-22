@@ -45,10 +45,4 @@ public class Batallon {
     public boolean lleno() {
         return unidades.size() == 3;
     }
-
-    public void vaciar() {
-        unidades.removeAll(unidades);
-    }
-
-
 }

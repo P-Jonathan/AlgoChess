@@ -55,10 +55,8 @@ public abstract class Unidad {
         this.bando = bando;
     }
 
-    public String getBando() {
-        return bando;
+    public void agregateA(Batallon batallon){}
+
+    public boolean pertenceA(String bando) { return this.bando == bando;
     }
-
-    public abstract void agregateA(Batallon batallon);
-
 }
