@@ -7,8 +7,7 @@ import fiuba.algo3.AlgoChess.unidades.Jinete;
 import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BatallonTest {
     @Test
@@ -17,9 +16,7 @@ public class BatallonTest {
         UnidadDeInfanteria u1 = new UnidadDeInfanteria();
         UnidadDeInfanteria u2 = new UnidadDeInfanteria();
         UnidadDeInfanteria u3 = new UnidadDeInfanteria();
-        UnidadDeInfanteria u4 = new UnidadDeInfanteria();
-        UnidadDeInfanteria u5 = new UnidadDeInfanteria();
-        UnidadDeInfanteria u6 = new UnidadDeInfanteria();
+
 
         t.posicionarUnidad(u1, 2,3);
         t.posicionarUnidad(u2, 2,2);
@@ -27,17 +24,9 @@ public class BatallonTest {
 
         t.moverUnidadAdelante(u2);
 
-        assertDoesNotThrow( ()-> {
-            t.posicionarUnidad(u4, 2, 3);
-        });
-
-        assertDoesNotThrow( ()-> {
-            t.posicionarUnidad(u5, 2, 2);
-        });
-
-        assertDoesNotThrow( ()-> {
-            t.posicionarUnidad(u6, 2, 1);
-        });
+        assertEquals(u1.posicion(), "3;3");
+        assertEquals(u2.posicion(), "3;2");
+        assertEquals(u3.posicion(), "3;1");
     }
 
     @Test
@@ -46,9 +35,6 @@ public class BatallonTest {
         UnidadDeInfanteria u1 = new UnidadDeInfanteria();
         UnidadDeInfanteria u2 = new UnidadDeInfanteria();
         UnidadDeInfanteria u3 = new UnidadDeInfanteria();
-        UnidadDeInfanteria u4 = new UnidadDeInfanteria();
-        UnidadDeInfanteria u5 = new UnidadDeInfanteria();
-        UnidadDeInfanteria u6 = new UnidadDeInfanteria();
 
         t.posicionarUnidad(u1, 2,3);
         t.posicionarUnidad(u2, 2,2);
@@ -56,17 +42,9 @@ public class BatallonTest {
 
         t.moverUnidadAtras(u2);
 
-        assertDoesNotThrow( ()-> {
-            t.posicionarUnidad(u4, 2, 3);
-        });
-
-        assertDoesNotThrow( ()-> {
-            t.posicionarUnidad(u5, 2, 2);
-        });
-
-        assertDoesNotThrow( ()-> {
-            t.posicionarUnidad(u6, 2, 1);
-        });
+        assertEquals(u1.posicion(), "1;3");
+        assertEquals(u2.posicion(), "1;2");
+        assertEquals(u3.posicion(), "1;1");
     }
 
     @Test
@@ -75,9 +53,6 @@ public class BatallonTest {
         UnidadDeInfanteria u1 = new UnidadDeInfanteria();
         UnidadDeInfanteria u2 = new UnidadDeInfanteria();
         UnidadDeInfanteria u3 = new UnidadDeInfanteria();
-        UnidadDeInfanteria u4 = new UnidadDeInfanteria();
-        UnidadDeInfanteria u5 = new UnidadDeInfanteria();
-        UnidadDeInfanteria u6 = new UnidadDeInfanteria();
 
         t.posicionarUnidad(u1, 3,2);
         t.posicionarUnidad(u2, 2,2);
@@ -85,17 +60,9 @@ public class BatallonTest {
 
         t.moverUnidadDerecha(u2);
 
-        assertDoesNotThrow( ()-> {
-            t.posicionarUnidad(u4, 3, 2);
-        });
-
-        assertDoesNotThrow( ()-> {
-            t.posicionarUnidad(u5, 2, 2);
-        });
-
-        assertDoesNotThrow( ()-> {
-            t.posicionarUnidad(u6, 1, 2);
-        });
+        assertEquals(u1.posicion(), "3;3");
+        assertEquals(u2.posicion(), "2;3");
+        assertEquals(u3.posicion(), "1;3");
     }
 
     @Test
@@ -104,9 +71,6 @@ public class BatallonTest {
         UnidadDeInfanteria u1 = new UnidadDeInfanteria();
         UnidadDeInfanteria u2 = new UnidadDeInfanteria();
         UnidadDeInfanteria u3 = new UnidadDeInfanteria();
-        UnidadDeInfanteria u4 = new UnidadDeInfanteria();
-        UnidadDeInfanteria u5 = new UnidadDeInfanteria();
-        UnidadDeInfanteria u6 = new UnidadDeInfanteria();
 
         t.posicionarUnidad(u1, 3,2);
         t.posicionarUnidad(u2, 2,2);
@@ -114,17 +78,9 @@ public class BatallonTest {
 
         t.moverUnidadIzquierda(u2);
 
-        assertDoesNotThrow( ()-> {
-            t.posicionarUnidad(u4, 3, 2);
-        });
-
-        assertDoesNotThrow( ()-> {
-            t.posicionarUnidad(u5, 2, 2);
-        });
-
-        assertDoesNotThrow( ()-> {
-            t.posicionarUnidad(u6, 1, 2);
-        });
+        assertEquals(u1.posicion(), "3;1");
+        assertEquals(u2.posicion(), "2;1");
+        assertEquals(u3.posicion(), "1;1");
     }
 
     @Test
@@ -143,23 +99,12 @@ public class BatallonTest {
 
         t.moverUnidadAdelante(u3);
 
-
-        assertThrows(CasillaOcupadaException.class, ()->{
-            t.posicionarUnidad(u5, 6,2);
-        });
-
-        assertThrows(CasillaOcupadaException.class, ()->{
-            t.posicionarUnidad(u5, 6,3);
-        });
-
-        assertThrows(CasillaOcupadaException.class, ()->{
-            t.posicionarUnidad(u5, 6,4);
-        });
-
-        assertThrows(CasillaOcupadaException.class, ()->{
-            t.posicionarUnidad(u5, 5,5);
-        });
+        assertEquals(u1.posicion(), "5;5");
+        assertEquals(u2.posicion(), "6;4");
+        assertEquals(u3.posicion(), "6;3");
+        assertEquals(u4.posicion(), "6;2");
     }
+
 
     @Test
     public void verificoQueNoSeArmaUnBatallonConUnidadesQueNoSeanDeInfanteria() {
@@ -175,18 +120,9 @@ public class BatallonTest {
 
         t.moverUnidadAdelante(u);
 
-        UnidadDeInfanteria u2 = new UnidadDeInfanteria();
-
-        assertDoesNotThrow( ()->{
-            t.posicionarUnidad(u2, 3,3);
-        });
-
-        assertThrows(CasillaOcupadaException.class, ()->{
-           t.posicionarUnidad(u2, 3,4);
-        });
-
-        assertThrows(CasillaOcupadaException.class, ()->{
-            t.posicionarUnidad(u2, 3,2);
-        });
+        assertEquals(c.posicion(), "3;4");
+        assertEquals(u.posicion(), "4;3");
+        assertEquals(j.posicion(), "3;2");
     }
+
 }

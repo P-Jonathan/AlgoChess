@@ -1,13 +1,12 @@
 package fiuba.algo3.AlgoChess;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import fiuba.algo3.AlgoChess.excepciones.CasillaOcupadaException;
 import org.junit.jupiter.api.Test;
 
 import fiuba.algo3.AlgoChess.tablero.Tablero;
 import fiuba.algo3.AlgoChess.unidades.UnidadDeInfanteria;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UnidadMovibleTest {
     @Test
@@ -27,7 +26,7 @@ public class UnidadMovibleTest {
     }
 
     @Test
-    public void creoUnaUnidadMovibleLaMuevoAUnaCasillaOcupadaEIntentoPonerUnaUnidadEnSuPosicionYDeberiaLanzarUnaException() {
+    public void creoUnaUnidadMovibleLaMuevoAUnaCasillaOcupadaEIntentoPonerUnaUnidadEnSuPosicionYDeberiaLanzarNoPosicionarla() {
         Tablero tablero = new Tablero();
         UnidadDeInfanteria soldado1 = new UnidadDeInfanteria();
         UnidadDeInfanteria soldado2 = new UnidadDeInfanteria();
@@ -36,15 +35,13 @@ public class UnidadMovibleTest {
         tablero.posicionarUnidad(soldado1, 2, 2);
         tablero.posicionarUnidad(soldado2, 3, 2);
 
-        try {
-            tablero.moverUnidadAdelante(soldado1);
-        } catch(CasillaOcupadaException e){
-            // No hago nada
-        }
+        tablero.moverUnidadAdelante(soldado1);
 
-        assertThrows(CasillaOcupadaException.class, ()-> {
-            tablero.posicionarUnidad(soldado3, 2, 2);
-        });
+        assertEquals(soldado1.posicion(), "2;2");
+
+        tablero.posicionarUnidad(soldado3, 2,2);
+
+        assertEquals(soldado1.posicion(), "2;2");
     }
 
     @Test
@@ -57,8 +54,7 @@ public class UnidadMovibleTest {
         tablero.posicionarUnidad(soldado1, 2,2);
         tablero.posicionarUnidad(soldado2, 1,2);
 
-        assertThrows(CasillaOcupadaException.class, ()->{
-            tablero.moverUnidadAdelante(soldado2);
-        });
+        assertEquals(soldado1.posicion(), "2;2");
+        assertEquals(soldado2.posicion(), "1;2");
     }
 }

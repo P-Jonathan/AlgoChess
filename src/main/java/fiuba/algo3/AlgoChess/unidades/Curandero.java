@@ -3,6 +3,8 @@ package fiuba.algo3.AlgoChess.unidades;
 import fiuba.algo3.AlgoChess.interfaces.UnidadMovible;
 import fiuba.algo3.AlgoChess.tablero.Casilla;
 
+import java.util.ArrayList;
+
 public class Curandero extends Unidad implements UnidadMovible {
 	private final static int VIDA_INICIAL = 75;
 	private final static int COSTO = 2;
@@ -18,6 +20,11 @@ public class Curandero extends Unidad implements UnidadMovible {
 		super("", VIDA_INICIAL, COSTO);
 		curacion = 15;
 	}
+
+    @Override
+    public void agregateA(ArrayList<Unidad> unidades){
+        unidades.add(this);
+    }
 
     @Override
     public void moverAdelante(Casilla[][] casillas) {

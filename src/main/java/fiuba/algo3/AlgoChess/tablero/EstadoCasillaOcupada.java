@@ -3,6 +3,8 @@ package fiuba.algo3.AlgoChess.tablero;
 import fiuba.algo3.AlgoChess.excepciones.CasillaOcupadaException;
 import fiuba.algo3.AlgoChess.unidades.Unidad;
 
+import java.util.List;
+
 public class EstadoCasillaOcupada extends EstadoCasilla {
     private Unidad ocupante;
 

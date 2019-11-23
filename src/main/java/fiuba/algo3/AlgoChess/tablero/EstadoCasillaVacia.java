@@ -3,12 +3,13 @@ package fiuba.algo3.AlgoChess.tablero;
 import fiuba.algo3.AlgoChess.unidades.Unidad;
 import fiuba.algo3.AlgoChess.unidades.UnidadNull;
 
+
 public class EstadoCasillaVacia extends EstadoCasilla {
     private Unidad ocupante = new UnidadNull();
 
     @Override
     public Unidad ocupante() {
-        return null;
+        return ocupante;
     }
 
     @Override

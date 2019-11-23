@@ -125,35 +125,4 @@ public class JineteTest {
 
         assertEquals(vidaPrevia, infanteriaEnemiga.getVida());
     }
-
-    @Test
-    public void unJineteQueEsUnidadMoviblePuedeMoverseEnCualquierDireccion() {
-        Tablero t = new Tablero();
-        Jinete j = new Jinete();
-        Unidad u = new UnidadDeInfanteria();
-
-        t.posicionarUnidad(j,5,5);
-
-        t.moverUnidadAdelante(j);
-        assertThrows(CasillaOcupadaException.class, ()->{
-            t.posicionarUnidad(u, 6,5);
-        });
-
-        t.moverUnidadDerecha(j);
-        assertThrows(CasillaOcupadaException.class, ()->{
-            t.posicionarUnidad(u, 6,6);
-        });
-
-        t.moverUnidadAdelante(j);
-        t.moverUnidadIzquierda(j);
-        t.moverUnidadIzquierda(j);
-        assertThrows(CasillaOcupadaException.class, ()->{
-            t.posicionarUnidad(u, 7,4);
-        });
-
-        t.moverUnidadAtras(j);
-        assertThrows(CasillaOcupadaException.class, ()->{
-            t.posicionarUnidad(u, 6,4);
-        });
-    }
 }

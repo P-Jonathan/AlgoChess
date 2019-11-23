@@ -6,6 +6,8 @@ import fiuba.algo3.AlgoChess.interfaces.UnidadMovible;
 import fiuba.algo3.AlgoChess.interfaces.UnidadOfensiva;
 import fiuba.algo3.AlgoChess.tablero.Casilla;
 
+import java.util.ArrayList;
+
 public class UnidadDeInfanteria extends Unidad implements UnidadMovible, UnidadOfensiva {
 	private final static int VIDA_INICIAL = 100;
 	private final static int DANIO_INICIAL = 10;
@@ -24,15 +26,36 @@ public class UnidadDeInfanteria extends Unidad implements UnidadMovible, UnidadO
 	}
 
 	@Override
-    public void agregateA(Batallon batallon) {
-	    batallon.agregar(this);
-    }
+	public void agregateA(ArrayList<Unidad> unidades){
+		unidades.add(this);
+	}
+
+	@Override
+	public void reclutar(Batallon batallon) {
+		batallon.agregar(this);
+	}
+
+	public Batallon armarBatallon(UnidadDeInfanteria capitan, ArrayList<Unidad> unidades) {
+		Batallon batallon = new Batallon();
+		batallon.agregar(capitan);
+
+		for(Unidad unidad : unidades) {
+			unidad.reclutar(batallon);
+		}
+
+		return batallon;
+	}
 
 	@Override
     public void moverAdelante(Casilla[][] casillas) {
-        Batallon batallon = casillaActual.armarBatallon(casillas);
-        batallon.moverAdelante(casillas);
-    }
+		ArrayList<Unidad> unidades = casillaActual.getUnidadesAdyacentes(casillas, this);
+        Batallon batallon = armarBatallon(this, unidades);
+
+        if(batallon.lleno())
+        	batallon.moverAdelante(casillas);
+        else
+			avanzarNorte(casillas);
+	}
 
 	public void avanzarNorte(Casilla[][] casillas) {
 		Casilla casillaDestino = casillaActual.casillaAdelante(casillas);
@@ -44,8 +67,13 @@ public class UnidadDeInfanteria extends Unidad implements UnidadMovible, UnidadO
 
 	@Override
 	public void moverDerecha(Casilla[][] casillas) {
-		Batallon batallon = casillaActual.armarBatallon(casillas);
-		batallon.moverDerecha(casillas);
+		ArrayList<Unidad> unidades = casillaActual.getUnidadesAdyacentes(casillas, this);
+		Batallon batallon = armarBatallon(this, unidades);
+
+		if(batallon.lleno())
+			batallon.moverDerecha(casillas);
+		else
+			avanzarEste(casillas);
 	}
 
 	public void avanzarEste(Casilla[][] casillas) {
@@ -58,8 +86,13 @@ public class UnidadDeInfanteria extends Unidad implements UnidadMovible, UnidadO
 
 	@Override
 	public void moverAbajo(Casilla[][] casillas) {
-		Batallon batallon = casillaActual.armarBatallon(casillas);
-		batallon.moverAbajo(casillas);
+		ArrayList<Unidad> unidades = casillaActual.getUnidadesAdyacentes(casillas, this);
+		Batallon batallon = armarBatallon(this, unidades);
+
+		if(batallon.lleno())
+			batallon.moverAbajo(casillas);
+		else
+			avanzarSur(casillas);
 	}
 
 	public void avanzarSur(Casilla[][] casillas) {
@@ -72,8 +105,13 @@ public class UnidadDeInfanteria extends Unidad implements UnidadMovible, UnidadO
 
 	@Override
 	public void moverIzquierda(Casilla[][] casillas) {
-		Batallon batallon = casillaActual.armarBatallon(casillas);
-		batallon.moverIzquierda(casillas);
+		ArrayList<Unidad> unidades = casillaActual.getUnidadesAdyacentes(casillas, this);
+		Batallon batallon = armarBatallon(this, unidades);
+
+		if(batallon.lleno())
+			batallon.moverIzquierda(casillas);
+		else
+			avanzarOeste(casillas);
 	}
 
 	public void avanzarOeste(Casilla[][] casillas) {

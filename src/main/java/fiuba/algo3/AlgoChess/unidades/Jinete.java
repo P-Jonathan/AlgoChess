@@ -30,6 +30,11 @@ public class Jinete extends Unidad implements UnidadMovible, UnidadOfensiva {
 	}
 
 	@Override
+	public void agregateA(ArrayList<Unidad> unidades){
+		unidades.add(this);
+	}
+
+	@Override
 	public void moverAdelante(Casilla[][] casillas) {
 		Casilla casillaDestino = casillaActual.casillaAdelante(casillas);
 		Casilla casillaAnterior = casillaActual;
@@ -67,20 +72,26 @@ public class Jinete extends Unidad implements UnidadMovible, UnidadOfensiva {
 
 	@Override
 	public void prepararAtaque(Casilla[][] casillas, Unidad objetivo) {
-		ArrayList<Casilla> casillasCercanas;
 		double distanciaAObjetivo = casillaActual.distanciaAUnidad(casillas, objetivo);
 
 		if(distanciaAObjetivo > 6) {
 			ataque = new AtaqueNull();
 		} else {
-		    ArrayList<Boolean> enemigosCerca = casillaActual.enemigosCerca(bando, casillas);
-            ArrayList<Boolean> aliadosCerca = casillaActual.aliadosCerca(bando, casillas);
+		    ArrayList<Unidad> unidadesCerca = casillaActual.unidadesCercanas(casillas);
+		    unidadesCerca.remove(this);
+		    Iterator<Unidad> iter = unidadesCerca.iterator();
+		    boolean enemigosCerca = false;
 
-			if(enemigosCerca.contains(true) && distanciaAObjetivo <= 3){
+		   while(iter.hasNext() && !enemigosCerca) {
+				Unidad unidadCerca = iter.next();
+				enemigosCerca = unidadCerca.noPertenceA(bando);
+		   }
+
+			if(enemigosCerca && distanciaAObjetivo <= 3){
 				ataque = new AtaqueACortaDistancia(DANIO_CORTA_DISTANCIA);
-			} else if(enemigosCerca.contains(true) && distanciaAObjetivo > 3){
+			} else if(enemigosCerca && distanciaAObjetivo > 3){
 				ataque = new AtaqueNull();
-			} else if ((aliadosCerca.contains(true) || !enemigosCerca.contains(true)) && distanciaAObjetivo > 3){
+			} else if (!enemigosCerca && distanciaAObjetivo > 3){
 				ataque = new AtaqueAMediaDistancia(DANIO_MEDIA_DISTANCIA);
 			}
 		}

@@ -12,20 +12,17 @@ public class Tablero {
     private final int COLUMNAS = 20;
 
     private Casilla[][] casillas;
-    private List<Unidad> unidades;
 
     private String bandoA;
     private String bandoB;
 
     public Tablero(String bandoA, String bandoB) {
-        unidades = new ArrayList<Unidad>();
         this.bandoA = bandoA;
         this.bandoB = bandoB;
         inicializarCasillas();
     }
 
     public Tablero() {
-        unidades = new ArrayList<Unidad>();
         this.bandoA = "";
         this.bandoB = "";
         inicializarCasillas();
@@ -36,7 +33,6 @@ public class Tablero {
             throw new RuntimeException();
         }
 
-        unidades.add(unidad);
         casillas[fila][columna].ocuparCon(unidad);
     }
 
@@ -76,22 +72,4 @@ public class Tablero {
         atacante.prepararAtaque(casillas, objetivo);
         atacante.atacar(objetivo);
     }
-
-    /*
-    	public List<Unidad> unidadesAdyacentes(Unidad unidad) {
-		List<Unidad> unidades = new LinkedList<Unidad>();
-		Posicion2D posicion = unidad.getPosicion();
-		for (int i = posicion.getX() - 1; i <= posicion.getX() + 1; i++) {
-			for (int j = posicion.getY() - 1; j <= posicion.getY() + 1; j++) {
-
-				Unidad unidad2 = this.getUnidad(new Posicion2D(i, j));
-				if(unidad2 != null && unidad2 != unidad) {
-					unidades.add(unidad2);
-				}
-			}
-		}
-
-		return unidades;
-	}
-     */
 }

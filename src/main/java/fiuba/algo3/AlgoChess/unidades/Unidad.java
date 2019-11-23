@@ -1,5 +1,6 @@
 package fiuba.algo3.AlgoChess.unidades;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import fiuba.algo3.AlgoChess.Jugador;
@@ -20,6 +21,10 @@ public abstract class Unidad {
             this.vida = vida;
             this.costo = costo;
             this.bando = bando;
+    }
+
+    public String posicion() {
+        return casillaActual.posicion();
     }
 
     public int getVida() {
@@ -57,14 +62,17 @@ public abstract class Unidad {
         this.bando = bando;
     }
 
-    public void agregateA(Batallon batallon){}
+    public abstract void agregateA(ArrayList<Unidad> unidades);
 
-    public boolean pertenceA(String bando) { return this.bando == bando;
+    public boolean pertenceA(String bando) {
+        return this.bando == bando;
     }
 
-    public String getBando() {
-        return bando;
+    public boolean noPertenceA(String bando) {
+        return this.bando != bando;
     }
+
+    public void reclutar(Batallon batallon) {}
 
 	public ArrayList<Unidad> getUnidadesAdyacentes(Casilla[][] casillas) {
 		ArrayList<Unidad> unidadesAdyacentes;

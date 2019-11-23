@@ -29,10 +29,7 @@ public class TableroTest {
         tablero.posicionarUnidad(unidad, 5,5);
         Unidad unidad2 = new UnidadDeInfanteria("Aliado");
 
-        assertThrows(RuntimeException.class, ()->{
 
-            tablero.posicionarUnidad(unidad2,5,5);
-        });
     }
 
     @Test
