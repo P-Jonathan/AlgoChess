@@ -1,0 +1,110 @@
+package fiuba.algo3.AlgoChess.modelo.tablero;
+
+import fiuba.algo3.AlgoChess.modelo.unidades.Unidad;
+
+import java.util.List;
+
+public class Casilla {
+    private final static int RANGO_CORTO_MIN = 1;
+    private final static int RANGO_CORTO_MAX = 2;
+    private final static int RANGO_MEDIO_MAX = 5;
+
+    private Tablero tablero;
+    private Jugador propietario;
+    private Posicion posicion;
+    private EstadoCasilla estado;
+
+    protected Casilla(Tablero tablero, Posicion posicion, Unidad ocupante) {
+        this.tablero = tablero;
+        this.posicion = posicion;
+        propietario = new JugadorNull();
+        setEstado(new EstadoCasillaOcupada(this, ocupante));
+    }
+
+    Casilla(Tablero tablero, Posicion posicion) {
+        this.tablero = tablero;
+        this.posicion = posicion;
+        propietario = new JugadorNull();
+        setEstado(new EstadoCasillaVacia(this));
+    }
+
+    public Casilla() {
+        propietario = new JugadorNull();
+        posicion = new Posicion(0, 0);
+        setEstado(new EstadoCasillaVacia(this));
+    }
+
+    public void setPropietario(Jugador propietario) {
+        this.propietario = propietario;
+    }
+
+    public void setPosicion(Posicion posicion) {
+        this.posicion = posicion;
+    }
+
+    public void setOcupante(Unidad ocupante) {
+        estado.setOcupante(ocupante);
+    }
+
+    public Unidad getOcupante() {
+        return estado.getOcupante();
+    }
+
+    Unidad removeOcupante() {
+        return estado.removeOcupante();
+    }
+
+    void setEstado(EstadoCasilla nuevoEstado) {
+        estado = nuevoEstado;
+    }
+
+    public int distanciaACasilla(Casilla casilla) {
+        return casilla.distanciaAPosicion(posicion);
+    }
+
+    int distanciaAPosicion(Posicion posicion) {
+        return posicion.distanciaAPosicion(this.posicion);
+    }
+
+    private Posicion getPosicion() {
+        return posicion;
+    }
+
+    public List<Unidad> getUnidadesAdyacentes() {
+        return tablero.getUnidadesAdyacencesAPosicion(posicion);
+    }
+
+    public void moverUnidadHaciaAdelante() {
+        moverUnidad(posicion.posicionArriba());
+    }
+
+    public void moverUnidadALaDerecha() {
+        moverUnidad(posicion.posicionADerecha());
+    }
+
+    public void moverUnidadHaciaAtras() {
+        moverUnidad(posicion.posicionAbajo());
+    }
+
+    public void moverUnidadALaIzquierda() {
+        moverUnidad(posicion.posicionAIzquierda());
+    }
+
+    private void moverUnidad(Posicion posicionDestino) {
+        Casilla destino = tablero.getCasillaEnPosicion(posicionDestino);
+        destino.setOcupante(getOcupante()); // No poner removeOcupante dentro, porque si tira excepcion no queremos que se salga
+        removeOcupante();                   // la unidad que estaba antes en esta casilla.
+    }
+
+    public boolean valorEnRangoCorto(int valor) {
+        return valor >= RANGO_CORTO_MIN && valor <= RANGO_CORTO_MAX;
+    }
+
+    public boolean valorEnRangoMedio(int valor) {
+        return valor > RANGO_CORTO_MAX && valor <= RANGO_MEDIO_MAX;
+    }
+
+    public boolean valorEnRangoLargo(int valor) {
+        return valor > RANGO_MEDIO_MAX;
+    }
+}
