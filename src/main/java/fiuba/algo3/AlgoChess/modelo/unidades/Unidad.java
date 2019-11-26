@@ -49,28 +49,51 @@ public abstract class Unidad {
     }
 
     private boolean perteneceA(Jugador jugador) {
-        return propietario.equals(jugador);
+        return jugador.equals(propietario);
     }
 
     public boolean soyAliadoDe(Unidad unidad) {
         return unidad.perteneceA(propietario);
     }
 
+    public boolean soyEnemigoDe(Unidad unidad) {
+        return !unidad.perteneceA(propietario);
+    }
+
+    public boolean esMiPropietario(Jugador jugador) {
+        return jugador.equals(propietario);
+    }
+
     public abstract void usarHabilidad(Unidad objetivo);
 
-    public List<Unidad> unidadesCerca() {
+    public List<Unidad> unidadesAdyacentes() {
         return casilla.getUnidadesAdyacentes();
+    }
+
+    public List<Unidad> unidadesCerca() {
+        return casilla.getUnidadesADistanciaCorta();
     }
 
     private List<Unidad> aliadosCerca() {
         List<Unidad> unidadesCerca = unidadesCerca();
         List<Unidad> aliadosCerca = new ArrayList<>();
         for (Unidad unidad : unidadesCerca) {
-            if (this.soyAliadoDe(unidad)) {
+            if (unidad.soyAliadoDe(this)) {
                 aliadosCerca.add(unidad);
             }
         }
         return aliadosCerca;
+    }
+
+    public List<Unidad> enemigosCerca() {
+        List<Unidad> unidadesCerca = unidadesCerca();
+        List<Unidad> enemigosCerca = new ArrayList<>();
+        for (Unidad unidad : unidadesCerca) {
+            if (unidad.soyEnemigoDe(this)) {
+                enemigosCerca.add(unidad);
+            }
+        }
+        return enemigosCerca;
     }
 
     public boolean tieneAliadosCerca() {
@@ -79,6 +102,14 @@ public abstract class Unidad {
 
     public boolean noTieneAliadosCerca() {
         return !this.tieneAliadosCerca();
+    }
+
+    public boolean tieneEnemigosCerca() {
+        return enemigosCerca().size() > 0;
+    }
+
+    public boolean noTieneEnemigosCerca() {
+        return !tieneEnemigosCerca();
     }
 
     protected void enlistarse(Batallon batallon) {
@@ -118,5 +149,17 @@ public abstract class Unidad {
 
     public void moverALaIzquierda() {
         casilla.moverUnidadALaIzquierda();
+    }
+
+    protected void moverEnBatallonHaciaAdelante() {
+    }
+
+    protected void moverEnBatallonALaDerecha() {
+    }
+
+    protected void moverEnBatallonHaciaAtras() {
+    }
+
+    protected void moverEnBatallonALaIzquierda() {
     }
 }

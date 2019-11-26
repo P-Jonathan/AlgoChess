@@ -42,6 +42,10 @@ public class Casilla {
         this.posicion = posicion;
     }
 
+    private Posicion getPosicion() {
+        return posicion;
+    }
+
     public void setOcupante(Unidad ocupante) {
         estado.setOcupante(ocupante);
     }
@@ -66,16 +70,33 @@ public class Casilla {
         return posicion.distanciaAPosicion(this.posicion);
     }
 
-    private Posicion getPosicion() {
-        return posicion;
+    boolean esAdyacente(Casilla casilla){
+        int distancia = casilla.distanciaACasilla(this);
+        return distancia >= 1 && distancia <= 2;
+    }
+
+    public boolean estaEnPosicion(Posicion posicion) {
+        return posicion.isEquals(this.posicion);
     }
 
     public List<Unidad> getUnidadesAdyacentes() {
         return tablero.getUnidadesAdyacencesAPosicion(posicion);
     }
 
+    public List<Unidad> getUnidadesADistanciaCorta() {
+        return tablero.getUnidadesADistanciaCorta(posicion);
+    }
+
+    public List<Unidad> getUnidadADistanciaMedia() {
+        return tablero.getUnidadesADistanciaMedia(posicion);
+    }
+
+    public List<Unidad> getUnidadADistanciaLarga() {
+        return tablero.getUnidadesADistanciaLarga(posicion);
+    }
+
     public void moverUnidadHaciaAdelante() {
-        moverUnidad(posicion.posicionArriba());
+        moverUnidad(posicion.posicionAdelante());
     }
 
     public void moverUnidadALaDerecha() {
@@ -83,7 +104,7 @@ public class Casilla {
     }
 
     public void moverUnidadHaciaAtras() {
-        moverUnidad(posicion.posicionAbajo());
+        moverUnidad(posicion.posicionAtras());
     }
 
     public void moverUnidadALaIzquierda() {
@@ -106,5 +127,24 @@ public class Casilla {
 
     public boolean valorEnRangoLargo(int valor) {
         return valor > RANGO_MEDIO_MAX;
+    }
+
+    public boolean esTerrenoAliadoPara(Unidad unidad) {
+        return unidad.esMiPropietario(propietario);
+    }
+
+    public boolean estaADistanciaCorta(Casilla casilla) {
+        int distancia = casilla.distanciaACasilla(this);
+        return valorEnRangoCorto(distancia);
+    }
+
+    public boolean estaADistanciaMedia(Casilla casilla) {
+        int distancia = casilla.distanciaACasilla(this);
+        return valorEnRangoMedio(distancia);
+    }
+
+    public boolean estaADistanciaLarga(Casilla casilla) {
+        int distancia = casilla.distanciaACasilla(this);
+        return valorEnRangoLargo(distancia);
     }
 }

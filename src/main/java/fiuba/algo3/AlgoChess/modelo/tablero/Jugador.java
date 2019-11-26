@@ -33,6 +33,7 @@ public class Jugador {
     }
 
     void agregarUnidad(Unidad unidad) {
+        unidad.setPropietario(this);
         unidades.add(unidad);
     }
 
@@ -54,5 +55,13 @@ public class Jugador {
 
     public boolean perdioElJuego() {
         return getUnidades().size() == 0 && !gestorDeCompras.puedeComprar();
+    }
+
+    public boolean esMiUnidad(Unidad unidad) {
+        return unidades.contains(unidad);
+    }
+
+    public boolean noEsMiUnidad(Unidad unidad) {
+        return !esMiUnidad(unidad);
     }
 }

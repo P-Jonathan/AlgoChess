@@ -23,7 +23,6 @@ public class Catapulta extends Unidad {
 	// Esta unidad no puede curarse.
 	@Override
 	public void aumentarVida(int vida) {
-		throw new RuntimeException();
 	}
 
 	@Override

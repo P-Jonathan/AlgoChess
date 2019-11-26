@@ -1,5 +1,6 @@
 package fiuba.algo3.AlgoChess.modelo.tablero;
 
+import fiuba.algo3.AlgoChess.modelo.excepciones.CasillaOcupadaException;
 import fiuba.algo3.AlgoChess.modelo.unidades.Unidad;
 
 public class EstadoCasillaOcupada extends EstadoCasilla {
@@ -13,7 +14,7 @@ public class EstadoCasillaOcupada extends EstadoCasilla {
 
     @Override
     public void setOcupante(Unidad ocupante) {
-        throw new RuntimeException();
+        throw new CasillaOcupadaException();
     }
 
     @Override

@@ -7,9 +7,11 @@ import fiuba.algo3.AlgoChess.modelo.unidades.Unidad;
 
 public class AtaqueEncadenadoADistancia extends Habilidad {
     private final static int DANIO = 20;
+    private Habilidad ataque;
 
     public AtaqueEncadenadoADistancia(Unidad portador) {
         super(portador);
+        ataque = new AtaqueALargaDistancia(portador, DANIO);
     }
 
     private List<Unidad> getUnidadesAAtacar(Unidad priverObjetivo) {
@@ -20,13 +22,13 @@ public class AtaqueEncadenadoADistancia extends Habilidad {
 
         while (unidadesPorVisitar.size() > 0) {
             Unidad unidad = unidadesPorVisitar.remove(0);
-            List<Unidad> unidadesCercanas = unidad.unidadesCerca();
+            List<Unidad> unidadesCercanas = unidad.unidadesAdyacentes();
 
             if (!unidadesVisitadas.contains(unidad))
                 unidadesVisitadas.add(unidad);
 
             for (Unidad unidadCercana : unidadesCercanas) {
-                if (!unidadesPorVisitar.contains(unidadCercana)) {
+                if (!unidadesPorVisitar.contains(unidadCercana) && !unidadesVisitadas.contains(unidadCercana)) {
                     unidadesPorVisitar.add(unidadCercana);
                 }
             }
@@ -38,7 +40,6 @@ public class AtaqueEncadenadoADistancia extends Habilidad {
     @Override
     public void usarHabilidad(Unidad objetivo) {
         List<Unidad> unidades = getUnidadesAAtacar(objetivo);
-
-        unidades.forEach(unidad -> unidad.disminuirVida(DANIO));
+        unidades.forEach(unidad -> ataque.usarHabilidad(unidad));
     }
 }

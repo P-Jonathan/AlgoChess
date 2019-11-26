@@ -14,28 +14,22 @@ public class UnidadDeInfanteria extends Unidad {
     private final static int COSTO = 1;
 
     private Habilidad habilidad;
-    private Batallon batallon;
+    private Batallon miBatallon;
 
     public UnidadDeInfanteria(Jugador propietario) {
         super(propietario, VIDA_INICIAL, COSTO);
         habilidad = new AtaqueACortaDistancia(this, DANIO_INICIAL);
-        batallon = new Batallon(this, CANTIDAD_DE_UNIDADES_DEL_BATALLON);
+        miBatallon = new Batallon(this, CANTIDAD_DE_UNIDADES_DEL_BATALLON);
     }
 
     public UnidadDeInfanteria() {
         super(VIDA_INICIAL, COSTO);
         habilidad = new AtaqueACortaDistancia(this, DANIO_INICIAL);
-        batallon = new Batallon(this, CANTIDAD_DE_UNIDADES_DEL_BATALLON);
+        miBatallon = new Batallon(this, CANTIDAD_DE_UNIDADES_DEL_BATALLON);
     }
 
     public void usarHabilidad(Unidad objetivo) {
         habilidad.usarHabilidad(objetivo);
-    }
-
-    @Override
-    public void setCasilla(Casilla casilla) {
-        this.casilla = casilla;
-        reclutarUnidades();
     }
 
     @Override
@@ -45,30 +39,50 @@ public class UnidadDeInfanteria extends Unidad {
 
     private void reclutarUnidades() {
         List<Unidad> unidadesAdyacentes = casilla.getUnidadesAdyacentes();
-        batallon.enlistarUnidades(unidadesAdyacentes);
+        miBatallon.enlistarUnidades(unidadesAdyacentes);
     }
 
     @Override
     public void moverHaciaAdelante() {
         reclutarUnidades();
-        batallon.moverHaciaAdelante();
+        miBatallon.moverHaciaAdelante();
     }
 
     @Override
     public void moverALaDerecha() {
         reclutarUnidades();
-        batallon.moverALaDerecha();
+        miBatallon.moverALaDerecha();
     }
 
     @Override
     public void moverHaciaAtras() {
         reclutarUnidades();
-        batallon.moverHaciaAtras();
+        miBatallon.moverHaciaAtras();
     }
 
     @Override
     public void moverALaIzquierda() {
         reclutarUnidades();
-        batallon.moverALaIzquierda();
+        miBatallon.moverALaIzquierda();
+    }
+
+    @Override
+    protected void moverEnBatallonHaciaAdelante() {
+        super.moverHaciaAdelante();
+    }
+
+    @Override
+    protected void moverEnBatallonALaDerecha() {
+        super.moverALaDerecha();
+    }
+
+    @Override
+    protected void moverEnBatallonHaciaAtras() {
+        super.moverHaciaAtras();
+    }
+
+    @Override
+    protected void moverEnBatallonALaIzquierda() {
+        super.moverALaIzquierda();
     }
 }

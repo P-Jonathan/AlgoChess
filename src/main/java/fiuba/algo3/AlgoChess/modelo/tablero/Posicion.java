@@ -25,22 +25,30 @@ public class Posicion {
     private int distanciaAXeY(int x, int y) {
         int distanciaEnX = abs(this.x - x);
         int distanciaEnY = abs(this.y - y);
-        return (int) sqrt(pow(2, distanciaEnX) + pow(2, distanciaEnY));
+        return (int) sqrt(pow(distanciaEnX, 2) + pow(distanciaEnY, 2));
     }
 
-    Posicion posicionArriba() {
-        return new Posicion(x + 1, y);
-    }
-
-    Posicion posicionADerecha() {
+    Posicion posicionAdelante() {
         return new Posicion(x, y + 1);
     }
 
-    Posicion posicionAbajo() {
-        return new Posicion(x - 1, y);
+    Posicion posicionADerecha() {
+        return new Posicion(x + 1, y);
+    }
+
+    Posicion posicionAtras() {
+        return new Posicion(x, y - 1);
     }
 
     Posicion posicionAIzquierda() {
-        return new Posicion(x, y - 1);
+        return new Posicion(x - 1, y);
+    }
+
+    public boolean isEquals(Posicion posicion) {
+        return posicion.poseeXeY(x, y);
+    }
+
+    private boolean poseeXeY(int x, int y) {
+        return this.x == x && this.y == y;
     }
 }

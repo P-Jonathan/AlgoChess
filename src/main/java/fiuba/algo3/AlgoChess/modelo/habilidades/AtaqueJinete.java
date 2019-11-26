@@ -13,10 +13,10 @@ public class AtaqueJinete extends Habilidad {
     }
 
     private Habilidad getAtaque(Unidad objetivo) {
-        if (portador.estaACortaDistancia(objetivo) && portador.noTieneAliadosCerca())
+        if (portador.tieneEnemigosCerca() && portador.noTieneAliadosCerca())
             return new AtaqueACortaDistancia(portador, DANIO_CUERPO_A_CUERPO);
 
-        if (portador.estaAMediaDistancia(objetivo) && portador.tieneAliadosCerca())
+        if (portador.noTieneEnemigosCerca() || portador.tieneAliadosCerca())
             return new AtaqueAMediaDistancia(portador, DANIO_A_DISTANCIA);
 
         return new HabilidadNull(portador);

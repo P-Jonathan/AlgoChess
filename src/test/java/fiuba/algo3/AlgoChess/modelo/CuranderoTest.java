@@ -1,5 +1,6 @@
 package fiuba.algo3.AlgoChess.modelo;
 
+import fiuba.algo3.AlgoChess.modelo.tablero.Posicion;
 import fiuba.algo3.AlgoChess.modelo.unidades.UnidadDeInfanteria;
 import fiuba.algo3.AlgoChess.modelo.unidades.Curandero;
 import fiuba.algo3.AlgoChess.modelo.tablero.Tablero;
@@ -16,6 +17,9 @@ class CuranderoTest {
         Tablero tablero = new Tablero("P1", "P2");
         Curandero curandero = new Curandero(tablero.getJugadorA());
         Unidad aliado = new UnidadDeInfanteria(tablero.getJugadorA());
+
+        tablero.posicionarUnidad(curandero, new Posicion(0, 0));
+        tablero.posicionarUnidad(aliado, new Posicion(1, 0));
 
         int vidaPrevia = aliado.getVida();
 

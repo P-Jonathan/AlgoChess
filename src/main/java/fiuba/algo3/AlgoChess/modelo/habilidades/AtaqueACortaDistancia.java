@@ -1,5 +1,6 @@
 package fiuba.algo3.AlgoChess.modelo.habilidades;
 
+import fiuba.algo3.AlgoChess.modelo.excepciones.UnidadFueraDeRango;
 import fiuba.algo3.AlgoChess.modelo.unidades.Unidad;
 
 public class AtaqueACortaDistancia extends Habilidad {
@@ -13,7 +14,7 @@ public class AtaqueACortaDistancia extends Habilidad {
     @Override
     public void usarHabilidad(Unidad objetivo) {
         if(!objetivo.estaACortaDistancia(portador))
-            throw new RuntimeException();
+            throw new UnidadFueraDeRango();
 
         objetivo.disminuirVida(danio);
     }

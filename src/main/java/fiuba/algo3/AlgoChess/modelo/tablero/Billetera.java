@@ -1,5 +1,7 @@
 package fiuba.algo3.AlgoChess.modelo.tablero;
 
+import fiuba.algo3.AlgoChess.modelo.excepciones.PuntosInsuficientesException;
+
 public class Billetera {
     private int puntos;
 
@@ -21,7 +23,7 @@ public class Billetera {
 
     void pagar(int monto) {
         if (noPuedePagar(monto))
-            throw new RuntimeException();
+            throw new PuntosInsuficientesException();
         this.puntos -= monto;
     }
 

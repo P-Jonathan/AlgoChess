@@ -1,5 +1,6 @@
 package fiuba.algo3.AlgoChess.modelo;
 
+import fiuba.algo3.AlgoChess.modelo.excepciones.UnidadFueraDeRango;
 import fiuba.algo3.AlgoChess.modelo.tablero.Posicion;
 import fiuba.algo3.AlgoChess.modelo.tablero.Tablero;
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import fiuba.algo3.AlgoChess.modelo.unidades.Jinete;
 import fiuba.algo3.AlgoChess.modelo.unidades.Unidad;
 import fiuba.algo3.AlgoChess.modelo.unidades.UnidadDeInfanteria;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,10 +21,14 @@ class JineteTest {
         Jinete jinete = new Jinete(tablero.getJugadorA());
         Unidad objetivo = new UnidadDeInfanteria(tablero.getJugadorB());
 
-        tablero.posicionarUnidad(jinete, new Posicion(8, 8));
-        tablero.posicionarUnidad(objetivo, new Posicion(12, 12));
+        tablero.posicionarUnidad(jinete, new Posicion(9, 9));
+        tablero.posicionarUnidad(objetivo, new Posicion(9, 13));
 
         int vidaPrevia = objetivo.getVida();
+        boolean tieneEnemigosCerca = jinete.tieneEnemigosCerca();
+        boolean tieneAliadosCerca = jinete.tieneAliadosCerca();
+        boolean unidadIgual = jinete.unidadesCerca().contains(objetivo);
+        List<Unidad> enemigosCerca = jinete.enemigosCerca();
 
         jinete.usarHabilidad(objetivo);
 
@@ -36,11 +43,10 @@ class JineteTest {
         Unidad objetivo = new UnidadDeInfanteria(tablero.getJugadorB());
 
         tablero.posicionarUnidad(jinete, new Posicion(9, 9));
-        tablero.posicionarUnidad(objetivo, new Posicion(10, 10));
+        tablero.posicionarUnidad(objetivo, new Posicion(9, 10));
 
         int vidaPrevia = objetivo.getVida();
 
-        jinete.moverHaciaAdelante();
         jinete.usarHabilidad(objetivo);
 
         assertEquals(vidaPrevia - 5, objetivo.getVida());
@@ -74,12 +80,10 @@ class JineteTest {
         Unidad objetivo = new UnidadDeInfanteria(tablero.getJugadorB());
 
         tablero.posicionarUnidad(jinete, new Posicion(9, 9));
-        tablero.posicionarUnidad(enemigoCerca, new Posicion(11, 10));
-        tablero.posicionarUnidad(objetivo, new Posicion(10, 15));
+        tablero.posicionarUnidad(enemigoCerca, new Posicion(10, 10));
+        tablero.posicionarUnidad(objetivo, new Posicion(10, 14));
 
-        jinete.moverHaciaAdelante();
-
-        assertThrows(RuntimeException.class, () -> jinete.usarHabilidad(objetivo));
+        assertThrows(UnidadFueraDeRango.class, () -> jinete.usarHabilidad(objetivo));
     }
 
     @Test
@@ -102,7 +106,7 @@ class JineteTest {
     }
 
     @Test
-    void unJineteAtacaAUnEnemigoADistanciaCortaTeniendoUnJineteAliadoCercaYNoDeberiaLanzarUnaExcepcion() {
+    void unJineteAtacaAUnEnemigoADistanciaCortaTeniendoUnJineteAliadoCercaYDeberiaLanzarUnaExcepcion() {
         Tablero tablero = new Tablero("P1", "P2");
 
         Jinete jinete = new Jinete(tablero.getJugadorA());
@@ -111,12 +115,8 @@ class JineteTest {
 
         tablero.posicionarUnidad(jinete, new Posicion(9, 9));
         tablero.posicionarUnidad(aliado, new Posicion(9, 8));
-        tablero.posicionarUnidad(objetivo, new Posicion(10, 10));
+        tablero.posicionarUnidad(objetivo, new Posicion(9, 10));
 
-        int vidaPrevia = objetivo.getVida();
-
-        jinete.usarHabilidad(objetivo);
-
-        assertThrows(RuntimeException.class, () -> jinete.usarHabilidad(objetivo));
+        assertThrows(UnidadFueraDeRango.class, () -> jinete.usarHabilidad(objetivo));
     }
 }

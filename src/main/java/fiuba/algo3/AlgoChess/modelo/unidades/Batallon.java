@@ -3,13 +3,13 @@ package fiuba.algo3.AlgoChess.modelo.unidades;
 import java.util.ArrayList;
 import java.util.List;
 
-class Batallon {
+public class Batallon {
     private int max_unidades;
     private List<Unidad> batallon;
     private Unidad capitan;
 
-    Batallon(Unidad capitan, int max_unidades) {
-        batallon = new ArrayList<>(max_unidades);
+    public Batallon(Unidad capitan, int max_unidades) {
+        batallon = new ArrayList<Unidad>(max_unidades);
         batallon.add(capitan);
         this.capitan = capitan;
         this.max_unidades = max_unidades;
@@ -33,13 +33,13 @@ class Batallon {
             limpiarBatallon();
     }
 
-    void enlistarUnidad(Unidad unidad){
+    public void enlistarUnidad(Unidad unidad){
         if(batallonCompleto())
             throw new RuntimeException();
         batallon.add(unidad);
     }
 
-    void enlistarUnidades(List<Unidad> unidades) {
+    public void enlistarUnidades(List<Unidad> unidades) {
         for(Unidad unidad : unidades){
             try {
                 unidad.enlistarse(this);
@@ -52,7 +52,7 @@ class Batallon {
 
     private void moverUnidadAdelante(Unidad unidad) {
         try {
-            unidad.moverHaciaAdelante();
+            unidad.moverEnBatallonHaciaAdelante();
         } catch (RuntimeException e) {
             // No se pudo mover.
         }
@@ -60,7 +60,7 @@ class Batallon {
 
     private void moverUnidadALaDerecha(Unidad unidad) {
         try {
-            unidad.moverALaDerecha();
+            unidad.moverEnBatallonALaDerecha();
         } catch (RuntimeException e) {
             // No se pudo mover.
         }
@@ -68,7 +68,7 @@ class Batallon {
 
     private void moverUnidadHaciaAtras(Unidad unidad) {
         try {
-            unidad.moverHaciaAtras();
+            unidad.moverEnBatallonHaciaAtras();
         } catch (RuntimeException e) {
             // No se pudo mover.
         }
@@ -76,30 +76,38 @@ class Batallon {
 
     private void moverUnidadALaIzquierda(Unidad unidad) {
         try {
-            unidad.moverALaIzquierda();
+            unidad.moverEnBatallonALaIzquierda();
         } catch (RuntimeException e) {
             // No se pudo mover.
         }
     }
 
     // Cada movimiento desarma el batallon y solo queda su capitan.
-    void moverHaciaAdelante() {
-        batallon.forEach(this::moverUnidadAdelante);
+    public void moverHaciaAdelante() {
+        for(Unidad unidad : batallon){
+            moverUnidadAdelante(unidad);
+        }
         limpiarBatallon();
     }
 
-    void moverALaDerecha() {
-        batallon.forEach(this::moverUnidadALaDerecha);
+    public void moverALaDerecha() {
+        for(Unidad unidad : batallon){
+            moverUnidadALaDerecha(unidad);
+        }
         limpiarBatallon();
     }
 
-    void moverHaciaAtras() {
-        batallon.forEach(this::moverUnidadHaciaAtras);
+    public void moverHaciaAtras() {
+        for(Unidad unidad : batallon){
+            moverUnidadHaciaAtras(unidad);
+        }
         limpiarBatallon();
     }
 
-    void moverALaIzquierda() {
-        batallon.forEach(this::moverUnidadALaIzquierda);
+    public void moverALaIzquierda() {
+        for(Unidad unidad : batallon){
+            moverUnidadALaIzquierda(unidad);
+        }
         limpiarBatallon();
     }
 }
