@@ -36,7 +36,7 @@ class CatapultaTest {
 
         assertThrows(UnidadFueraDeRango.class, () -> catapulta.usarHabilidad(objetivo));
     }
-/*
+
     @Test
     void catapultaAtacaAUnObjetivoYLeResta20DeVidaAlObjetivoYAUnaUnidadQueEstaJuntoAElla() {
         Tablero tablero = new Tablero();
@@ -56,5 +56,5 @@ class CatapultaTest {
 
         assertEquals(vidaPreviaObjetivo - 20, objetivo.getVida());
         assertEquals(vidaPreviaAdyacente - 20, adyacente.getVida());
-    }*/
+    }
 }
