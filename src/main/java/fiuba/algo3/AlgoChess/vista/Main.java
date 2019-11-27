@@ -1,17 +1,25 @@
 package fiuba.algo3.AlgoChess.vista;
-
+/*
 import fiuba.algo3.AlgoChess.modelo.tablero.Jugador;
 import fiuba.algo3.AlgoChess.modelo.tablero.Posicion;
 import fiuba.algo3.AlgoChess.modelo.tablero.Tablero;
 import fiuba.algo3.AlgoChess.modelo.unidades.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+*/
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 public class Main extends Application {
-
+/*
 
     public static void main(String[] args) {
         launch(args);
@@ -52,5 +60,25 @@ public class Main extends Application {
         Scene theScene = new Scene(vb);
         theStage.setScene(theScene);
         theStage.show();
+    }
+
+ */
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle("HBox Experiment 1");
+
+        Button button = new Button("My Button");
+
+        StackPane panel = new StackPane();
+        panel.getChildren().add(button);
+        Scene scene = new Scene(panel, 200, 100);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+    }
+
+    public static void main(String[] args) {
+        Application.launch(args);
     }
 }
