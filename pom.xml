@@ -70,7 +70,8 @@
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-fxml</artifactId>
 			<version>${javafx.version}</version>
-		</dependency><!-- https://mvnrepository.com/artifact/org.openjfx/javafx-swing -->
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-swing -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-swing</artifactId>
@@ -132,6 +133,14 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
+			<plugin>
+				<groupId>org.openjfx</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>0.0.3</version>
+				<configuration>
+					<mainClass>fiuba.algo3.AlgoChess.vista.Main</mainClass>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
