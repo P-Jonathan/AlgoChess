@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class JineteTest {
     @Test
     void unJineteAtacaUnaUnidadEnemigaADistanciaMediaYDeberiaRestarle15DeVida() {
-        Tablero tablero = new Tablero("P1", "P2");
+        Tablero tablero = new Tablero();
 
         Jinete jinete = new Jinete(tablero.getJugadorA());
         Unidad objetivo = new UnidadDeInfanteria(tablero.getJugadorB());
@@ -37,7 +37,7 @@ class JineteTest {
 
     @Test
     void unJineteAtacaUnaUnidadCuerpoACuerpoAUnaUnidadEnemigaYDeberiaRestarle5DeVida() {
-        Tablero tablero = new Tablero("P1", "P2");
+        Tablero tablero = new Tablero();
 
         Jinete jinete = new Jinete(tablero.getJugadorA());
         Unidad objetivo = new UnidadDeInfanteria(tablero.getJugadorB());
@@ -54,7 +54,7 @@ class JineteTest {
 
     @Test
     void unJineteAtacaAUnEnemigoADistanciaMediaTeniendoUnSoldadoAliadoCercaYDeberiaQuitarle15DeVida() {
-        Tablero tablero = new Tablero("P1", "P2");
+        Tablero tablero = new Tablero();
 
         Jinete jinete = new Jinete(tablero.getJugadorA());
         Unidad aliado = new UnidadDeInfanteria(tablero.getJugadorA());
@@ -73,7 +73,7 @@ class JineteTest {
 
     @Test
     void unJineteAtacaAUnEnemigoADistanciaMediaTeniendoUnSoldadoEnemigoCercaDeberiaLanzarUnaExcepcion() {
-        Tablero tablero = new Tablero("P1", "P2");
+        Tablero tablero = new Tablero();
 
         Jinete jinete = new Jinete(tablero.getJugadorA());
         Unidad enemigoCerca = new UnidadDeInfanteria(tablero.getJugadorB());
@@ -88,7 +88,7 @@ class JineteTest {
 
     @Test
     void unJineteAtacaAUnEnemigoADistanciaCortaTeniendoUnSoldadoEnemigoCercaYDeberiaQuitarle5PuntosDeVida() {
-        Tablero tablero = new Tablero("P1", "P2");
+        Tablero tablero = new Tablero();
 
         Jinete jinete = new Jinete(tablero.getJugadorA());
         Unidad enemigo = new UnidadDeInfanteria(tablero.getJugadorB());
@@ -107,7 +107,7 @@ class JineteTest {
 
     @Test
     void unJineteAtacaAUnEnemigoADistanciaCortaTeniendoUnJineteAliadoCercaYDeberiaLanzarUnaExcepcion() {
-        Tablero tablero = new Tablero("P1", "P2");
+        Tablero tablero = new Tablero();
 
         Jinete jinete = new Jinete(tablero.getJugadorA());
         Unidad aliado = new UnidadDeInfanteria(tablero.getJugadorA());

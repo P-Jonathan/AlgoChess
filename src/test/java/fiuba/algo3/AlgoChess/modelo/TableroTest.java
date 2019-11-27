@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TableroTest {
     @Test
     void seColocaUnaUnidadAliadaEnUnCasilleroDelSectorAliadoVacioConExito() {
-        Tablero tablero = new Tablero("Aliado", "Enemigo");
+        Tablero tablero = new Tablero();
 
         Unidad unidad = new UnidadDeInfanteria(tablero.getJugadorA());
         Posicion posicion = new Posicion(2, 2);
@@ -23,7 +23,7 @@ class TableroTest {
 
     @Test
     void seVerificaQueNoSePuedeColocarUnaUnidadAliadaEnUnCasilleroOcupadoEnElSectorAliado() {
-        Tablero tablero = new Tablero("Aliado", "Enemigo");
+        Tablero tablero = new Tablero();
 
         Posicion posicion = new Posicion(2, 2);
         Unidad unidad = new UnidadDeInfanteria(tablero.getJugadorA());
@@ -36,7 +36,7 @@ class TableroTest {
 
     @Test
     void seVerificaQueNoSePuedeColocarUnaPiezaAliadaEnUnCasilleroDelSectorEnemigo() {
-        Tablero tablero = new Tablero("Aliado", "Enemigo");
+        Tablero tablero = new Tablero();
 
         Unidad unidad = new UnidadDeInfanteria(tablero.getJugadorB());
         Posicion posicion = new Posicion(0, 0);

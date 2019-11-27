@@ -7,21 +7,31 @@ import java.util.List;
 
 public class Jugador {
     private static final int PUNTOS_INICIALES = 20;
+    private static final String NOMBRE_DEFAULT_BANDO_A = "A";
+    private static final String NOMBRE_DEFAULT_BANDO_B = "B";
 
-    private String nombre;
+    private String bando;
     private List<Unidad> unidades;
     private Billetera billetera;
     private GestorDeCompras gestorDeCompras;
 
-    protected Jugador(String nombre) {
-        this.nombre = nombre;
+    private static int numeroJugador = 1;
+
+    protected Jugador() {
         unidades = new ArrayList<>();
         billetera = new Billetera(PUNTOS_INICIALES);
         gestorDeCompras = new GestorDeComprasNormal(this);
+
+        if(numeroJugador == 1){
+            bando = NOMBRE_DEFAULT_BANDO_A;
+        } else {
+            bando = NOMBRE_DEFAULT_BANDO_B;
+        }
+        numeroJugador++;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getBando() {
+        return bando;
     }
 
     public int getPuntos() {

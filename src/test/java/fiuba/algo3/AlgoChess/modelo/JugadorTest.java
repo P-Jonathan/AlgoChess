@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class JugadorTest {
     @Test
     void seVerificaQueAlComprarUnaUnidadDeInfanteriaSeLeRestanLosPuntosCorrespondientesAlJugador() {
-        Tablero tablero = new Tablero("Test1", "Test2");
+        Tablero tablero = new Tablero();
         Unidad unidad = new UnidadDeInfanteria();
         Jugador jugador = tablero.getJugadorA();
         int puntosPrevios = jugador.getPuntos();
@@ -26,7 +26,7 @@ class JugadorTest {
 
     @Test
     void seVerificaQueAlComprarUnJineteSeLeRestanLosPuntosCorrespondientesAlJugador() {
-        Tablero tablero = new Tablero("Test1", "Test2");
+        Tablero tablero = new Tablero();
         Unidad unidad = new Jinete();
         Jugador jugador = tablero.getJugadorA();
         int puntosPrevios = jugador.getPuntos();
@@ -38,7 +38,7 @@ class JugadorTest {
 
     @Test
     void seVerificaQueAlComprarUnCuranderoSeLeRestanLosPuntosCorrespondientesAlJugador() {
-        Tablero tablero = new Tablero("Test1", "Test2");
+        Tablero tablero = new Tablero();
         Unidad unidad = new Curandero();
         Jugador jugador = tablero.getJugadorA();
         int puntosPrevios = jugador.getPuntos();
@@ -50,7 +50,7 @@ class JugadorTest {
 
     @Test
     void seVerificaQueAlComprarUnaCatapultaSeLeRestanLosPuntosCorrespondientesAlJugador() {
-        Tablero tablero = new Tablero("Test1", "Test2");
+        Tablero tablero = new Tablero();
         Unidad unidad = new Catapulta();
         Jugador jugador = tablero.getJugadorA();
         int puntosPrevios = jugador.getPuntos();
@@ -62,7 +62,7 @@ class JugadorTest {
 
     @Test
     void seVerificaQueAlIntentarComprarUnidadesSinPuntosSeLanzaUnaExcepcion() {
-        Tablero tablero = new Tablero("Test1", "Test2");
+        Tablero tablero = new Tablero();
         Jugador jugador = tablero.getJugadorA();
 
         for (int i = 0; i < 20; i++) {
@@ -75,7 +75,7 @@ class JugadorTest {
 
     @Test
     void jugadorPierdeCuandoFinalizaSusComprasSinNingunaUnidadComprada() {
-        Tablero tablero = new Tablero("Test1", "Test2");
+        Tablero tablero = new Tablero();
 
         Jugador jugadorA = tablero.getJugadorA();
 
@@ -86,7 +86,7 @@ class JugadorTest {
 
     @Test
     void jugadorNoPierdeCuandoNoFinalizoSusCompras() {
-        Tablero tablero = new Tablero("Test1", "Test2");
+        Tablero tablero = new Tablero();
 
         Jugador jugadorA = tablero.getJugadorA();
 
@@ -95,7 +95,7 @@ class JugadorTest {
 
     @Test
     void jugadorNoPierdeCuandoFinalizaSusComprasComprandoUnaUnidad() {
-        Tablero tablero = new Tablero("Test1", "Test2");
+        Tablero tablero = new Tablero();
 
         Jugador jugadorA = tablero.getJugadorA();
         jugadorA.comprarUnidad(new UnidadDeInfanteria());

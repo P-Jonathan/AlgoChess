@@ -20,17 +20,8 @@ public class Tablero {
     private List<Casilla> casillas;
 
     public Tablero() {
-        jugadorA = new Jugador(NOMBRE_DEFAULT_BANDO_A);
-        jugadorB = new Jugador(NOMBRE_DEFAULT_BANDO_B);
-        jugadorActual = jugadorA;
-        jugadorEnEspera = jugadorB;
-        setCasillasVacias();
-    }
-
-
-    public Tablero(String bandoA, String bandoB) {
-        jugadorA = new Jugador(bandoA);
-        jugadorB = new Jugador(bandoB);
+        jugadorA = new Jugador();
+        jugadorB = new Jugador();
         jugadorActual = jugadorA;
         jugadorEnEspera = jugadorB;
         setCasillasVacias();

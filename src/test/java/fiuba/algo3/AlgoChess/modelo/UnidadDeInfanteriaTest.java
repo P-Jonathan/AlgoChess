@@ -13,7 +13,7 @@ import fiuba.algo3.AlgoChess.modelo.unidades.UnidadDeInfanteria;
 class UnidadDeInfanteriaTest {
     @Test
     void atacaAUnidadEnemigaYLeQuita10DeVida() {
-        Tablero tablero = new Tablero("P1", "P2");
+        Tablero tablero = new Tablero();
         Jugador jugadorA = tablero.getJugadorA();
         Jugador jugadorB = tablero.getJugadorB();
 

@@ -42,9 +42,9 @@ public class Casilla {
         this.posicion = posicion;
     }
 
-    private Posicion getPosicion() {
-        return posicion;
-    }
+    /************************************************/
+    public Posicion getPosicion() { return posicion; }
+    /************************************************/
 
     public void setOcupante(Unidad ocupante) {
         estado.setOcupante(ocupante);

@@ -32,6 +32,11 @@ public abstract class Unidad {
         this.casilla = casilla;
     }
 
+    /*********************************************************/
+    public int getX() { return casilla.getPosicion().getX(); }
+    public int getY() { return casilla.getPosicion().getY(); }
+    /*********************************************************/
+
     public int getVida() {
         return vida;
     }

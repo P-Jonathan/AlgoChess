@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class CuranderoTest {
     @Test
     void unCuranderoCuraAUnaUNidadDeInfanteriaYSuVidaDeberiaAumentarEn15() {
-        Tablero tablero = new Tablero("P1", "P2");
+        Tablero tablero = new Tablero();
         Curandero curandero = new Curandero(tablero.getJugadorA());
         Unidad aliado = new UnidadDeInfanteria(tablero.getJugadorA());
 
