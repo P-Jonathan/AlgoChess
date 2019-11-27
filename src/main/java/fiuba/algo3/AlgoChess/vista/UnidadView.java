@@ -29,13 +29,13 @@ public abstract class UnidadView extends Button {
         unitImage.setFitHeight(32);
         unitImage.setFitWidth(32);
 
-        unitImage.setOnMouseClicked(e-> {
-            System.out.println("Que me clickeas puto!");
-        });
-
         unitImage.setImage(getImage());
         stage.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
         draw();
+
+        unitImage.setOnMouseClicked(e-> {
+            stage.accionCon(unidad, unitImage);
+        });
     }
 
     public abstract Image getImage();
