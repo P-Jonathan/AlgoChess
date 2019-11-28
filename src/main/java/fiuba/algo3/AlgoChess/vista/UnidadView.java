@@ -1,5 +1,6 @@
 package fiuba.algo3.AlgoChess.vista;
 
+import fiuba.algo3.AlgoChess.modelo.unidades.Observer;
 import fiuba.algo3.AlgoChess.modelo.unidades.Unidad;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Button;
@@ -11,17 +12,22 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public abstract class UnidadView extends Button {
+public abstract class UnidadView extends Button implements Observer {
     private double unitScale;
     private TableroView stage;
     private ImageView unitImage;
 
     private Unidad unidad;
 
+    private int vidaUnidad;
+
     public UnidadView(TableroView stage, Unidad unidad, double unitScale) {
         this.stage = stage;
         this.unidad = unidad;
         this.unitScale = unitScale;
+        vidaUnidad = unidad.getVida();
+
+        unidad.addObserver(this);
 
         unitImage = new ImageView();
         unitImage.setScaleX(unitScale);
@@ -33,8 +39,20 @@ public abstract class UnidadView extends Button {
         stage.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
 
         unitImage.setOnMouseClicked(e-> {
-            stage.accionCon(unidad, unitImage);
+            stage.accionCon(unidad);
         });
+    }
+
+    @Override
+    public void change() {
+        int vidaActual = unidad.getVida();
+
+        if(vidaActual != vidaUnidad) {
+            System.out.println("La unidad ha recibido danio. Vida actual: " + vidaActual);
+            vidaUnidad = vidaActual;
+        }
+
+        stage.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
     }
 
     public TableroView getStage() { return stage; }

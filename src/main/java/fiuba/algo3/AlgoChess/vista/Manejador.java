@@ -18,36 +18,31 @@ public class Manejador {
 
     public static Manejador getInstancia() { return instancia; }
 
-    public void agregarUnidad(Unidad unidad, Node unidadView, TableroView tableroView) {
+    public void agregarUnidad(Unidad unidad, TableroView tableroView) {
         if(this.unidad != null){
             atacar(unidad);
         } else {
             this.unidad = unidad;
-            this.unidadView = unidadView;
-            this.tableroView = tableroView;
 
             panes = tableroView.getPanesAdyacentes(unidad);
-            for (Pane pane : panes) {
-                pane.setStyle("-fx-background-color: #79f281");
-            }
+
+            panes.stream().forEach(pane -> pane.setStyle("-fx-background-color: #79f281"));
         }
     }
 
-    public void update() {
-        for(Pane pane : panes){
+    public void reset() {
+        panes.stream().forEach(pane -> {
             pane.setStyle("-fx-background-color: #FFFFFF");
             pane.setOnMouseClicked(new MovimientoControllerNull());
-        }
+        });
 
-        tableroView.addViewOnMap(unidadView, unidad.getX(), unidad.getY());
         unidad = null;
     }
 
     public void atacar(Unidad unidad) {
         if(this.unidad != unidad) {
             this.unidad.usarHabilidad(unidad);
-            System.out.println(unidad.getVida());
-            update();
+            reset();
         }
     }
 }

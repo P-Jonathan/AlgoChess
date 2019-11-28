@@ -14,7 +14,7 @@ public class MovimientoAtrasController implements EventHandler<MouseEvent> {
 
     public void handle(MouseEvent mouseEvent) {
         unidad.moverHaciaAtras();
-        Manejador.getInstancia().update();
+        Manejador.getInstancia().reset();
     }
 }
 

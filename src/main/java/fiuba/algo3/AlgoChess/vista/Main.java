@@ -27,7 +27,7 @@ public class Main extends Application {
 
         Unidad unidadInfanteriaA = new UnidadDeInfanteria();
         jugadorA.comprarUnidad(unidadInfanteriaA);
-        tablero.posicionarUnidad(unidadInfanteriaA, new Posicion(9,9));
+        tablero.posicionarUnidad(unidadInfanteriaA, new Posicion(2,2));
         new UnidadViewInfanteria(tableroView, unidadInfanteriaA);
 
         Unidad unidadInfanteriaB = new UnidadDeInfanteria();

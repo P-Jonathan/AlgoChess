@@ -14,6 +14,6 @@ public class MovimientoDerechaController implements EventHandler<MouseEvent> {
 
     public void handle(MouseEvent mouseEvent) {
         unidad.moverALaDerecha();
-        Manejador.getInstancia().update();
+        Manejador.getInstancia().reset();
     }
 }

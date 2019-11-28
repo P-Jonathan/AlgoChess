@@ -76,13 +76,19 @@ public class TableroView extends Group {
         try {
             panes[unidad.getX()][unidad.getY() + 1].setOnMouseClicked(new MovimientoAdelanteController(unidad));
             panesAdyacentes.add(panes[unidad.getX()][unidad.getY() + 1]);
+        } catch (ArrayIndexOutOfBoundsException e) {}
 
+        try {
             panes[unidad.getX()][unidad.getY() - 1].setOnMouseClicked(new MovimientoAtrasController(unidad));
             panesAdyacentes.add(panes[unidad.getX()][unidad.getY() - 1]);
+        } catch (ArrayIndexOutOfBoundsException e) {}
 
+        try {
             panes[unidad.getX() + 1][unidad.getY()].setOnMouseClicked(new MovimientoDerechaController(unidad));
             panesAdyacentes.add(panes[unidad.getX() + 1][unidad.getY()]);
+        } catch (ArrayIndexOutOfBoundsException e) {}
 
+        try {
             panes[unidad.getX() - 1][unidad.getY()].setOnMouseClicked(new MovimientoIzquierdaController(unidad));
             panesAdyacentes.add(panes[unidad.getX() - 1][unidad.getY()]);
         } catch (ArrayIndexOutOfBoundsException e) {}
@@ -90,9 +96,9 @@ public class TableroView extends Group {
         return panesAdyacentes;
     }
 
-    public void accionCon(Unidad unidad, Node imageView) {
+    public void accionCon(Unidad unidad) {
         Manejador manejador = Manejador.getInstancia();
-        manejador.agregarUnidad(unidad, imageView, this);
+        manejador.agregarUnidad(unidad, this);
     }
 
     //public void prepararParaAccion(Unidad unidad) {  }

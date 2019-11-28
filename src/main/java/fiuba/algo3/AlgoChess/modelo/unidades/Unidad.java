@@ -6,7 +6,7 @@ import fiuba.algo3.AlgoChess.modelo.tablero.Jugador;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Unidad {
+public abstract class Unidad extends Observable {
     Casilla casilla;
     private Jugador propietario;
 
@@ -51,6 +51,7 @@ public abstract class Unidad {
 
     public void disminuirVida(int vida) {
         this.vida -= vida;
+        notifyObservers();
     }
 
     private boolean perteneceA(Jugador jugador) {
@@ -142,18 +143,22 @@ public abstract class Unidad {
 
     public void moverHaciaAdelante() {
         casilla.moverUnidadHaciaAdelante();
+        notifyObservers();
     }
 
     public void moverALaDerecha() {
         casilla.moverUnidadALaDerecha();
+        notifyObservers();
     }
 
     public void moverHaciaAtras() {
         casilla.moverUnidadHaciaAtras();
+        notifyObservers();
     }
 
     public void moverALaIzquierda() {
         casilla.moverUnidadALaIzquierda();
+        notifyObservers();
     }
 
     protected void moverEnBatallonHaciaAdelante() {
