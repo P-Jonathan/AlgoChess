@@ -7,4 +7,5 @@ public abstract class Turno {
     public abstract void setTurno();
     public abstract void comprarUnidadConTurno(GestorDeCompras gestorDeCompras, Unidad unidad, Billetera billetera);
     public abstract Turno cambiarTurno();
+    public abstract void moverHaciaAdelanteConTurno(Unidad unidad);
 }

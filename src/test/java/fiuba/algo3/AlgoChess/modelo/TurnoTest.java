@@ -1,6 +1,7 @@
 package fiuba.algo3.AlgoChess.modelo;
 
 import fiuba.algo3.AlgoChess.modelo.tablero.Jugador;
+import fiuba.algo3.AlgoChess.modelo.tablero.Posicion;
 import fiuba.algo3.AlgoChess.modelo.tablero.Tablero;
 import fiuba.algo3.AlgoChess.modelo.unidades.Unidad;
 import fiuba.algo3.AlgoChess.modelo.unidades.UnidadDeInfanteria;
@@ -33,5 +34,19 @@ class TurnoTest {
         jugador.jugadorCambiarTurno();
 
         assertThrows(RuntimeException.class, () -> jugador.comprarUnidadConTurno(unidad));
+    }
+
+    @Test
+    void seVerificaQueUnaUnidadNoPuedeMoverse2VecesSeguidasPorElTurno(){
+        Tablero tablero = new Tablero();
+        Unidad unidad = new UnidadDeInfanteria();
+        Jugador jugador = tablero.getJugadorA();
+        Posicion posicion = new Posicion(2, 2);
+
+        jugador.comprarUnidadConTurno(unidad);
+        tablero.posicionarUnidad(unidad,posicion);
+        unidad.moverHaciaAdelanteConTurno();
+
+        assertThrows(RuntimeException.class, () -> unidad.moverHaciaAdelanteConTurno());
     }
 }

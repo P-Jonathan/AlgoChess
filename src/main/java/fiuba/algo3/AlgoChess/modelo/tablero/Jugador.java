@@ -79,10 +79,18 @@ public class Jugador {
 
     public void comprarUnidadConTurno(Unidad unidad){
         turno.comprarUnidadConTurno(gestorDeCompras,unidad,billetera);
+        unidad.setTurno(turno);
 
     }
 
     public void jugadorCambiarTurno(){
         turno = turno.cambiarTurno();
     };
+
+    public void cambiarTurnoParaLasUnidades(){
+
+        for (Unidad unidad: unidades){
+            unidad.cambiarTurno();
+        }
+    }
 }

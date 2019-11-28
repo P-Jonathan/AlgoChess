@@ -24,4 +24,12 @@ public class TurnoValido extends Turno {
     public Turno cambiarTurno(){
         return new TurnoInvalido();
     };
+
+    @Override
+    public void moverHaciaAdelanteConTurno(Unidad unidad){
+
+        unidad.moverHaciaAdelante();
+        unidad.avisarlesALasUnidadesQueCambienElturno();
+
+    }
 }

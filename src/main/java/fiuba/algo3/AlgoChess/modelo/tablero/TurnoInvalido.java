@@ -25,4 +25,11 @@ public class TurnoInvalido extends Turno {
     public Turno cambiarTurno(){
         return new TurnoValido();
     }
+
+    @Override
+    public void moverHaciaAdelanteConTurno(Unidad unidad){
+
+        throw new RuntimeException();
+
+    }
 }

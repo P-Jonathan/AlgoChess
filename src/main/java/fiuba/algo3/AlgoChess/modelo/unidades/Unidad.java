@@ -2,6 +2,7 @@ package fiuba.algo3.AlgoChess.modelo.unidades;
 
 import fiuba.algo3.AlgoChess.modelo.tablero.Casilla;
 import fiuba.algo3.AlgoChess.modelo.tablero.Jugador;
+import fiuba.algo3.AlgoChess.modelo.tablero.Turno;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 public abstract class Unidad extends Observable {
     Casilla casilla;
     private Jugador propietario;
+    private Turno turno;
 
     private int vida;
     private int costo;
@@ -171,5 +173,21 @@ public abstract class Unidad extends Observable {
     }
 
     protected void moverEnBatallonALaIzquierda() {
+    }
+
+    public void setTurno(Turno nuevoTurno){
+        this.turno = nuevoTurno;
+    }
+
+    public void cambiarTurno(){
+        turno = turno.cambiarTurno();
+    }
+
+    public void moverHaciaAdelanteConTurno(){
+        turno.moverHaciaAdelanteConTurno(this);
+    }
+
+    public void avisarlesALasUnidadesQueCambienElturno(){
+        propietario.cambiarTurnoParaLasUnidades();
     }
 }
