@@ -2,12 +2,14 @@ package fiuba.algo3.AlgoChess.vista;
 
 import fiuba.algo3.AlgoChess.modelo.tablero.Tablero;
 import fiuba.algo3.AlgoChess.modelo.unidades.Unidad;
+import fiuba.algo3.AlgoChess.modelo.unidades.UnidadNull;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,53 +70,31 @@ public class TableroView extends Group {
         getChildren().add(view);
     }
 
-    public void accionCon(Unidad unidad, Node unidadView) {
+    public ArrayList<Pane> getPanesAdyacentes(Unidad unidad) {
         ArrayList<Pane> panesAdyacentes = new ArrayList<Pane>();
 
-        panesAdyacentes.add(panes[unidad.getX() + 1][unidad.getY()]);
-        panesAdyacentes.add(panes[unidad.getX() - 1][unidad.getY()]);
-        panesAdyacentes.add(panes[unidad.getX()][unidad.getY() + 1]);
-        panesAdyacentes.add(panes[unidad.getX()][unidad.getY() - 1]);
+        try {
+            panes[unidad.getX()][unidad.getY() + 1].setOnMouseClicked(new MovimientoAdelanteController(unidad));
+            panesAdyacentes.add(panes[unidad.getX()][unidad.getY() + 1]);
 
-        for(Pane paneAdyacente : panesAdyacentes){
-            paneAdyacente.setStyle("-fx-background-color: #79f281");
-        }
+            panes[unidad.getX()][unidad.getY() - 1].setOnMouseClicked(new MovimientoAtrasController(unidad));
+            panesAdyacentes.add(panes[unidad.getX()][unidad.getY() - 1]);
 
-        panes[unidad.getX()][unidad.getY() + 1].setOnMouseClicked(e-> {
-            unidad.moverHaciaAdelante();
-            addViewOnMap(unidadView, unidad.getX(), unidad.getY());
-            for(Pane paneAdyacente : panesAdyacentes){
-                paneAdyacente.setStyle("-fx-background-color: #FFFFFF");
-                paneAdyacente.setOnMouseClicked(e2-> {});
-            }
-        });
+            panes[unidad.getX() + 1][unidad.getY()].setOnMouseClicked(new MovimientoDerechaController(unidad));
+            panesAdyacentes.add(panes[unidad.getX() + 1][unidad.getY()]);
 
-        panes[unidad.getX()][unidad.getY() - 1].setOnMouseClicked(e-> {
-            unidad.moverHaciaAtras();
-            addViewOnMap(unidadView, unidad.getX(), unidad.getY());
-            for(Pane paneAdyacente : panesAdyacentes){
-                paneAdyacente.setStyle("-fx-background-color: #FFFFFF");
-                paneAdyacente.setOnMouseClicked(e2-> {});
-            }
-        });
+            panes[unidad.getX() - 1][unidad.getY()].setOnMouseClicked(new MovimientoIzquierdaController(unidad));
+            panesAdyacentes.add(panes[unidad.getX() - 1][unidad.getY()]);
+        } catch (ArrayIndexOutOfBoundsException e) {}
 
-        panes[unidad.getX() + 1][unidad.getY()].setOnMouseClicked(e-> {
-            unidad.moverALaDerecha();
-            addViewOnMap(unidadView, unidad.getX(), unidad.getY());
-            for(Pane paneAdyacente : panesAdyacentes){
-                paneAdyacente.setStyle("-fx-background-color: #FFFFFF");
-                paneAdyacente.setOnMouseClicked(e2-> {});
-            }
-        });
-
-        panes[unidad.getX() - 1][unidad.getY()].setOnMouseClicked(e-> {
-            unidad.moverALaIzquierda();
-            addViewOnMap(unidadView, unidad.getX(), unidad.getY());
-            for(Pane paneAdyacente : panesAdyacentes){
-                paneAdyacente.setStyle("-fx-background-color: #FFFFFF");
-                paneAdyacente.setOnMouseClicked(e2-> {});
-            }
-        });
+        return panesAdyacentes;
     }
+
+    public void accionCon(Unidad unidad, Node imageView) {
+        Manejador manejador = Manejador.getInstancia();
+        manejador.agregarUnidad(unidad, imageView, this);
+    }
+
+    //public void prepararParaAccion(Unidad unidad) {  }
 
 }

@@ -31,19 +31,15 @@ public abstract class UnidadView extends Button {
 
         unitImage.setImage(getImage());
         stage.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
-        draw();
 
         unitImage.setOnMouseClicked(e-> {
             stage.accionCon(unidad, unitImage);
         });
     }
 
+    public TableroView getStage() { return stage; }
+    public ImageView getImageView() { return unitImage; }
+    public Unidad getUnidad() { return unidad; }
+
     public abstract Image getImage();
-
-    public void draw() {
-        unitImage.setTranslateX(0);
-        unitImage.setTranslateY(0);
-        //stage.updateView(unitImage);
-    }
-
 }

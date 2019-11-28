@@ -1,15 +1,4 @@
 package fiuba.algo3.AlgoChess.vista;
-/*
-import fiuba.algo3.AlgoChess.modelo.tablero.Jugador;
-import fiuba.algo3.AlgoChess.modelo.tablero.Posicion;
-import fiuba.algo3.AlgoChess.modelo.tablero.Tablero;
-import fiuba.algo3.AlgoChess.modelo.unidades.*;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-*/
 
 import fiuba.algo3.AlgoChess.modelo.tablero.Jugador;
 import fiuba.algo3.AlgoChess.modelo.tablero.Posicion;
@@ -17,9 +6,6 @@ import fiuba.algo3.AlgoChess.modelo.tablero.Tablero;
 import fiuba.algo3.AlgoChess.modelo.unidades.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -37,12 +23,19 @@ public class Main extends Application {
         TableroView tableroView = new TableroView();
 
         Jugador jugadorA = tablero.getJugadorA();
+        Jugador jugadorB = tablero.getJugadorB();
 
-        Unidad unidadInfanteria = new UnidadDeInfanteria();
-        jugadorA.comprarUnidad(unidadInfanteria);
-        tablero.posicionarUnidad(unidadInfanteria, new Posicion(2,2));
-        new UnidadViewInfanteria(tableroView, unidadInfanteria);
+        Unidad unidadInfanteriaA = new UnidadDeInfanteria();
+        jugadorA.comprarUnidad(unidadInfanteriaA);
+        tablero.posicionarUnidad(unidadInfanteriaA, new Posicion(9,9));
+        new UnidadViewInfanteria(tableroView, unidadInfanteriaA);
 
+        Unidad unidadInfanteriaB = new UnidadDeInfanteria();
+        jugadorB.comprarUnidad(unidadInfanteriaB);
+        tablero.posicionarUnidad(unidadInfanteriaB, new Posicion(10,10));
+        new UnidadViewInfanteria(tableroView, unidadInfanteriaB);
+
+        /*
         Unidad jinete = new Jinete();
         jugadorA.comprarUnidad(jinete);
         tablero.posicionarUnidad(jinete, new Posicion(5,5));
@@ -57,33 +50,11 @@ public class Main extends Application {
         jugadorA.comprarUnidad(curandero);
         tablero.posicionarUnidad(curandero, new Posicion(7,7));
         new CuranderoView(tableroView, curandero);
-
+        */
         VBox vb = new VBox(tableroView);
 
         Scene theScene = new Scene(vb);
         theStage.setScene(theScene);
         theStage.show();
     }
-
-
-/*
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("HBox Experiment 1");
-
-        Button button = new Button("My Button");
-
-        StackPane panel = new StackPane();
-        panel.getChildren().add(button);
-        Scene scene = new Scene(panel, 200, 100);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
-    }
-
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
-
- */
 }
