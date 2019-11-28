@@ -10,6 +10,7 @@ public class Jugador {
     private static final String NOMBRE_DEFAULT_BANDO_A = "A";
     private static final String NOMBRE_DEFAULT_BANDO_B = "B";
 
+    private Turno turno;
     private String bando;
     private List<Unidad> unidades;
     private Billetera billetera;
@@ -21,6 +22,7 @@ public class Jugador {
         unidades = new ArrayList<>();
         billetera = new Billetera(PUNTOS_INICIALES);
         gestorDeCompras = new GestorDeComprasNormal(this);
+        turno = new TurnoValido();
 
         if(numeroJugador == 1){
             bando = NOMBRE_DEFAULT_BANDO_A;
@@ -74,4 +76,13 @@ public class Jugador {
     public boolean noEsMiUnidad(Unidad unidad) {
         return !esMiUnidad(unidad);
     }
+
+    public void comprarUnidadConTurno(Unidad unidad){
+        turno.comprarUnidadConTurno(gestorDeCompras,unidad,billetera);
+
+    }
+
+    public void jugadorCambiarTurno(){
+        turno = turno.cambiarTurno();
+    };
 }
