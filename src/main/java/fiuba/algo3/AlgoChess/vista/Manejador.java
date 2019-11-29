@@ -1,48 +1,50 @@
 package fiuba.algo3.AlgoChess.vista;
 
+import fiuba.algo3.AlgoChess.controlador.MovimientoControllerNull;
 import fiuba.algo3.AlgoChess.modelo.unidades.Unidad;
-import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Manejador {
     private static final Manejador instancia = new Manejador();
 
-    private Unidad unidad = null;
-    private Node unidadView;
+    private Unidad autor;
     private List<Pane> panes;
-    private TableroView tableroView;
 
-    private Manejador() {}
+    private Manejador() {
+        autor = null;
+    }
 
     public static Manejador getInstancia() { return instancia; }
 
-    public void agregarUnidad(Unidad unidad, TableroView tableroView) {
-        if(this.unidad != null){
-            atacar(unidad);
-        } else {
-            this.unidad = unidad;
-
-            panes = tableroView.getPanesAdyacentes(unidad);
-
-            panes.stream().forEach(pane -> pane.setStyle("-fx-background-color: #79f281"));
-        }
+    public void agregarUnidad(Unidad unidad) {
+        atacar(unidad);
     }
 
-    public void reset() {
+    public void agregarUnidad(Unidad unidad, ArrayList<Pane> panes) {
+        this.autor = unidad;
+        this.panes = panes;
+    }
+
+    public void resetPanes() {
         panes.stream().forEach(pane -> {
             pane.setStyle("-fx-background-color: #FFFFFF");
             pane.setOnMouseClicked(new MovimientoControllerNull());
         });
 
-        unidad = null;
+        autor = null;
     }
 
     public void atacar(Unidad unidad) {
-        if(this.unidad != unidad) {
-            this.unidad.usarHabilidad(unidad);
-            reset();
+        if(autor != unidad) {
+            autor.usarHabilidad(unidad);
+            resetPanes();
         }
+    }
+
+    public boolean tieneAutor() {
+        return autor != null;
     }
 }

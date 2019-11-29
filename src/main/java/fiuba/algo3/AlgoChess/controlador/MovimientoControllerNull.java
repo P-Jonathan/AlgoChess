@@ -1,4 +1,4 @@
-package fiuba.algo3.AlgoChess.vista;
+package fiuba.algo3.AlgoChess.controlador;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;

@@ -31,11 +31,20 @@ public class Main extends Application {
         new UnidadViewInfanteria(tableroView, unidadInfanteriaA);
 
         Unidad unidadInfanteriaB = new UnidadDeInfanteria();
-        jugadorB.comprarUnidad(unidadInfanteriaB);
-        tablero.posicionarUnidad(unidadInfanteriaB, new Posicion(10,10));
+        jugadorA.comprarUnidad(unidadInfanteriaB);
+        tablero.posicionarUnidad(unidadInfanteriaB, new Posicion(2,3));
         new UnidadViewInfanteria(tableroView, unidadInfanteriaB);
 
-        /*
+        Unidad unidadInfanteriaC = new UnidadDeInfanteria();
+        jugadorA.comprarUnidad(unidadInfanteriaC);
+        tablero.posicionarUnidad(unidadInfanteriaC, new Posicion(2,4));
+        new UnidadViewInfanteria(tableroView, unidadInfanteriaC);
+
+        Unidad unidadInfanteriaD = new UnidadDeInfanteria();
+        jugadorB.comprarUnidad(unidadInfanteriaD);
+        tablero.posicionarUnidad(unidadInfanteriaD, new Posicion(10,10));
+        new UnidadViewInfanteria(tableroView, unidadInfanteriaD);
+
         Unidad jinete = new Jinete();
         jugadorA.comprarUnidad(jinete);
         tablero.posicionarUnidad(jinete, new Posicion(5,5));
@@ -50,7 +59,7 @@ public class Main extends Application {
         jugadorA.comprarUnidad(curandero);
         tablero.posicionarUnidad(curandero, new Posicion(7,7));
         new CuranderoView(tableroView, curandero);
-        */
+
         VBox vb = new VBox(tableroView);
 
         Scene theScene = new Scene(vb);

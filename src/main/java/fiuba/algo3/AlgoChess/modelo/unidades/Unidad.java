@@ -49,6 +49,7 @@ public abstract class Unidad extends Observable {
 
     public void aumentarVida(int vida) {
         this.vida += vida;
+        notifyObservers();
     }
 
     public void disminuirVida(int vida) {

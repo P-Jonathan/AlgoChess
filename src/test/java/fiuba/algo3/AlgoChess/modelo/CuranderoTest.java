@@ -1,5 +1,6 @@
 package fiuba.algo3.AlgoChess.modelo;
 
+import fiuba.algo3.AlgoChess.modelo.tablero.Jugador;
 import fiuba.algo3.AlgoChess.modelo.tablero.Posicion;
 import fiuba.algo3.AlgoChess.modelo.unidades.UnidadDeInfanteria;
 import fiuba.algo3.AlgoChess.modelo.unidades.Curandero;

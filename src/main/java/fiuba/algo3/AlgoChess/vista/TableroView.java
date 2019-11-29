@@ -1,17 +1,16 @@
 package fiuba.algo3.AlgoChess.vista;
 
-import fiuba.algo3.AlgoChess.modelo.tablero.Tablero;
+import fiuba.algo3.AlgoChess.controlador.MovimientoAdelanteController;
+import fiuba.algo3.AlgoChess.controlador.MovimientoAtrasController;
+import fiuba.algo3.AlgoChess.controlador.MovimientoDerechaController;
+import fiuba.algo3.AlgoChess.controlador.MovimientoIzquierdaController;
 import fiuba.algo3.AlgoChess.modelo.unidades.Unidad;
-import fiuba.algo3.AlgoChess.modelo.unidades.UnidadNull;
-import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TableroView extends Group {
     public int width = 20;
@@ -93,14 +92,16 @@ public class TableroView extends Group {
             panesAdyacentes.add(panes[unidad.getX() - 1][unidad.getY()]);
         } catch (ArrayIndexOutOfBoundsException e) {}
 
+        panesAdyacentes.stream().forEach(pane -> pane.setStyle("-fx-background-color: #79f281"));
+
         return panesAdyacentes;
     }
 
-    public void accionCon(Unidad unidad) {
-        Manejador manejador = Manejador.getInstancia();
-        manejador.agregarUnidad(unidad, this);
+    public Pane paneActual(Unidad unidad) {
+        panes[unidad.getX()][unidad.getY()].setStyle("-fx-background-color: #46b1f2");
+
+        return panes[unidad.getX()][unidad.getY()];
     }
 
     //public void prepararParaAccion(Unidad unidad) {  }
-
 }
