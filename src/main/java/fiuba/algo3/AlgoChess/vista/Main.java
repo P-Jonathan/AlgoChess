@@ -1,5 +1,7 @@
 package fiuba.algo3.AlgoChess.vista;
 
+
+
 import fiuba.algo3.AlgoChess.modelo.tablero.Jugador;
 import fiuba.algo3.AlgoChess.modelo.tablero.Posicion;
 import fiuba.algo3.AlgoChess.modelo.tablero.Tablero;
@@ -8,6 +10,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 
 public class Main extends Application {
 
@@ -18,13 +21,16 @@ public class Main extends Application {
 
     public void start(Stage theStage) {
         theStage.setTitle("Prueba AlgoChess");
-
+               
         Tablero tablero = new Tablero();
         TableroView tableroView = new TableroView();
 
         Jugador jugadorA = tablero.getJugadorA();
         Jugador jugadorB = tablero.getJugadorB();
-
+        
+        ReproductorMusica reproductor = new ReproductorMusica();
+        reproductor.reproducirMusica();
+        
         Unidad unidadInfanteriaA = new UnidadDeInfanteria();
         jugadorA.comprarUnidad(unidadInfanteriaA);
         tablero.posicionarUnidad(unidadInfanteriaA, new Posicion(2,2));
