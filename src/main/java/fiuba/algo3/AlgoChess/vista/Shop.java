@@ -9,7 +9,6 @@ public class Shop extends Group {
     public int width = 320;
     public int height = 640;
 
-
     private GridPane table;
     private Pane[] panes;
 

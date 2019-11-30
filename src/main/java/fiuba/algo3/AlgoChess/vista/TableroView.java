@@ -16,8 +16,8 @@ public class TableroView extends Group {
     public int width = 20;
     public int heigth = 20;
 
-    private int tileWidth = 32;
-    private int tileHeigth = 32;
+    private int tileWidth = 48;
+    private int tileHeigth = 38;
 
     private GridPane table;
 

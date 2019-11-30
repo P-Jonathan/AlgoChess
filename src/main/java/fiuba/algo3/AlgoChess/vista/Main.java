@@ -1,11 +1,7 @@
 package fiuba.algo3.AlgoChess.vista;
 
-
-
 import fiuba.algo3.AlgoChess.modelo.tablero.Jugador;
-import fiuba.algo3.AlgoChess.modelo.tablero.Posicion;
 import fiuba.algo3.AlgoChess.modelo.tablero.Tablero;
-import fiuba.algo3.AlgoChess.modelo.unidades.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
@@ -25,9 +21,6 @@ public class Main extends Application {
                
         Tablero tablero = new Tablero();
         TableroView tableroView = new TableroView();
-
-        Jugador jugadorA = tablero.getJugadorA();
-        Jugador jugadorB = tablero.getJugadorB();
         
         ReproductorMusica reproductor = new ReproductorMusica();
         reproductor.reproducirMusica();

@@ -12,12 +12,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class UnidadViewInfanteria implements Observer {
+public class UnidadInfanteriaView implements Observer {
     private TableroView tableroView;
     private Unidad unidad;
     private ImageView unitImage;
 
-    public UnidadViewInfanteria(TableroView tableroView, Unidad unidad) {
+    public UnidadInfanteriaView(TableroView tableroView, Unidad unidad) {
         this.tableroView = tableroView;
         this.unidad = unidad;
 
@@ -26,8 +26,8 @@ public class UnidadViewInfanteria implements Observer {
         unitImage = new ImageView();
         unitImage.setScaleX(2);
         unitImage.setScaleY(2);
-        unitImage.setFitHeight(32);
-        unitImage.setFitWidth(32);
+        unitImage.setFitHeight(38);
+        unitImage.setFitWidth(48);
 
         unitImage.setImage(getImage());
         tableroView.addViewOnMap(unitImage, unidad.getX(), unidad.getY());

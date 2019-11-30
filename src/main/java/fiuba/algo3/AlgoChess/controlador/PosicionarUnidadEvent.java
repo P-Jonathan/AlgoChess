@@ -23,15 +23,15 @@ public class PosicionarUnidadEvent implements EventHandler<MouseEvent> {
     }
 
     public void handle(MouseEvent mouseEvent) {
-        int x = (int) mouseEvent.getX() / 32;
-        int y = (int) mouseEvent.getY() / 32;
+        int x = (int) mouseEvent.getX() / 48;
+        int y = (int) mouseEvent.getY() / 38;
 
         try {
             tablero.posicionarUnidad(unidad, new Posicion(x, y));
 
             // Lo hago asi ahora despues con el map sacamos esta atrocidad xd
             if (unidad.getClass() == UnidadDeInfanteria.class) {
-                new UnidadViewInfanteria(tableroView, unidad);
+                new UnidadInfanteriaView(tableroView, unidad);
             } else if (unidad.getClass() == Jinete.class) {
                 new JineteView(tableroView, unidad);
             } else if (unidad.getClass() == Curandero.class) {
