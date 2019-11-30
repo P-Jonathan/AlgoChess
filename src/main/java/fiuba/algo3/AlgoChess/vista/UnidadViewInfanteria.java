@@ -38,7 +38,7 @@ public class UnidadViewInfanteria implements Observer {
     public Image getImage() {
         // Extraigo el sprite que me interesa del spritesheet usando la clase BufferedImage
         try {
-            BufferedImage bf = ImageIO.read(new File("C://Users//andre//Documents//misProyectos//AlgoChess//src//main//resources//infanteria.png"));
+            BufferedImage bf = ImageIO.read(new File("src/main/resources/infanteria.png"));
             BufferedImage subimage = bf.getSubimage(4 * 48, 0, 48, 48);
             Image image = SwingFXUtils.toFXImage(subimage, null) ;
             return image;

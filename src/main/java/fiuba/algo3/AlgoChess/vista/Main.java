@@ -1,5 +1,7 @@
 package fiuba.algo3.AlgoChess.vista;
 
+
+
 import fiuba.algo3.AlgoChess.modelo.tablero.Jugador;
 import fiuba.algo3.AlgoChess.modelo.tablero.Posicion;
 import fiuba.algo3.AlgoChess.modelo.tablero.Tablero;
@@ -10,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+
 public class Main extends Application {
 
 
@@ -19,13 +22,16 @@ public class Main extends Application {
 
     public void start(Stage theStage) {
         theStage.setTitle("Prueba AlgoChess");
-
+               
         Tablero tablero = new Tablero();
         TableroView tableroView = new TableroView();
 
         Jugador jugadorA = tablero.getJugadorA();
         Jugador jugadorB = tablero.getJugadorB();
-
+        
+        ReproductorMusica reproductor = new ReproductorMusica();
+        reproductor.reproducirMusica();
+        /*
         Unidad unidadInfanteriaA = new UnidadDeInfanteria();
         jugadorA.comprarUnidad(unidadInfanteriaA);
         tablero.posicionarUnidad(unidadInfanteriaA, new Posicion(2,2));
@@ -60,11 +66,15 @@ public class Main extends Application {
         jugadorA.comprarUnidad(curandero);
         tablero.posicionarUnidad(curandero, new Posicion(7,7));
         new CuranderoView(tableroView, curandero);
-
+        */
         VBox vb = new VBox(tableroView);
 
-        Shop sh = new Shop(tablero);
-        new UnidadInfanteriaComprable(tablero, sh);
+        Shop sh = new Shop();
+        sh.addViewOnMap(new ButtonComprarUnidadInfanteria(tablero, tableroView), 0);
+        sh.addViewOnMap(new ButtonComprarJinete(tablero, tableroView), 1);
+        sh.addViewOnMap(new ButtonComprarCurandero(tablero, tableroView), 2);
+        sh.addViewOnMap(new ButtonComprarCatapulta(tablero, tableroView), 3);
+
         VBox vb2 = new VBox(sh);
 
         HBox hb = new HBox(vb, vb2);

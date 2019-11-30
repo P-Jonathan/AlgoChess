@@ -21,7 +21,6 @@ public class TableroView extends Group {
 
     private GridPane table;
 
-
     private Pane[][] panes;
 
     public TableroView() {

@@ -1,6 +1,5 @@
 package fiuba.algo3.AlgoChess.vista;
 
-import fiuba.algo3.AlgoChess.modelo.tablero.Tablero;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
@@ -14,14 +13,14 @@ public class Shop extends Group {
     private GridPane table;
     private Pane[] panes;
 
-    public Shop(Tablero tablero) {
+    public Shop() {
         GridPane table = new GridPane();
         panes = new Pane[4];
 
         for (int i = 0; i < 4; i++) {
             Pane v = new Pane();
-            v.setMinHeight(160);
-            v.setMinWidth(320);
+            v.setMinHeight(56);
+            v.setMinWidth(56);
             v.setStyle("-fx-background-color: #FFFFFF");
             panes[i] = v;
             table.add(v , 0, i);
