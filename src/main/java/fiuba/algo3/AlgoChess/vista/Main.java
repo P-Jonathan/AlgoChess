@@ -6,6 +6,7 @@ import fiuba.algo3.AlgoChess.modelo.tablero.Tablero;
 import fiuba.algo3.AlgoChess.modelo.unidades.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -62,7 +63,13 @@ public class Main extends Application {
 
         VBox vb = new VBox(tableroView);
 
-        Scene theScene = new Scene(vb);
+        Shop sh = new Shop(tablero);
+        new UnidadInfanteriaComprable(tablero, sh);
+        VBox vb2 = new VBox(sh);
+
+        HBox hb = new HBox(vb, vb2);
+
+        Scene theScene = new Scene(hb);
         theStage.setScene(theScene);
         theStage.show();
     }
