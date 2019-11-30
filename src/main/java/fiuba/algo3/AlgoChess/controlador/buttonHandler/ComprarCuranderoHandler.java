@@ -3,6 +3,7 @@ package fiuba.algo3.AlgoChess.controlador.buttonHandler;
 import fiuba.algo3.AlgoChess.controlador.PosicionarUnidadEvent;
 import fiuba.algo3.AlgoChess.modelo.tablero.Tablero;
 import fiuba.algo3.AlgoChess.modelo.unidades.Curandero;
+import fiuba.algo3.AlgoChess.vista.ReproductorMusica;
 import fiuba.algo3.AlgoChess.vista.TableroView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,6 +20,8 @@ public class ComprarCuranderoHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event) {
         try{
             Curandero curandero = new Curandero();
+            ReproductorMusica reproductor = new ReproductorMusica("curandero.mp3");
+            reproductor.reproducirEfectoDeSonido();
             tablero.getJugadorA().comprarUnidad(curandero);
             tableroView.setOnMousePressed(new PosicionarUnidadEvent(curandero, tablero, tableroView));
         } catch (RuntimeException e) {
