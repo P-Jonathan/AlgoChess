@@ -43,4 +43,39 @@ class TableroTest {
 
         assertThrows(RuntimeException.class, () -> tablero.posicionarUnidad(unidad, posicion));
     }
+
+    @Test
+    void seVerificaQueAlAtacarUnaUnidadEnemigaEnTerrenoAliadoSeLeQuitaUnCincoPorCientoMasDeVida() {
+        Tablero tablero = new Tablero();
+        Unidad objetivo = new UnidadDeInfanteria(tablero.getJugadorB());
+
+        tablero.posicionarUnidad(objetivo, new Posicion(0, 10));
+
+        objetivo.moverHaciaAtras();
+        objetivo.moverHaciaAtras();
+
+        int danio = 10;
+        double vidaPrevia = objetivo.getVida();
+        double vidaEsperada = vidaPrevia - (danio + (danio * 0.05));
+
+        objetivo.disminuirVida(danio);
+
+        assertEquals(vidaEsperada, objetivo.getVida());
+    }
+
+    @Test
+    void seVerificaQueAlAtacarUnaUnidadEnemigaEnTerrenoEnemigoNoSeLeQuitaUnCincoPorCientoMasDeVida() {
+        Tablero tablero = new Tablero();
+        Unidad objetivo = new UnidadDeInfanteria(tablero.getJugadorB());
+
+        tablero.posicionarUnidad(objetivo, new Posicion(0, 10));
+
+        int danio = 10;
+        double vidaPrevia = objetivo.getVida();
+        double vidaEsperada = vidaPrevia - danio;
+
+        objetivo.disminuirVida(danio);
+
+        assertEquals(vidaEsperada, objetivo.getVida());
+    }
 }

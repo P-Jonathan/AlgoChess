@@ -13,7 +13,7 @@ class UnidadTest {
     void creoUnidadYAlQuitarle10DeVidaSuVidaSeReduceEn10Puntos() {
         Unidad unidad = new Curandero();
 
-        int vidaPrevia = unidad.getVida();
+        double vidaPrevia = unidad.getVida();
 
         unidad.disminuirVida(10);
 
@@ -24,7 +24,7 @@ class UnidadTest {
     void creoUnidadYAlQuitarle40DeVidaSuVidaSeReduceEn40Puntos() {
         Unidad unidad = new UnidadDeInfanteria();
 
-        int vidaPrevia = unidad.getVida();
+        double vidaPrevia = unidad.getVida();
 
         unidad.disminuirVida(40);
 
@@ -35,7 +35,7 @@ class UnidadTest {
     void creoUnidadYAlAumentarSuVidaEn50SuVidaAumenta50Puntos() {
         Unidad unidad = new Curandero();
 
-        int vidaPrevia = unidad.getVida();
+        double vidaPrevia = unidad.getVida();
 
         unidad.aumentarVida(50);
 
@@ -46,7 +46,7 @@ class UnidadTest {
     void creoUnidadYAlAumentarSuVidaEn100SuVidaAumenta100Puntos() {
         Unidad unidad = new UnidadDeInfanteria();
 
-        int vidaPrevia = unidad.getVida();
+        double vidaPrevia = unidad.getVida();
 
         unidad.aumentarVida(100);
 

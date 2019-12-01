@@ -22,7 +22,7 @@ class CuranderoTest {
         tablero.posicionarUnidad(curandero, new Posicion(0, 0));
         tablero.posicionarUnidad(aliado, new Posicion(1, 0));
 
-        int vidaPrevia = aliado.getVida();
+        double vidaPrevia = aliado.getVida();
 
         curandero.usarHabilidad(aliado);
 

@@ -26,7 +26,7 @@ class UnidadDeInfanteriaTest {
         tablero.posicionarUnidad(unidad, new Posicion(5, 9));
         tablero.posicionarUnidad(objetivo, new Posicion(5, 11));
 
-        int vidaPrevia = objetivo.getVida();
+        double vidaPrevia = objetivo.getVida();
 
         unidad.usarHabilidad(objetivo);
 

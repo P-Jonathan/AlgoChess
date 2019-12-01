@@ -24,7 +24,7 @@ class JineteTest {
         tablero.posicionarUnidad(jinete, new Posicion(9, 9));
         tablero.posicionarUnidad(objetivo, new Posicion(9, 13));
 
-        int vidaPrevia = objetivo.getVida();
+        double vidaPrevia = objetivo.getVida();
         boolean tieneEnemigosCerca = jinete.tieneEnemigosCerca();
         boolean tieneAliadosCerca = jinete.tieneAliadosCerca();
         boolean unidadIgual = jinete.unidadesCerca().contains(objetivo);
@@ -45,7 +45,7 @@ class JineteTest {
         tablero.posicionarUnidad(jinete, new Posicion(9, 9));
         tablero.posicionarUnidad(objetivo, new Posicion(9, 10));
 
-        int vidaPrevia = objetivo.getVida();
+        double vidaPrevia = objetivo.getVida();
 
         jinete.usarHabilidad(objetivo);
 
@@ -64,7 +64,7 @@ class JineteTest {
         tablero.posicionarUnidad(aliado, new Posicion(8, 9));
         tablero.posicionarUnidad(objetivo, new Posicion(10, 13));
 
-        int vidaPrevia = objetivo.getVida();
+        double vidaPrevia = objetivo.getVida();
 
         jinete.usarHabilidad(objetivo);
 
@@ -98,7 +98,7 @@ class JineteTest {
         tablero.posicionarUnidad(enemigo, new Posicion(10, 10));
         tablero.posicionarUnidad(objetivo, new Posicion(10, 11));
 
-        int vidaPrevia = objetivo.getVida();
+        double vidaPrevia = objetivo.getVida();
 
         jinete.usarHabilidad(objetivo);
 

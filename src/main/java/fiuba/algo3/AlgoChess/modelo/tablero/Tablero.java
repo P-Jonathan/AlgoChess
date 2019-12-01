@@ -5,6 +5,9 @@ import fiuba.algo3.AlgoChess.modelo.unidades.Unidad;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import static java.util.stream.Collectors.toList;
 
 public class Tablero {
     private static final String NOMBRE_DEFAULT_BANDO_A = "A";
@@ -44,21 +47,25 @@ public class Tablero {
     }
 
     Casilla getCasillaEnPosicion(Posicion posicion) {
-        for (Casilla casilla : casillas) {
-            if (casilla.estaEnPosicion(posicion)) {
-                return casilla;
-            }
-        }
+        Optional<Casilla> optionalCasilla = casillas
+                .stream()
+                .filter(c -> c.estaEnPosicion(posicion))
+                .findFirst();
+
+        if(optionalCasilla.isPresent())
+            return optionalCasilla.get();
 
         throw new RuntimeException();
     }
 
     private Casilla getCasillaConUnidad(Unidad unidad) {
-        for (Casilla casilla : casillas) {
-            if (casilla.getOcupante().equals(unidad)) {
-                return casilla;
-            }
-        }
+        Optional<Casilla> optionalCasilla = casillas
+                .stream()
+                .filter(c -> c.getOcupante().equals(unidad))
+                .findFirst();
+
+        if(optionalCasilla.isPresent())
+            return optionalCasilla.get();
 
         throw new RuntimeException();
     }
@@ -99,65 +106,53 @@ public class Tablero {
     }
 
     private List<Casilla> getCasillasAdyacences(Casilla casilla) {
-        List<Casilla> casillasAdyacentes = new ArrayList<>();
-        for (Casilla otraCasilla : casillas) {
-            if (otraCasilla.esAdyacente(casilla)) {
-                casillasAdyacentes.add(otraCasilla);
-            }
-        }
-        casillasAdyacentes.remove(casilla);
-        return casillasAdyacentes;
+        return casillas
+                .stream()
+                .filter(c -> c.esAdyacente(casilla))
+                .collect(toList());
     }
 
     List<Unidad> getUnidadesAdyacencesAPosicion(Posicion posicion) {
-        Casilla casillaBuscada = getCasillaEnPosicion(posicion);
-        List<Casilla> casillasAdyacentes = getCasillasAdyacences(casillaBuscada);
-        List<Unidad> unidadesAdyacentes = new ArrayList<>();
-        for (Casilla casilla : casillasAdyacentes) {
-            unidadesAdyacentes.add(casilla.getOcupante());
-        }
-        return unidadesAdyacentes;
+        Casilla casilla = getCasillaEnPosicion(posicion);
+        return casillas
+                .stream()
+                .filter(c -> c.esAdyacente(casilla))
+                .map(Casilla::getOcupante)
+                .collect(toList());
     }
 
     public List<Unidad> getUnidadesADistanciaCorta(Posicion posicion) {
-        Unidad unidadBuscada = getUnidadEnPosicion(posicion);
-        List<Unidad> unidadesADistanciaCorta = new ArrayList<>();
-        for (Unidad unidad : getUnidades()) {
-            if(unidad.estaACortaDistancia(unidadBuscada)) {
-                unidadesADistanciaCorta.add(unidad);
-            }
-        }
-        return unidadesADistanciaCorta;
+        Casilla casilla = getCasillaEnPosicion(posicion);
+        return casillas
+                .stream()
+                .filter(c -> c.estaADistanciaCorta(casilla))
+                .map(Casilla::getOcupante)
+                .collect(toList());
     }
 
     public List<Unidad> getUnidadesADistanciaMedia(Posicion posicion) {
-        Unidad unidadBuscada = getUnidadEnPosicion(posicion);
-        List<Unidad> unidadesADistanciaMedia = new ArrayList<>();
-        for (Unidad unidad : getUnidades()) {
-            if(unidad.estaAMediaDistancia(unidadBuscada)) {
-                unidadesADistanciaMedia.add(unidad);
-            }
-        }
-        return unidadesADistanciaMedia;
+        Casilla casilla = getCasillaEnPosicion(posicion);
+        return casillas
+                .stream()
+                .filter(c -> c.estaADistanciaMedia(casilla))
+                .map(Casilla::getOcupante)
+                .collect(toList());
     }
 
     public List<Unidad> getUnidadesADistanciaLarga(Posicion posicion) {
-        Unidad unidadBuscada = getUnidadEnPosicion(posicion);
-        List<Unidad> unidadesADistanciaLarga = new ArrayList<>();
-        for (Unidad unidad : getUnidades()) {
-            if(unidad.estaALargaDistancia(unidadBuscada)) {
-                unidadesADistanciaLarga.add(unidad);
-            }
-        }
-        return unidadesADistanciaLarga;
+        Casilla casilla = getCasillaEnPosicion(posicion);
+        return casillas
+                .stream()
+                .filter(c -> c.estaADistanciaLarga(casilla))
+                .map(Casilla::getOcupante)
+                .collect(toList());
     }
 
     public List<Unidad> getUnidades() {
-        List<Unidad> unidades = new ArrayList<>();
-        for (Casilla casilla : casillas) {
-            unidades.add(casilla.getOcupante());
-        }
-        return unidades;
+        return casillas
+                .stream()
+                .map(Casilla::getOcupante)
+                .collect(toList());
     }
 
     public Jugador getJugadorA() {

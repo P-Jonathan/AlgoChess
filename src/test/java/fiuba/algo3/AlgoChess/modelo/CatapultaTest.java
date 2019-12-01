@@ -17,7 +17,7 @@ class CatapultaTest {
     void creoCatapultaLeAumentoLaVidaEn20PeroSuVidaSigueSiendoLaMisma() {
         Catapulta catapulta = new Catapulta();
 
-        int vidaPrevia = catapulta.getVida();
+        double vidaPrevia = catapulta.getVida();
 
         catapulta.aumentarVida(50);
 
@@ -49,8 +49,8 @@ class CatapultaTest {
         tablero.posicionarUnidad(objetivo, new Posicion(0, 15));
         tablero.posicionarUnidad(adyacente, new Posicion(0, 16));
 
-        int vidaPreviaObjetivo = objetivo.getVida();
-        int vidaPreviaAdyacente = adyacente.getVida();
+        double vidaPreviaObjetivo = objetivo.getVida();
+        double vidaPreviaAdyacente = adyacente.getVida();
 
         catapulta.usarHabilidad(objetivo);
 

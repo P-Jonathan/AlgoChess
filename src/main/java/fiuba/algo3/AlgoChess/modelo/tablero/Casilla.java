@@ -5,9 +5,11 @@ import fiuba.algo3.AlgoChess.modelo.unidades.Unidad;
 import java.util.List;
 
 public class Casilla {
-    private final static int RANGO_CORTO_MIN = 1;
-    private final static int RANGO_CORTO_MAX = 2;
-    private final static int RANGO_MEDIO_MAX = 5;
+    private static final int RANGO_CORTO_MIN = 1;
+    private static final int RANGO_CORTO_MAX = 2;
+    private static final int RANGO_MEDIO_MAX = 5;
+    private static final int MULTIPLICADOR_DE_DANIO_ALIADO = 0;
+    private static final int MULTIPLICADOR_DE_DANIO_ENEMIGO = 5;
 
     private Tablero tablero;
     private Jugador propietario;
@@ -34,6 +36,13 @@ public class Casilla {
         setEstado(new EstadoCasillaVacia(this));
     }
 
+    private void aplicarMultiplicadorDeDanio() {
+        if(getOcupante().esMiPropietario(propietario))
+            getOcupante().setMultiplicadorDeDanio(MULTIPLICADOR_DE_DANIO_ALIADO);
+        else
+            getOcupante().setMultiplicadorDeDanio(MULTIPLICADOR_DE_DANIO_ENEMIGO);
+    }
+
     public void setPropietario(Jugador propietario) {
         this.propietario = propietario;
     }
@@ -48,6 +57,7 @@ public class Casilla {
 
     public void setOcupante(Unidad ocupante) {
         estado.setOcupante(ocupante);
+        aplicarMultiplicadorDeDanio();
     }
 
     public Unidad getOcupante() {

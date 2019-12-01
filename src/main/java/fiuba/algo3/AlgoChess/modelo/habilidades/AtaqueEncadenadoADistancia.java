@@ -40,7 +40,7 @@ public class AtaqueEncadenadoADistancia extends Habilidad {
     public void usarHabilidad(Unidad objetivo) {
         if(!objetivo.estaALargaDistancia(portador))
             throw new UnidadFueraDeRango();
-        List<Unidad> unidades = getUnidadesAAtacar(objetivo);
-        unidades.forEach(unidad -> unidad.disminuirVida(DANIO));
+
+        getUnidadesAAtacar(objetivo).forEach(unidad -> unidad.disminuirVida(DANIO));
     }
 }

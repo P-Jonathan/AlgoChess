@@ -4,24 +4,28 @@ import fiuba.algo3.AlgoChess.modelo.tablero.Casilla;
 import fiuba.algo3.AlgoChess.modelo.tablero.Jugador;
 import fiuba.algo3.AlgoChess.modelo.tablero.Turno;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class Unidad extends Observable {
     Casilla casilla;
     private Jugador propietario;
     private Turno turno;
 
-    private int vida;
+    private double vida;
     private int costo;
 
+    private double multiplicadorDeDanio;
+
     public Unidad(Jugador propietario, int vida, int costo) {
+        this.multiplicadorDeDanio = 0;
         this.propietario = propietario;
         this.costo = costo;
         this.vida = vida;
     }
 
     public Unidad(int vida, int costo) {
+        this.multiplicadorDeDanio = 0;
         this.costo = costo;
         this.vida = vida;
     }
@@ -34,12 +38,22 @@ public abstract class Unidad extends Observable {
         this.casilla = casilla;
     }
 
+    public void setMultiplicadorDeDanio(double valor) {
+        multiplicadorDeDanio = valor;
+    }
+
     /*********************************************************/
-    public int getX() { return casilla.getPosicion().getX(); }
-    public int getY() { return casilla.getPosicion().getY(); }
+    public int getX() {
+        return casilla.getPosicion().getX();
+    }
+
+    public int getY() {
+        return casilla.getPosicion().getY();
+    }
+
     /*********************************************************/
 
-    public int getVida() {
+    public double getVida() {
         return vida;
     }
 
@@ -47,13 +61,14 @@ public abstract class Unidad extends Observable {
         return costo;
     }
 
-    public void aumentarVida(int vida) {
-        this.vida += vida;
+    public void aumentarVida(int valor) {
+        this.vida += valor;
         notifyObservers();
     }
 
-    public void disminuirVida(int vida) {
-        this.vida -= vida;
+    public void disminuirVida(int valor) {
+        double vidaADisminuir = valor + valor * multiplicadorDeDanio * 0.01;
+        this.vida -= vidaADisminuir;
         notifyObservers();
     }
 
@@ -84,25 +99,17 @@ public abstract class Unidad extends Observable {
     }
 
     private List<Unidad> aliadosCerca() {
-        List<Unidad> unidadesCerca = unidadesCerca();
-        List<Unidad> aliadosCerca = new ArrayList<>();
-        for (Unidad unidad : unidadesCerca) {
-            if (unidad.soyAliadoDe(this)) {
-                aliadosCerca.add(unidad);
-            }
-        }
-        return aliadosCerca;
+        return unidadesCerca()
+                .stream()
+                .filter(u -> u.soyAliadoDe(this))
+                .collect(Collectors.toList());
     }
 
     public List<Unidad> enemigosCerca() {
-        List<Unidad> unidadesCerca = unidadesCerca();
-        List<Unidad> enemigosCerca = new ArrayList<>();
-        for (Unidad unidad : unidadesCerca) {
-            if (unidad.soyEnemigoDe(this)) {
-                enemigosCerca.add(unidad);
-            }
-        }
-        return enemigosCerca;
+        return unidadesCerca()
+                .stream()
+                .filter(u -> u.soyEnemigoDe(this))
+                .collect(Collectors.toList());
     }
 
     public boolean tieneAliadosCerca() {
@@ -176,19 +183,19 @@ public abstract class Unidad extends Observable {
     protected void moverEnBatallonALaIzquierda() {
     }
 
-    public void setTurno(Turno nuevoTurno){
+    public void setTurno(Turno nuevoTurno) {
         this.turno = nuevoTurno;
     }
 
-    public void cambiarTurno(){
+    public void cambiarTurno() {
         turno = turno.cambiarTurno();
     }
 
-    public void moverHaciaAdelanteConTurno(){
+    public void moverHaciaAdelanteConTurno() {
         turno.moverHaciaAdelanteConTurno(this);
     }
 
-    public void avisarlesALasUnidadesQueCambienElturno(){
+    public void avisarlesALasUnidadesQueCambienElturno() {
         propietario.cambiarTurnoParaLasUnidades();
     }
 }
