@@ -1,5 +1,6 @@
 package fiuba.algo3.AlgoChess.modelo.tablero;
 
+import fiuba.algo3.AlgoChess.modelo.excepciones.PuntosIngresadosInvalidos;
 import fiuba.algo3.AlgoChess.modelo.excepciones.PuntosInsuficientesException;
 
 public class Billetera {
@@ -29,7 +30,7 @@ public class Billetera {
 
     public void ingresarPuntos(int puntos) {
         if (noSonPuntosValidos(puntos))
-            throw new RuntimeException();
+            throw new PuntosIngresadosInvalidos();
         this.puntos += puntos;
     }
 }

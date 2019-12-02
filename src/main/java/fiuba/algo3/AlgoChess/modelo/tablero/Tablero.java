@@ -1,5 +1,6 @@
 package fiuba.algo3.AlgoChess.modelo.tablero;
 
+import fiuba.algo3.AlgoChess.modelo.excepciones.NoExisteLaCasillaConLaUnidadSolicitada;
 import fiuba.algo3.AlgoChess.modelo.excepciones.NoSePuedePosicionarEnTerrenoEnemigo;
 import fiuba.algo3.AlgoChess.modelo.unidades.Unidad;
 
@@ -67,7 +68,7 @@ public class Tablero {
         if(optionalCasilla.isPresent())
             return optionalCasilla.get();
 
-        throw new RuntimeException();
+        throw new NoExisteLaCasillaConLaUnidadSolicitada();
     }
 
     public int getWidth() {

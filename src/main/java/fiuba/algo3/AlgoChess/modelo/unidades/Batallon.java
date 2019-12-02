@@ -1,5 +1,7 @@
 package fiuba.algo3.AlgoChess.modelo.unidades;
 
+import fiuba.algo3.AlgoChess.modelo.excepciones.BatallonCompleto;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class Batallon {
 
     public void enlistarUnidad(Unidad unidad){
         if(batallonCompleto())
-            throw new RuntimeException();
+            throw new BatallonCompleto();
         batallon.add(unidad);
     }
 
@@ -43,7 +45,7 @@ public class Batallon {
         for(Unidad unidad : unidades){
             try {
                 unidad.enlistarse(this);
-            } catch(RuntimeException exception) {
+            } catch(BatallonCompleto exception) {
                 // Error al unirse al batallon.
             }
         }
@@ -53,7 +55,7 @@ public class Batallon {
     private void moverUnidadAdelante(Unidad unidad) {
         try {
             unidad.moverEnBatallonHaciaAdelante();
-        } catch (RuntimeException e) {
+        } catch (RuntimeException exception) {
             // No se pudo mover.
         }
     }
@@ -61,7 +63,7 @@ public class Batallon {
     private void moverUnidadALaDerecha(Unidad unidad) {
         try {
             unidad.moverEnBatallonALaDerecha();
-        } catch (RuntimeException e) {
+        } catch (RuntimeException exception) {
             // No se pudo mover.
         }
     }
@@ -69,7 +71,7 @@ public class Batallon {
     private void moverUnidadHaciaAtras(Unidad unidad) {
         try {
             unidad.moverEnBatallonHaciaAtras();
-        } catch (RuntimeException e) {
+        } catch (RuntimeException exception) {
             // No se pudo mover.
         }
     }
@@ -77,7 +79,7 @@ public class Batallon {
     private void moverUnidadALaIzquierda(Unidad unidad) {
         try {
             unidad.moverEnBatallonALaIzquierda();
-        } catch (RuntimeException e) {
+        } catch (RuntimeException exception) {
             // No se pudo mover.
         }
     }

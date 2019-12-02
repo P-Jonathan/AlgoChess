@@ -1,5 +1,6 @@
 package fiuba.algo3.AlgoChess.modelo.tablero;
 
+import fiuba.algo3.AlgoChess.modelo.excepciones.GestorDeComprasBloqueado;
 import fiuba.algo3.AlgoChess.modelo.unidades.Unidad;
 
 public class GestosDeComprasBloqueado extends GestorDeCompras {
@@ -10,7 +11,7 @@ public class GestosDeComprasBloqueado extends GestorDeCompras {
 
     @Override
     public void comprarUnidad(Unidad unidad, Billetera billetera) {
-        throw new RuntimeException();
+        throw new GestorDeComprasBloqueado();
     }
 
     @Override

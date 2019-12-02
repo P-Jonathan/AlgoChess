@@ -1,5 +1,6 @@
 package fiuba.algo3.AlgoChess.modelo.habilidades;
 
+import fiuba.algo3.AlgoChess.modelo.excepciones.UnidadFueraDeRango;
 import fiuba.algo3.AlgoChess.modelo.unidades.Unidad;
 
 public class Curacion extends Habilidad {
@@ -13,7 +14,7 @@ public class Curacion extends Habilidad {
         if (portador.estaACortaDistancia(objetivo))
             objetivo.aumentarVida(PUNTOS_DE_CURACION);
         else
-            throw new RuntimeException();
+            throw new UnidadFueraDeRango();
     }
 
     @Override
