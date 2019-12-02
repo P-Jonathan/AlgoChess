@@ -11,7 +11,7 @@ public class AtaqueJinete extends Habilidad {
         super(portador);
     }
 
-    private Habilidad getAtaque(Unidad objetivo) {
+    private Habilidad getAtaque() {
         if (portador.tieneEnemigosCerca() && portador.noTieneAliadosCerca())
             return new AtaqueACortaDistancia(portador, DANIO_CUERPO_A_CUERPO);
 
@@ -26,7 +26,7 @@ public class AtaqueJinete extends Habilidad {
         if (portador.soyAliadoDe(objetivo))
             throw new NoSePuedeAtacarAAliados();
 
-        Habilidad habilidad = getAtaque(objetivo);
+        Habilidad habilidad = getAtaque();
 
         habilidad.usarHabilidad(objetivo);
     }

@@ -23,7 +23,7 @@ public class Posicion {
     public int getY() { return y; }
     /*****************************/
 
-    int distanciaAPosicion(Posicion posicion) {
+    public int distanciaAPosicion(Posicion posicion) {
         return posicion.distanciaAXeY(x, y);
     }
 
@@ -33,19 +33,19 @@ public class Posicion {
         return (int) sqrt(pow(distanciaEnX, 2) + pow(distanciaEnY, 2));
     }
 
-    Posicion posicionAdelante() {
+    public Posicion posicionAdelante() {
         return new Posicion(x, y + 1);
     }
 
-    Posicion posicionADerecha() {
+    public Posicion posicionADerecha() {
         return new Posicion(x + 1, y);
     }
 
-    Posicion posicionAtras() {
+    public Posicion posicionAtras() {
         return new Posicion(x, y - 1);
     }
 
-    Posicion posicionAIzquierda() {
+    public Posicion posicionAIzquierda() {
         return new Posicion(x - 1, y);
     }
 

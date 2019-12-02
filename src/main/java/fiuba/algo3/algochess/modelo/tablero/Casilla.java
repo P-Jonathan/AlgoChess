@@ -16,14 +16,14 @@ public class Casilla {
     private Posicion posicion;
     private EstadoCasilla estado;
 
-    protected Casilla(Tablero tablero, Posicion posicion, Unidad ocupante) {
+    public Casilla(Tablero tablero, Posicion posicion, Unidad ocupante) {
         this.tablero = tablero;
         this.posicion = posicion;
         propietario = new JugadorNull();
         setEstado(new EstadoCasillaOcupada(this, ocupante));
     }
 
-    Casilla(Tablero tablero, Posicion posicion) {
+    public Casilla(Tablero tablero, Posicion posicion) {
         this.tablero = tablero;
         this.posicion = posicion;
         propietario = new JugadorNull();
@@ -64,11 +64,11 @@ public class Casilla {
         return estado.getOcupante();
     }
 
-    Unidad removeOcupante() {
+    public Unidad removeOcupante() {
         return estado.removeOcupante();
     }
 
-    void setEstado(EstadoCasilla nuevoEstado) {
+    public void setEstado(EstadoCasilla nuevoEstado) {
         estado = nuevoEstado;
     }
 
@@ -76,11 +76,11 @@ public class Casilla {
         return casilla.distanciaAPosicion(posicion);
     }
 
-    int distanciaAPosicion(Posicion posicion) {
+    public int distanciaAPosicion(Posicion posicion) {
         return posicion.distanciaAPosicion(this.posicion);
     }
 
-    boolean esAdyacente(Casilla casilla){
+    public boolean esAdyacente(Casilla casilla){
         int distancia = casilla.distanciaACasilla(this);
         return distancia >= 1 && distancia <= 2;
     }

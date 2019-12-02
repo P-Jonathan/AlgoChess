@@ -14,17 +14,11 @@ import java.io.File;
 import java.io.IOException;
 
 public class CatapultaView extends Button implements Observer {
-    private TableroView tableroView;
-    private Unidad unidad;
-    private ImageView unitImage;
 
     public CatapultaView(TableroView tableroView, Unidad unidad) {
-        this.tableroView = tableroView;
-        this.unidad = unidad;
-
         unidad.addObserver(this);
 
-        unitImage = new ImageView();
+        ImageView unitImage = new ImageView();
         unitImage.setScaleX(1.2);
         unitImage.setScaleY(1.2);
         unitImage.setFitHeight(38);
@@ -41,8 +35,7 @@ public class CatapultaView extends Button implements Observer {
         try {
             BufferedImage bf = ImageIO.read(new File("src/main/resources/catapulta.png"));
             BufferedImage subimage = bf.getSubimage(4 * 32, 0, 32, 32);
-            Image image = SwingFXUtils.toFXImage(subimage, null) ;
-            return image;
+            return SwingFXUtils.toFXImage(subimage, null);
         } catch(IOException e) {
             System.out.println("Error cargando imagen");
         }

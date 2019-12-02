@@ -11,23 +11,29 @@ import java.util.Optional;
 import static java.util.stream.Collectors.toList;
 
 public class Tablero {
+    /*
     private static final String NOMBRE_DEFAULT_BANDO_A = "A";
     private static final String NOMBRE_DEFAULT_BANDO_B = "B";
+    */
     private static final int FILAS = 20;
     private static final int COLUMNAS = 20;
 
     private Jugador jugadorA;
     private Jugador jugadorB;
+    /*
     private Jugador jugadorActual;
     private Jugador jugadorEnEspera;
+    */
 
     private List<Casilla> casillas;
 
     public Tablero() {
         jugadorA = new Jugador();
         jugadorB = new Jugador();
+        /*
         jugadorActual = jugadorA;
         jugadorEnEspera = jugadorB;
+        */
         setCasillasVacias();
     }
 
@@ -47,7 +53,7 @@ public class Tablero {
         }
     }
 
-    Casilla getCasillaEnPosicion(Posicion posicion) {
+    protected Casilla getCasillaEnPosicion(Posicion posicion) {
         Optional<Casilla> optionalCasilla = casillas
                 .stream()
                 .filter(c -> c.estaEnPosicion(posicion))
@@ -57,18 +63,6 @@ public class Tablero {
             return optionalCasilla.get();
 
         throw new RuntimeException();
-    }
-
-    private Casilla getCasillaConUnidad(Unidad unidad) {
-        Optional<Casilla> optionalCasilla = casillas
-                .stream()
-                .filter(c -> c.getOcupante().equals(unidad))
-                .findFirst();
-
-        if(optionalCasilla.isPresent())
-            return optionalCasilla.get();
-
-        throw new NoExisteLaCasillaConLaUnidadSolicitada();
     }
 
     public int getWidth() {
@@ -113,7 +107,7 @@ public class Tablero {
                 .collect(toList());
     }
 
-    List<Unidad> getUnidadesAdyacencesAPosicion(Posicion posicion) {
+    public List<Unidad> getUnidadesAdyacencesAPosicion(Posicion posicion) {
         Casilla casilla = getCasillaEnPosicion(posicion);
         return casillas
                 .stream()

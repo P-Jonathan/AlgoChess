@@ -25,10 +25,6 @@ class JineteTest {
         tablero.posicionarUnidad(objetivo, new Posicion(9, 13));
 
         double vidaPrevia = objetivo.getVida();
-        boolean tieneEnemigosCerca = jinete.tieneEnemigosCerca();
-        boolean tieneAliadosCerca = jinete.tieneAliadosCerca();
-        boolean unidadIgual = jinete.unidadesCerca().contains(objetivo);
-        List<Unidad> enemigosCerca = jinete.enemigosCerca();
 
         jinete.usarHabilidad(objetivo);
 

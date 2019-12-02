@@ -6,11 +6,11 @@ import fiuba.algo3.algochess.modelo.excepciones.PuntosInsuficientesException;
 public class Billetera {
     private int puntos;
 
-    Billetera(int montoInicial) {
+    public Billetera(int montoInicial) {
         puntos = Math.max(montoInicial, 0);
     }
 
-    int getPuntos() {
+    public int getPuntos() {
         return puntos;
     }
 
@@ -22,7 +22,7 @@ public class Billetera {
         return puntos < 0;
     }
 
-    void pagar(int monto) {
+    public void pagar(int monto) {
         if (noPuedePagar(monto))
             throw new PuntosInsuficientesException();
         this.puntos -= monto;
