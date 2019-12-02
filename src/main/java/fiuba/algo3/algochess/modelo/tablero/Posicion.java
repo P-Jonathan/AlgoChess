@@ -8,11 +8,6 @@ public class Posicion {
     private int x;
     private int y;
 
-    public Posicion() {
-        x = 0;
-        y = 0;
-    }
-
     public Posicion(int x, int y) {
         this.x = x;
         this.y = y;
