@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.modelo.unidades;
 
+import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.tablero.Jugador;
 import fiuba.algo3.algochess.modelo.habilidades.Habilidad;
 import fiuba.algo3.algochess.modelo.habilidades.AtaqueJinete;
@@ -22,6 +23,9 @@ public class Jinete extends Unidad {
 
 	@Override
 	public void usarHabilidad(Unidad objetivo) {
-		habilidad.usarHabilidad(objetivo);
+		if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
+			habilidad.usarHabilidad(objetivo);
+			AdministradorDeTurnos.getInstancia().cambiarTurnos();
+		}
 	}
 }

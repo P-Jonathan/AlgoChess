@@ -1,6 +1,5 @@
 package fiuba.algo3.algochess.vista;
 
-import fiuba.algo3.algochess.modelo.ManejadorCompras;
 import fiuba.algo3.algochess.modelo.tablero.Tablero;
 import javafx.scene.Group;
 import javafx.scene.Node;

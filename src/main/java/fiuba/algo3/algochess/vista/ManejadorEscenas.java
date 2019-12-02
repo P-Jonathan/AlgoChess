@@ -1,6 +1,6 @@
 package fiuba.algo3.algochess.vista;
 
-import fiuba.algo3.algochess.modelo.ManejadorCompras;
+import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.tablero.Tablero;
 import fiuba.algo3.algochess.modelo.unidades.Observer;
 import javafx.scene.Scene;
@@ -21,7 +21,7 @@ public class ManejadorEscenas implements Observer {
 
         Shop shop = new Shop(tablero, tableroView);
 
-        ManejadorCompras.getInstancia().addObserver(this);
+        AdministradorDeTurnos.getInstancia().addObserver(this);
 
         stage.setScene(new Scene(new HBox(tableroView, shop)));
     }

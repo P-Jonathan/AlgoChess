@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.modelo.unidades;
 
+import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.tablero.Casilla;
 import fiuba.algo3.algochess.modelo.tablero.Jugador;
 
@@ -8,7 +9,7 @@ import java.util.stream.Collectors;
 
 public abstract class Unidad extends Observable {
     Casilla casilla;
-    private Jugador propietario;
+    protected Jugador propietario;
 
     private double vida;
     private int costo;
@@ -155,23 +156,35 @@ public abstract class Unidad extends Observable {
     }
 
     public void moverHaciaAdelante() {
-        casilla.moverUnidadHaciaAdelante();
-        notifyObservers();
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
+            casilla.moverUnidadHaciaAdelante();
+            AdministradorDeTurnos.getInstancia().cambiarTurnos();
+            notifyObservers();
+        }
     }
 
     public void moverALaDerecha() {
-        casilla.moverUnidadALaDerecha();
-        notifyObservers();
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
+            casilla.moverUnidadALaDerecha();
+            AdministradorDeTurnos.getInstancia().cambiarTurnos();
+            notifyObservers();
+        }
     }
 
     public void moverHaciaAtras() {
-        casilla.moverUnidadHaciaAtras();
-        notifyObservers();
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
+            casilla.moverUnidadHaciaAtras();
+            AdministradorDeTurnos.getInstancia().cambiarTurnos();
+            notifyObservers();
+        }
     }
 
     public void moverALaIzquierda() {
-        casilla.moverUnidadALaIzquierda();
-        notifyObservers();
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
+            casilla.moverUnidadALaIzquierda();
+            AdministradorDeTurnos.getInstancia().cambiarTurnos();
+            notifyObservers();
+        }
     }
 
     protected void moverEnBatallonHaciaAdelante() {

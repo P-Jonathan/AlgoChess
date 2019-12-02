@@ -1,7 +1,7 @@
 package fiuba.algo3.algochess.controlador.buttonHandler;
 
 import fiuba.algo3.algochess.controlador.PosicionarUnidadEvent;
-import fiuba.algo3.algochess.modelo.ManejadorCompras;
+import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.tablero.Tablero;
 import fiuba.algo3.algochess.modelo.unidades.UnidadDeInfanteria;
 import fiuba.algo3.algochess.vista.ReproductorMusica;
@@ -23,7 +23,7 @@ public class ComprarUnidadInfanteriaHandler implements EventHandler<ActionEvent>
             UnidadDeInfanteria unidadDeInfanteria = new UnidadDeInfanteria();
             ReproductorMusica reproductor = new ReproductorMusica("infanteria.mp3");
             reproductor.reproducirEfectoDeSonido();
-            ManejadorCompras.getInstancia().jugadorComprando().comprarUnidad(unidadDeInfanteria);
+            AdministradorDeTurnos.getInstancia().jugadorActual().comprarUnidad(unidadDeInfanteria);
             tableroView.setOnMousePressed(new PosicionarUnidadEvent(unidadDeInfanteria, tablero, tableroView));
         } catch (RuntimeException e) {
             System.out.println("Dinero insuficiente");
