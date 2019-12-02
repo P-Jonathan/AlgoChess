@@ -31,18 +31,22 @@ public class PosicionarUnidadEvent implements EventHandler<MouseEvent> {
         int y = (int) mouseEvent.getY() / 38;
 
         try {
-            tablero.posicionarUnidad(unidad, new Posicion(x, y));
+            if(unidad != null) {
+                tablero.posicionarUnidad(unidad, new Posicion(x, y));
 
-            // Lo hago asi ahora despues con el map sacamos esta atrocidad xd
-            if (unidad.getClass() == UnidadDeInfanteria.class) {
-                new UnidadInfanteriaView(tableroView, unidad);
-            } else if (unidad.getClass() == Jinete.class) {
-                new JineteView(tableroView, unidad);
-            } else if (unidad.getClass() == Curandero.class) {
-                new CuranderoView(tableroView, unidad);
-            } else {
-                new CatapultaView(tableroView, unidad);
+                // Lo hago asi ahora despues con el map sacamos esta atrocidad xd
+                if (unidad.getClass() == UnidadDeInfanteria.class) {
+                    new UnidadInfanteriaView(tableroView, unidad);
+                } else if (unidad.getClass() == Jinete.class) {
+                    new JineteView(tableroView, unidad);
+                } else if (unidad.getClass() == Curandero.class) {
+                    new CuranderoView(tableroView, unidad);
+                } else {
+                    new CatapultaView(tableroView, unidad);
+                }
             }
+
+            unidad = null;
         } catch(RuntimeException e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("No podes posicionar esa unidad en este lado del mapa");

@@ -2,7 +2,6 @@ package fiuba.algo3.algochess.modelo.unidades;
 
 import fiuba.algo3.algochess.modelo.tablero.Casilla;
 import fiuba.algo3.algochess.modelo.tablero.Jugador;
-import fiuba.algo3.algochess.modelo.tablero.Turno;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +9,6 @@ import java.util.stream.Collectors;
 public abstract class Unidad extends Observable {
     Casilla casilla;
     private Jugador propietario;
-    private Turno turno;
 
     private double vida;
     private int costo;
@@ -186,21 +184,5 @@ public abstract class Unidad extends Observable {
     }
 
     protected void moverEnBatallonALaIzquierda() {
-    }
-
-    public void setTurno(Turno nuevoTurno) {
-        this.turno = nuevoTurno;
-    }
-
-    public void cambiarTurno() {
-        turno = turno.cambiarTurno();
-    }
-
-    public void moverHaciaAdelanteConTurno() {
-        turno.moverHaciaAdelanteConTurno(this);
-    }
-
-    public void avisarlesALasUnidadesQueCambienElturno() {
-        propietario.cambiarTurnoParaLasUnidades();
     }
 }

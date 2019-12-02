@@ -14,11 +14,17 @@ import java.io.File;
 import java.io.IOException;
 
 public class CatapultaView extends Button implements Observer {
+    private TableroView tableroView;
+    private Unidad unidad;
+    private ImageView unitImage;
 
     public CatapultaView(TableroView tableroView, Unidad unidad) {
+        this.unidad = unidad;
+        this.tableroView = tableroView;
+
         unidad.addObserver(this);
 
-        ImageView unitImage = new ImageView();
+        unitImage = new ImageView();
         unitImage.setScaleX(1.2);
         unitImage.setScaleY(1.2);
         unitImage.setFitHeight(38);
@@ -44,5 +50,7 @@ public class CatapultaView extends Button implements Observer {
     }
 
     @Override
-    public void change() {}
+    public void change() {
+        System.out.println(unidad.getVida());
+    }
 }

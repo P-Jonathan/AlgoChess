@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.modelo.tablero;
 
+import fiuba.algo3.algochess.modelo.ManejadorCompras;
 import fiuba.algo3.algochess.modelo.excepciones.NoExisteLaCasillaConLaUnidadSolicitada;
 import fiuba.algo3.algochess.modelo.excepciones.NoSePuedePosicionarEnTerrenoEnemigo;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
@@ -21,10 +22,6 @@ public class Tablero {
 
     private Jugador jugadorA;
     private Jugador jugadorB;
-    /*
-    private Jugador jugadorActual;
-    private Jugador jugadorEnEspera;
-    */
 
     private List<Casilla> casillas;
     private List<Unidad> unidades;
@@ -33,11 +30,10 @@ public class Tablero {
         jugadorA = new Jugador();
         jugadorB = new Jugador();
         unidades = new LinkedList<>();
-        /*
-        jugadorActual = jugadorA;
-        jugadorEnEspera = jugadorB;
-        */
         setCasillasVacias();
+
+        ManejadorCompras.getInstancia().comprando(jugadorA);
+        ManejadorCompras.getInstancia().enEspera(jugadorB);
     }
 
     private void setCasillasVacias() {
@@ -92,6 +88,8 @@ public class Tablero {
         Casilla casilla = getCasillaEnPosicion(posicion);
         casilla.setOcupante(unidad);
         unidades.add(unidad);
+
+        ManejadorCompras.getInstancia().cambiarTurnos();
     }
 
     public void quitarUnidad(Posicion posicion) {

@@ -1,5 +1,7 @@
 package fiuba.algo3.algochess.vista;
 
+import fiuba.algo3.algochess.modelo.ManejadorCompras;
+import fiuba.algo3.algochess.modelo.tablero.Tablero;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
@@ -12,11 +14,11 @@ public class Shop extends Group {
     private GridPane table;
     private Pane[] panes;
 
-    public Shop() {
+    public Shop(Tablero tablero, TableroView tableroView) {
         GridPane table = new GridPane();
-        panes = new Pane[4];
+        panes = new Pane[5];
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             Pane v = new Pane();
             v.setMinHeight(56);
             v.setMinWidth(56);
@@ -29,7 +31,13 @@ public class Shop extends Group {
         table.setHgap(1);
         table.setStyle("-fx-background-color: #000000");
 
-        this.addView(table);
+        addView(table);
+
+        addViewOnMap(new PuntosDeJugadoresView(tablero.getJugadorA(), tablero.getJugadorB()), 0);
+        addViewOnMap(new ButtonComprarUnidadInfanteria(tablero, tableroView), 1);
+        addViewOnMap(new ButtonComprarJinete(tablero, tableroView), 2);
+        addViewOnMap(new ButtonComprarCurandero(tablero, tableroView), 3);
+        addViewOnMap(new ButtonComprarCatapulta(tablero, tableroView), 4);
     }
 
     public void addViewOnMap(Node view, int x) {

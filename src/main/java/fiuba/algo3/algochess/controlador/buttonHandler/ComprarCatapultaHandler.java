@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.controlador.buttonHandler;
 
 import fiuba.algo3.algochess.controlador.PosicionarUnidadEvent;
+import fiuba.algo3.algochess.modelo.ManejadorCompras;
 import fiuba.algo3.algochess.modelo.tablero.Tablero;
 import fiuba.algo3.algochess.modelo.unidades.Catapulta;
 import fiuba.algo3.algochess.vista.ReproductorMusica;
@@ -22,7 +23,7 @@ public class ComprarCatapultaHandler implements EventHandler<ActionEvent> {
             Catapulta catapulta = new Catapulta();
             ReproductorMusica reproductor = new ReproductorMusica("catapulta.mp3");
             reproductor.reproducirEfectoDeSonido();
-            tablero.getJugadorA().comprarUnidad(catapulta);
+            ManejadorCompras.getInstancia().jugadorComprando().comprarUnidad(catapulta);
             tableroView.setOnMousePressed(new PosicionarUnidadEvent(catapulta, tablero, tableroView));
         } catch (RuntimeException e) {
             System.out.println("Dinero insuficiente");
