@@ -5,6 +5,7 @@ import fiuba.algo3.algochess.modelo.excepciones.NoSePuedePosicionarEnTerrenoEnem
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,10 +27,12 @@ public class Tablero {
     */
 
     private List<Casilla> casillas;
+    private List<Unidad> unidades;
 
     public Tablero() {
         jugadorA = new Jugador();
         jugadorB = new Jugador();
+        unidades = new LinkedList<>();
         /*
         jugadorActual = jugadorA;
         jugadorEnEspera = jugadorB;
@@ -88,11 +91,13 @@ public class Tablero {
 
         Casilla casilla = getCasillaEnPosicion(posicion);
         casilla.setOcupante(unidad);
+        unidades.add(unidad);
     }
 
-    public Unidad quitarUnidad(Posicion posicion) {
+    public void quitarUnidad(Posicion posicion) {
         Casilla casilla = getCasillaEnPosicion(posicion);
-        return casilla.removeOcupante();
+        Unidad unidad = casilla.removeOcupante();
+        unidades.remove(unidad);
     }
 
     public Unidad getUnidadEnPosicion(Posicion posicion) {
@@ -100,54 +105,36 @@ public class Tablero {
         return casilla.getOcupante();
     }
 
-    private List<Casilla> getCasillasAdyacences(Casilla casilla) {
-        return casillas
+    public List<Unidad> getUnidadesAdyacencesAUnidad(Unidad unidad) {
+        return unidades
                 .stream()
-                .filter(c -> c.esAdyacente(casilla))
+                .filter(u -> u.esAdyacente(unidad))
                 .collect(toList());
     }
 
-    public List<Unidad> getUnidadesAdyacencesAPosicion(Posicion posicion) {
-        Casilla casilla = getCasillaEnPosicion(posicion);
-        return casillas
+    public List<Unidad> getUnidadesADistanciaCorta(Unidad unidad) {
+        return unidades
                 .stream()
-                .filter(c -> c.esAdyacente(casilla))
-                .map(Casilla::getOcupante)
+                .filter(u -> u.estaACortaDistancia(unidad))
                 .collect(toList());
     }
 
-    public List<Unidad> getUnidadesADistanciaCorta(Posicion posicion) {
-        Casilla casilla = getCasillaEnPosicion(posicion);
-        return casillas
+    public List<Unidad> getUnidadesADistanciaMedia(Unidad unidad) {
+        return unidades
                 .stream()
-                .filter(c -> c.estaADistanciaCorta(casilla))
-                .map(Casilla::getOcupante)
+                .filter(u -> u.estaAMediaDistancia(unidad))
                 .collect(toList());
     }
 
-    public List<Unidad> getUnidadesADistanciaMedia(Posicion posicion) {
-        Casilla casilla = getCasillaEnPosicion(posicion);
-        return casillas
+    public List<Unidad> getUnidadesADistanciaLarga(Unidad unidad) {
+        return unidades
                 .stream()
-                .filter(c -> c.estaADistanciaMedia(casilla))
-                .map(Casilla::getOcupante)
-                .collect(toList());
-    }
-
-    public List<Unidad> getUnidadesADistanciaLarga(Posicion posicion) {
-        Casilla casilla = getCasillaEnPosicion(posicion);
-        return casillas
-                .stream()
-                .filter(c -> c.estaADistanciaLarga(casilla))
-                .map(Casilla::getOcupante)
+                .filter(u -> u.estaALargaDistancia(unidad))
                 .collect(toList());
     }
 
     public List<Unidad> getUnidades() {
-        return casillas
-                .stream()
-                .map(Casilla::getOcupante)
-                .collect(toList());
+        return unidades;
     }
 
     public Jugador getJugadorA() {

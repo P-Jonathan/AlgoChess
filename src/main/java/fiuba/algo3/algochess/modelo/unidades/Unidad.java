@@ -136,6 +136,11 @@ public abstract class Unidad extends Observable {
         return casilla.distanciaACasilla(this.casilla);
     }
 
+    public boolean esAdyacente(Unidad unidad) {
+        int distancia = unidad.distanciaACasilla(casilla);
+        return distancia == 1;
+    }
+
     public boolean estaACortaDistancia(Unidad unidad) {
         int distancia = unidad.distanciaACasilla(casilla);
         return casilla.valorEnRangoCorto(distancia);

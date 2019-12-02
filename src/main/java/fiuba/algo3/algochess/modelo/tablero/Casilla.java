@@ -90,19 +90,19 @@ public class Casilla {
     }
 
     public List<Unidad> getUnidadesAdyacentes() {
-        return tablero.getUnidadesAdyacencesAPosicion(posicion);
+        return tablero.getUnidadesAdyacencesAUnidad(getOcupante());
     }
 
     public List<Unidad> getUnidadesADistanciaCorta() {
-        return tablero.getUnidadesADistanciaCorta(posicion);
+        return tablero.getUnidadesADistanciaCorta(getOcupante());
     }
 
     public List<Unidad> getUnidadADistanciaMedia() {
-        return tablero.getUnidadesADistanciaMedia(posicion);
+        return tablero.getUnidadesADistanciaMedia(getOcupante());
     }
 
     public List<Unidad> getUnidadADistanciaLarga() {
-        return tablero.getUnidadesADistanciaLarga(posicion);
+        return tablero.getUnidadesADistanciaLarga(getOcupante());
     }
 
     public void moverUnidadHaciaAdelante() {

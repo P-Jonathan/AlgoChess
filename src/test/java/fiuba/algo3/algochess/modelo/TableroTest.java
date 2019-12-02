@@ -78,4 +78,64 @@ class TableroTest {
 
         assertEquals(vidaEsperada, objetivo.getVida());
     }
+
+    @Test
+    void sePosicionarDosUnidadesACortaDistanciaYUnaALarga() {
+        Tablero tablero = new Tablero();
+
+        Unidad unidad1 = new UnidadDeInfanteria(tablero.getJugadorA());
+        Unidad unidad2 = new UnidadDeInfanteria(tablero.getJugadorA());
+        Unidad unidad3 = new UnidadDeInfanteria(tablero.getJugadorA());
+
+        Posicion posicion = new Posicion(3, 3);
+        Posicion posicionAlejada = new Posicion(17, 2);
+
+        tablero.posicionarUnidad(unidad1, posicion);
+        tablero.posicionarUnidad(unidad2, posicion.posicionAtras());
+        tablero.posicionarUnidad(unidad3, posicionAlejada);
+
+        assertEquals(1, tablero.getUnidadesADistanciaCorta(unidad1).size());
+        assertTrue(tablero.getUnidadesADistanciaCorta(unidad1).contains(unidad2));
+        assertFalse(tablero.getUnidadesADistanciaCorta(unidad1).contains(unidad3));
+    }
+
+    @Test
+    void sePosicionarDosUnidadesAMediaDistanciaYUnaALarga() {
+        Tablero tablero = new Tablero();
+
+        Unidad unidad1 = new UnidadDeInfanteria(tablero.getJugadorA());
+        Unidad unidad2 = new UnidadDeInfanteria(tablero.getJugadorA());
+        Unidad unidad3 = new UnidadDeInfanteria(tablero.getJugadorA());
+
+        Posicion posicion = new Posicion(3, 3);
+        Posicion posicionAlejada = new Posicion(17, 2);
+
+        tablero.posicionarUnidad(unidad1, posicion);
+        tablero.posicionarUnidad(unidad2, new Posicion(8, 3));
+        tablero.posicionarUnidad(unidad3, posicionAlejada);
+
+        assertEquals(1, tablero.getUnidadesADistanciaMedia(unidad1).size());
+        assertTrue(tablero.getUnidadesADistanciaMedia(unidad1).contains(unidad2));
+        assertFalse(tablero.getUnidadesADistanciaMedia(unidad1).contains(unidad3));
+    }
+
+    @Test
+    void sePosicionarDosUnidadesALargaDistanciaYUnoACorta() {
+        Tablero tablero = new Tablero();
+
+        Unidad unidad1 = new UnidadDeInfanteria(tablero.getJugadorA());
+        Unidad unidad2 = new UnidadDeInfanteria(tablero.getJugadorA());
+        Unidad unidad3 = new UnidadDeInfanteria(tablero.getJugadorA());
+
+        Posicion posicion = new Posicion(3, 3);
+        Posicion posicionAlejada = new Posicion(17, 2);
+
+        tablero.posicionarUnidad(unidad1, posicion);
+        tablero.posicionarUnidad(unidad2, posicion.posicionAtras());
+        tablero.posicionarUnidad(unidad3, posicionAlejada);
+
+        assertEquals(1, tablero.getUnidadesADistanciaLarga(unidad1).size());
+        assertTrue(tablero.getUnidadesADistanciaLarga(unidad1).contains(unidad3));
+        assertFalse(tablero.getUnidadesADistanciaLarga(unidad1).contains(unidad2));
+    }
 }
