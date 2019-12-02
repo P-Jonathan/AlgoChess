@@ -7,6 +7,9 @@ public class Billetera {
     private int puntos;
 
     public Billetera(int montoInicial) {
+        if(noSonPuntosValidos(montoInicial))
+            throw new PuntosIngresadosInvalidos();
+
         puntos = Math.max(montoInicial, 0);
     }
 
