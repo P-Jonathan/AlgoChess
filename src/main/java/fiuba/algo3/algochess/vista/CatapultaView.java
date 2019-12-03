@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.vista;
 
 import fiuba.algo3.algochess.controlador.CatapultaController;
+import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.unidades.Observer;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import javafx.embed.swing.SwingFXUtils;
@@ -52,5 +53,6 @@ public class CatapultaView extends Button implements Observer {
     @Override
     public void change() {
         System.out.println(unidad.getVida());
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
     }
 }

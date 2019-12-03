@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.vista;
 
 import fiuba.algo3.algochess.controlador.UnidadInfanteriaController;
+import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.unidades.Observer;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import javafx.embed.swing.SwingFXUtils;
@@ -52,5 +53,6 @@ public class UnidadInfanteriaView implements Observer {
     @Override
     public void change() {
         tableroView.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
     }
 }
