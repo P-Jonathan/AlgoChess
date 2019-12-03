@@ -16,12 +16,12 @@ public class Casilla {
     private Posicion posicion;
     private EstadoCasilla estado;
 
-    public Casilla(Tablero tablero, Posicion posicion, Unidad ocupante) {
+   /* public Casilla(Tablero tablero, Posicion posicion, Unidad ocupante) {
         this.tablero = tablero;
         this.posicion = posicion;
         propietario = new JugadorNull();
         setEstado(new EstadoCasillaOcupada(this, ocupante));
-    }
+    }*/
 
     public Casilla(Tablero tablero, Posicion posicion) {
         this.tablero = tablero;
@@ -47,9 +47,9 @@ public class Casilla {
         this.propietario = propietario;
     }
 
-    public void setPosicion(Posicion posicion) {
+   /*public void setPosicion(Posicion posicion) {
         this.posicion = posicion;
-    }
+    }*/
 
     /************************************************/
     public Posicion getPosicion() { return posicion; }
@@ -143,7 +143,7 @@ public class Casilla {
         return unidad.esMiPropietario(propietario);
     }
 
-    public boolean estaADistanciaCorta(Casilla casilla) {
+    /*public boolean estaADistanciaCorta(Casilla casilla) {
         int distancia = casilla.distanciaACasilla(this);
         return valorEnRangoCorto(distancia);
     }
@@ -156,5 +156,5 @@ public class Casilla {
     public boolean estaADistanciaLarga(Casilla casilla) {
         int distancia = casilla.distanciaACasilla(this);
         return valorEnRangoLargo(distancia);
-    }
+    }*/
 }

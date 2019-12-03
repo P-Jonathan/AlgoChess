@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.modelo;
 
+import fiuba.algo3.algochess.modelo.excepciones.NoSePuedeAtacarAAliados;
 import fiuba.algo3.algochess.modelo.excepciones.UnidadFueraDeRango;
 import fiuba.algo3.algochess.modelo.tablero.Posicion;
 import fiuba.algo3.algochess.modelo.tablero.Tablero;
@@ -114,5 +115,17 @@ class JineteTest {
         tablero.posicionarUnidad(objetivo, new Posicion(9, 10));
 
         assertThrows(UnidadFueraDeRango.class, () -> jinete.usarHabilidad(objetivo));
+    }
+    @Test
+    void unJineteIntentaAtacarAUnAliadoYNoPuede() {
+        Tablero tablero = new Tablero();
+
+        Jinete jinete = new Jinete(tablero.getJugadorA());
+        Unidad aliado = new UnidadDeInfanteria(tablero.getJugadorA());
+
+        tablero.posicionarUnidad(jinete, new Posicion(9, 9));
+        tablero.posicionarUnidad(aliado, new Posicion(9, 8));
+
+        assertThrows(NoSePuedeAtacarAAliados.class, () -> jinete.usarHabilidad(aliado));
     }
 }
