@@ -6,14 +6,12 @@ import fiuba.algo3.algochess.modelo.unidades.Curandero;
 import fiuba.algo3.algochess.modelo.unidades.Jinete;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import fiuba.algo3.algochess.modelo.unidades.UnidadDeInfanteria;
-import fiuba.algo3.algochess.vista.CatapultaView;
-import fiuba.algo3.algochess.vista.CuranderoView;
-import fiuba.algo3.algochess.vista.JineteView;
-import fiuba.algo3.algochess.vista.TableroView;
-import fiuba.algo3.algochess.vista.UnidadInfanteriaView;
+import fiuba.algo3.algochess.vista.*;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
+
+import java.util.function.Supplier;
 
 public class PosicionarUnidadEvent implements EventHandler<MouseEvent> {
     private Unidad unidad;
@@ -44,9 +42,9 @@ public class PosicionarUnidadEvent implements EventHandler<MouseEvent> {
                 } else {
                     new CatapultaView(tableroView, unidad);
                 }
-            }
 
-            unidad = null;
+                unidad = null;
+            }
         } catch(RuntimeException e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("No podes posicionar esa unidad en este lado del mapa");

@@ -156,35 +156,23 @@ public abstract class Unidad extends Observable {
     }
 
     public void moverHaciaAdelante() {
-        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
-            casilla.moverUnidadHaciaAdelante();
-            AdministradorDeTurnos.getInstancia().cambiarTurnos();
-            notifyObservers();
-        }
+        casilla.moverUnidadHaciaAdelante();
+        notifyObservers();
     }
 
     public void moverALaDerecha() {
-        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
-            casilla.moverUnidadALaDerecha();
-            AdministradorDeTurnos.getInstancia().cambiarTurnos();
-            notifyObservers();
-        }
+        casilla.moverUnidadALaDerecha();
+        notifyObservers();
     }
 
     public void moverHaciaAtras() {
-        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
-            casilla.moverUnidadHaciaAtras();
-            AdministradorDeTurnos.getInstancia().cambiarTurnos();
-            notifyObservers();
-        }
+        casilla.moverUnidadHaciaAtras();
+        notifyObservers();
     }
 
     public void moverALaIzquierda() {
-        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
-            casilla.moverUnidadALaIzquierda();
-            AdministradorDeTurnos.getInstancia().cambiarTurnos();
-            notifyObservers();
-        }
+        casilla.moverUnidadALaIzquierda();
+        notifyObservers();
     }
 
     protected void moverEnBatallonHaciaAdelante() {
