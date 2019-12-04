@@ -14,6 +14,7 @@ public class MovimientoAtrasController extends MoveHandler {
     public void handle(MouseEvent mouseEvent) {
         unidad.moverHaciaAtras();
         unidadView.setFrameDown();
+        unidadView.update();
         AccionesController.getInstancia().resetPanes();
     }
 }
