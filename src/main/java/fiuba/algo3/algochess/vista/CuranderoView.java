@@ -27,8 +27,8 @@ public class CuranderoView implements Observer {
         unitImage = new ImageView();
         unitImage.setScaleX(2);
         unitImage.setScaleY(2);
-        unitImage.setFitHeight(38);
-        unitImage.setFitWidth(48);
+        unitImage.setFitHeight(32);
+        unitImage.setFitWidth(32);
 
         unitImage.setImage(getImage());
         tableroView.addViewOnMap(unitImage, unidad.getX(), unidad.getY());

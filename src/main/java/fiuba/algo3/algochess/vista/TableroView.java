@@ -7,8 +7,8 @@ import fiuba.algo3.algochess.controlador.MovimientoIzquierdaController;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 import java.util.ArrayList;
 
@@ -16,8 +16,8 @@ public class TableroView extends Group {
     public int width = 20;
     public int heigth = 20;
 
-    private int tileWidth = 48;
-    private int tileHeigth = 38;
+    private int tileWidth = 32;
+    private int tileHeigth = 32;
 
     private GridPane table;
 
@@ -25,23 +25,32 @@ public class TableroView extends Group {
 
     public TableroView() {
         GridPane table = new GridPane();
-        panes = new Pane[width*tileWidth][heigth*tileHeigth];
+        panes = new Pane[width * tileWidth][heigth * tileHeigth];
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < heigth; j++) {
                 Pane v = new Pane();
                 v.setMinHeight(tileHeigth);
                 v.setMinWidth(tileWidth);
-                v.setStyle("-fx-background-color: #FFFFFF");
+                //v.setStyle("-fx-background-color: #FFFFFF");
                 panes[i][j] = v;
-                table.add(v , i, j);
+                table.add(v, i, j);
             }
         }
 
         table.setVgap(1);
         table.setHgap(1);
-        table.setStyle("-fx-background-color: #000000");
-
+        //table.setStyle("-fx-background-color: #000000");
+        table.setGridLinesVisible(true);
+        table.setBackground(
+                new Background(
+                        new BackgroundImage(
+                                new Image("background.png"),
+                                BackgroundRepeat.NO_REPEAT,
+                                BackgroundRepeat.NO_REPEAT,
+                                BackgroundPosition.DEFAULT,
+                                BackgroundSize.DEFAULT)
+                ));
         this.addView(table);
     }
 
@@ -71,22 +80,22 @@ public class TableroView extends Group {
     public ArrayList<Pane> getPanesAdyacentes(Unidad unidad) {
         ArrayList<Pane> panesAdyacentes = new ArrayList<Pane>();
 
-        if(unidad.getY() + 1 <= 19) {
+        if (unidad.getY() + 1 <= 19) {
             panes[unidad.getX()][unidad.getY() + 1].setOnMouseClicked(new MovimientoAdelanteController(unidad));
             panesAdyacentes.add(panes[unidad.getX()][unidad.getY() + 1]);
         }
 
-        if(unidad.getY() - 1 >= 0) {
+        if (unidad.getY() - 1 >= 0) {
             panes[unidad.getX()][unidad.getY() - 1].setOnMouseClicked(new MovimientoAtrasController(unidad));
             panesAdyacentes.add(panes[unidad.getX()][unidad.getY() - 1]);
         }
 
-        if(unidad.getX() + 1 <= 19) {
+        if (unidad.getX() + 1 <= 19) {
             panes[unidad.getX() + 1][unidad.getY()].setOnMouseClicked(new MovimientoDerechaController(unidad));
             panesAdyacentes.add(panes[unidad.getX() + 1][unidad.getY()]);
         }
 
-        if(unidad.getX() - 1 >= 0) {
+        if (unidad.getX() - 1 >= 0) {
             panes[unidad.getX() - 1][unidad.getY()].setOnMouseClicked(new MovimientoIzquierdaController(unidad));
             panesAdyacentes.add(panes[unidad.getX() - 1][unidad.getY()]);
         }

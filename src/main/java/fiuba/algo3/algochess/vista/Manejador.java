@@ -31,8 +31,8 @@ public class Manejador {
     }
 
     public void resetPanes() {
-        panes.stream().forEach(pane -> {
-            pane.setStyle("-fx-background-color: #FFFFFF");
+        panes.forEach(pane -> {
+            pane.setStyle("-fx-background-color: #000ff");
             pane.setOnMouseClicked(new MovimientoControllerNull());
         });
 
