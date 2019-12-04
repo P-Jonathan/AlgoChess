@@ -11,12 +11,12 @@ public class JineteView extends UnidadView {
 
     @Override
     public void setFrameUp() {
-        this.setFrame(0, 0);
+        this.setFrame(4, 0);
     }
 
     @Override
     public void setFrameDown() {
-        this.setFrame(4, 0);
+        this.setFrame(0, 0);
     }
 
     @Override

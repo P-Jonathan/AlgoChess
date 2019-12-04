@@ -11,12 +11,12 @@ public class CatapultaView extends UnidadView {
 
     @Override
     public void setFrameUp() {
-        this.setFrame(5, 0);
+        this.setFrame(0, 0);
     }
 
     @Override
     public void setFrameDown() {
-        this.setFrame(0, 0);
+        this.setFrame(5, 0);
     }
 
     @Override
