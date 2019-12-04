@@ -1,7 +1,6 @@
 package fiuba.algo3.algochess.vista;
 
 import fiuba.algo3.algochess.controlador.CuranderoController;
-import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.unidades.Observer;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import javafx.embed.swing.SwingFXUtils;
@@ -30,8 +29,8 @@ public class CuranderoView implements Observer {
         unitImage = new ImageView();
         unitImage.setScaleX(2);
         unitImage.setScaleY(2);
-        unitImage.setFitHeight(38);
-        unitImage.setFitWidth(48);
+        unitImage.setFitHeight(32);
+        unitImage.setFitWidth(32);
 
         barraVida = new VidaView(vidaUnidad);
         unitImage.setImage(getImage());

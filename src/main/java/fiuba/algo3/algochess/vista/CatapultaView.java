@@ -31,8 +31,8 @@ public class CatapultaView extends Button implements Observer {
         unitImage = new ImageView();
         unitImage.setScaleX(1.2);
         unitImage.setScaleY(1.2);
-        unitImage.setFitHeight(38);
-        unitImage.setFitWidth(48);
+        unitImage.setFitHeight(32);
+        unitImage.setFitWidth(32);
 
         barraVida = new VidaView(vidaUnidad);
         unitImage.setImage(getImage());

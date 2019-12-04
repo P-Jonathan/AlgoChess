@@ -26,8 +26,8 @@ public class PosicionarUnidadEvent implements EventHandler<MouseEvent> {
     }
 
     public void handle(MouseEvent mouseEvent) {
-        int x = (int) mouseEvent.getX() / 48;
-        int y = (int) mouseEvent.getY() / 38;
+        int x = (int) mouseEvent.getX() / 32;
+        int y = (int) mouseEvent.getY() / 32;
 
         try {
             if(unidad != null) {
