@@ -29,7 +29,8 @@ public class UnidadDeInfanteria extends Unidad {
     }
 
     public void usarHabilidad(Unidad objetivo) {
-        habilidad.usarHabilidad(objetivo);
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario))
+            habilidad.usarHabilidad(objetivo);
     }
 
     @Override

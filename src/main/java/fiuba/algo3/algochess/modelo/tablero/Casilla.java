@@ -16,13 +16,6 @@ public class Casilla {
     private Posicion posicion;
     private EstadoCasilla estado;
 
-   /* public Casilla(Tablero tablero, Posicion posicion, Unidad ocupante) {
-        this.tablero = tablero;
-        this.posicion = posicion;
-        propietario = new JugadorNull();
-        setEstado(new EstadoCasillaOcupada(this, ocupante));
-    }*/
-
     public Casilla(Tablero tablero, Posicion posicion) {
         this.tablero = tablero;
         this.posicion = posicion;

@@ -53,6 +53,5 @@ public class CatapultaView extends Button implements Observer {
     @Override
     public void change() {
         System.out.println(unidad.getVida());
-        AdministradorDeTurnos.getInstancia().cambiarTurnos();
     }
 }

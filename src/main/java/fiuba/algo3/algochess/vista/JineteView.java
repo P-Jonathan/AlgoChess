@@ -53,6 +53,5 @@ public class JineteView implements Observer {
     @Override
     public void change() {
         tableroView.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
-        AdministradorDeTurnos.getInstancia().cambiarTurnos();
     }
 }

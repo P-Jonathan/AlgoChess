@@ -71,25 +71,25 @@ public class TableroView extends Group {
     public ArrayList<Pane> getPanesAdyacentes(Unidad unidad) {
         ArrayList<Pane> panesAdyacentes = new ArrayList<Pane>();
 
-        try {
+        if(unidad.getY() + 1 <= 19) {
             panes[unidad.getX()][unidad.getY() + 1].setOnMouseClicked(new MovimientoAdelanteController(unidad));
             panesAdyacentes.add(panes[unidad.getX()][unidad.getY() + 1]);
-        } catch (ArrayIndexOutOfBoundsException e) {}
+        }
 
-        try {
+        if(unidad.getY() - 1 >= 0) {
             panes[unidad.getX()][unidad.getY() - 1].setOnMouseClicked(new MovimientoAtrasController(unidad));
             panesAdyacentes.add(panes[unidad.getX()][unidad.getY() - 1]);
-        } catch (ArrayIndexOutOfBoundsException e) {}
+        }
 
-        try {
+        if(unidad.getX() + 1 <= 19) {
             panes[unidad.getX() + 1][unidad.getY()].setOnMouseClicked(new MovimientoDerechaController(unidad));
             panesAdyacentes.add(panes[unidad.getX() + 1][unidad.getY()]);
-        } catch (ArrayIndexOutOfBoundsException e) {}
+        }
 
-        try {
+        if(unidad.getX() - 1 >= 0) {
             panes[unidad.getX() - 1][unidad.getY()].setOnMouseClicked(new MovimientoIzquierdaController(unidad));
             panesAdyacentes.add(panes[unidad.getX() - 1][unidad.getY()]);
-        } catch (ArrayIndexOutOfBoundsException e) {}
+        }
 
         panesAdyacentes.stream().forEach(pane -> pane.setStyle("-fx-background-color: #79f281"));
 

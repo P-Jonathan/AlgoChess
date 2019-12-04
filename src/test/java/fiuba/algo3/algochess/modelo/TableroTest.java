@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.modelo;
 
 import fiuba.algo3.algochess.modelo.tablero.Posicion;
+import fiuba.algo3.algochess.modelo.unidades.Jinete;
 import org.junit.jupiter.api.Test;
 
 import fiuba.algo3.algochess.modelo.tablero.Tablero;
@@ -48,10 +49,12 @@ class TableroTest {
     void seVerificaQueAlAtacarUnaUnidadEnemigaEnTerrenoAliadoSeLeQuitaUnCincoPorCientoMasDeVida() {
         Tablero tablero = new Tablero();
         Unidad objetivo = new UnidadDeInfanteria(tablero.getJugadorB());
+        Unidad aux = new Jinete();
 
         tablero.posicionarUnidad(objetivo, new Posicion(0, 10));
 
         objetivo.moverHaciaAtras();
+        aux.moverALaDerecha();
         objetivo.moverHaciaAtras();
 
         int danio = 10;

@@ -29,7 +29,8 @@ public class Catapulta extends Unidad {
 
 	@Override
 	public void usarHabilidad(Unidad objetivo) {
-		habilidad.usarHabilidad(objetivo);
+		if(AdministradorDeTurnos.getInstancia().turnoDe(propietario))
+			habilidad.usarHabilidad(objetivo);
 	}
 
 	// Esta unidad no puede moverse.

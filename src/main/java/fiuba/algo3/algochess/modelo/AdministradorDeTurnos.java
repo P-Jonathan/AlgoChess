@@ -9,7 +9,10 @@ public class AdministradorDeTurnos extends Observable {
     private Jugador actual;
     private Jugador enEspera;
 
-    private AdministradorDeTurnos() {}
+    private AdministradorDeTurnos() {
+        actual = null;
+        enEspera = null;
+    }
 
     public static AdministradorDeTurnos getInstancia() {
         return instancia;
@@ -41,5 +44,7 @@ public class AdministradorDeTurnos extends Observable {
         return actual;
     }
 
-    public boolean turnoDe(Jugador jugador) { return actual == jugador; }
+    public boolean turnoDe(Jugador jugador) {
+        return actual == jugador;
+    }
 }

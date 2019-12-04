@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.modelo.tablero;
 
 import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.excepciones.NoSePuedePosicionarEnTerrenoEnemigo;
+import fiuba.algo3.algochess.modelo.unidades.Observer;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
-public class Tablero {
+public class Tablero implements Observer {
     /*
     private static final String NOMBRE_DEFAULT_BANDO_A = "A";
     private static final String NOMBRE_DEFAULT_BANDO_B = "B";
@@ -87,8 +88,7 @@ public class Tablero {
         Casilla casilla = getCasillaEnPosicion(posicion);
         casilla.setOcupante(unidad);
         unidades.add(unidad);
-
-        AdministradorDeTurnos.getInstancia().cambiarTurnosCompras();
+        unidad.addObserver(this);
     }
 
     public void quitarUnidad(Posicion posicion) {
@@ -140,5 +140,9 @@ public class Tablero {
 
     public Jugador getJugadorB() {
         return jugadorB;
+    }
+
+    public void change() {
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
     }
 }

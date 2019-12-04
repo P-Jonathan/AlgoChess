@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.controlador;
 
+import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.tablero.Posicion;
 import fiuba.algo3.algochess.modelo.tablero.Tablero;
 import fiuba.algo3.algochess.modelo.unidades.Curandero;
@@ -42,6 +43,8 @@ public class PosicionarUnidadEvent implements EventHandler<MouseEvent> {
                 } else {
                     new CatapultaView(tableroView, unidad);
                 }
+
+                AdministradorDeTurnos.getInstancia().cambiarTurnosCompras();
 
                 unidad = null;
             }
