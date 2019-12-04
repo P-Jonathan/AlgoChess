@@ -14,6 +14,7 @@ public class MovimientoIzquierdaController extends MoveHandler {
     public void handle(MouseEvent mouseEvent) {
         unidad.moverALaIzquierda();
         unidadView.setFrameLeft();
+        unidadView.update();
         AccionesController.getInstancia().resetPanes();
     }
 }
