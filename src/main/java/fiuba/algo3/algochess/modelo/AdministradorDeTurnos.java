@@ -26,11 +26,11 @@ public class AdministradorDeTurnos extends Observable {
         enEspera = jugador;
     }
 
-    public void cambiarTurnosCompras() {
+    public void administrarCompras() {
         if(actual.getPuntos() == 0 && enEspera.getPuntos() == 0)
             notifyObservers();
 
-        if(enEspera.getPuntos() >= 1)
+        if(actual.getPuntos() == 0)
             cambiarTurnos();
     }
 

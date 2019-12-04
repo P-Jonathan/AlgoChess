@@ -49,7 +49,6 @@ public abstract class Unidad extends Observable {
     public int getY() {
         return casilla.getPosicion().getY();
     }
-
     /*********************************************************/
 
     public double getVida() {
@@ -160,23 +159,35 @@ public abstract class Unidad extends Observable {
     }
 
     public void moverHaciaAdelante() {
-        casilla.moverUnidadHaciaAdelante();
-        notifyObservers();
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
+            casilla.moverUnidadHaciaAdelante();
+            notifyObservers();
+            AdministradorDeTurnos.getInstancia().cambiarTurnos();
+        }
     }
 
     public void moverALaDerecha() {
-        casilla.moverUnidadALaDerecha();
-        notifyObservers();
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
+            casilla.moverUnidadALaDerecha();
+            notifyObservers();
+            AdministradorDeTurnos.getInstancia().cambiarTurnos();
+        }
     }
 
     public void moverHaciaAtras() {
-        casilla.moverUnidadHaciaAtras();
-        notifyObservers();
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
+            casilla.moverUnidadHaciaAtras();
+            notifyObservers();
+            AdministradorDeTurnos.getInstancia().cambiarTurnos();
+        }
     }
 
     public void moverALaIzquierda() {
-        casilla.moverUnidadALaIzquierda();
-        notifyObservers();
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
+            casilla.moverUnidadALaIzquierda();
+            notifyObservers();
+            AdministradorDeTurnos.getInstancia().cambiarTurnos();
+        }
     }
 
     protected void moverEnBatallonHaciaAdelante() {

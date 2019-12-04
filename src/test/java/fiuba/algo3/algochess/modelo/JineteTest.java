@@ -58,6 +58,7 @@ class JineteTest {
         Unidad objetivo = new UnidadDeInfanteria(tablero.getJugadorB());
 
         tablero.posicionarUnidad(jinete, new Posicion(9, 9));
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         tablero.posicionarUnidad(aliado, new Posicion(8, 9));
         tablero.posicionarUnidad(objetivo, new Posicion(10, 13));
 
@@ -78,6 +79,7 @@ class JineteTest {
 
         tablero.posicionarUnidad(jinete, new Posicion(9, 9));
         tablero.posicionarUnidad(enemigoCerca, new Posicion(10, 10));
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         tablero.posicionarUnidad(objetivo, new Posicion(10, 14));
 
         assertThrows(UnidadFueraDeRango.class, () -> jinete.usarHabilidad(objetivo));
@@ -93,6 +95,7 @@ class JineteTest {
 
         tablero.posicionarUnidad(jinete, new Posicion(9, 9));
         tablero.posicionarUnidad(enemigo, new Posicion(10, 10));
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         tablero.posicionarUnidad(objetivo, new Posicion(10, 11));
 
         double vidaPrevia = objetivo.getVida();
@@ -111,11 +114,13 @@ class JineteTest {
         Unidad objetivo = new UnidadDeInfanteria(tablero.getJugadorB());
 
         tablero.posicionarUnidad(jinete, new Posicion(9, 9));
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         tablero.posicionarUnidad(aliado, new Posicion(9, 8));
         tablero.posicionarUnidad(objetivo, new Posicion(9, 10));
 
         assertThrows(UnidadFueraDeRango.class, () -> jinete.usarHabilidad(objetivo));
     }
+
     @Test
     void unJineteIntentaAtacarAUnAliadoYNoPuede() {
         Tablero tablero = new Tablero();

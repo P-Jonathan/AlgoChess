@@ -18,9 +18,12 @@ class BatallonTest {
         Unidad unidad3 = new UnidadDeInfanteria(tablero.getJugadorA());
 
         tablero.posicionarUnidad(unidad1, new Posicion(1,3));
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         tablero.posicionarUnidad(unidad2, new Posicion(2,3));
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         tablero.posicionarUnidad(unidad3, new Posicion(3,3));
 
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         unidad2.moverHaciaAdelante();
 
         assertEquals(unidad1, tablero.getUnidadEnPosicion(new Posicion(1, 4)));
@@ -36,9 +39,12 @@ class BatallonTest {
         Unidad unidad3 = new UnidadDeInfanteria(tablero.getJugadorA());
 
         tablero.posicionarUnidad(unidad1, new Posicion(1,3));
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         tablero.posicionarUnidad(unidad2, new Posicion(2,3));
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         tablero.posicionarUnidad(unidad3, new Posicion(3,3));
 
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         unidad2.moverHaciaAtras();
 
         assertEquals(unidad1, tablero.getUnidadEnPosicion(new Posicion(1, 2)));
@@ -54,9 +60,12 @@ class BatallonTest {
         Unidad unidad3 = new UnidadDeInfanteria(tablero.getJugadorA());
 
         tablero.posicionarUnidad(unidad1, new Posicion(3,0));
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         tablero.posicionarUnidad(unidad2, new Posicion(3,1));
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         tablero.posicionarUnidad(unidad3, new Posicion(3,2));
 
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         unidad2.moverALaDerecha();
 
         assertEquals(unidad1, tablero.getUnidadEnPosicion(new Posicion(4, 0)));
@@ -72,9 +81,12 @@ class BatallonTest {
         Unidad unidad3 = new UnidadDeInfanteria(tablero.getJugadorA());
 
         tablero.posicionarUnidad(unidad1, new Posicion(3,0));
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         tablero.posicionarUnidad(unidad2, new Posicion(3,1));
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         tablero.posicionarUnidad(unidad3, new Posicion(3,2));
 
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         unidad2.moverALaIzquierda();
 
         assertEquals(unidad1, tablero.getUnidadEnPosicion(new Posicion(2, 0)));
@@ -90,9 +102,12 @@ class BatallonTest {
         Unidad unidad3 = new UnidadDeInfanteria(tablero.getJugadorA());
 
         tablero.posicionarUnidad(unidad1, new Posicion(3,4));
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         tablero.posicionarUnidad(unidad2, new Posicion(4,4));
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         tablero.posicionarUnidad(unidad3, new Posicion(5,4));
 
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         unidad2.moverHaciaAtras();
 
         assertEquals(unidad1, tablero.getUnidadEnPosicion(new Posicion(3, 4)));

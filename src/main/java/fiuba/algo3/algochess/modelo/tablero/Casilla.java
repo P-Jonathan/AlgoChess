@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.modelo.tablero;
 
+import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 
 import java.util.List;
