@@ -1,6 +1,8 @@
 package fiuba.algo3.algochess.controlador;
 
 import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
+import fiuba.algo3.algochess.modelo.excepciones.CasillaOcupadaException;
+import fiuba.algo3.algochess.modelo.excepciones.NoSePuedePosicionarEnTerrenoEnemigo;
 import fiuba.algo3.algochess.modelo.tablero.Posicion;
 import fiuba.algo3.algochess.modelo.tablero.Tablero;
 import fiuba.algo3.algochess.modelo.unidades.Curandero;
@@ -39,9 +41,15 @@ public class PosicionarUnidadEvent implements EventHandler<MouseEvent> {
                 AdministradorDeTurnos.getInstancia().administrarCompras();
                 unidad = null;
             }
-        } catch (RuntimeException e) {
+        } catch (NoSePuedePosicionarEnTerrenoEnemigo e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("No podes posicionar esa unidad en este lado del mapa");
+            alert.setTitle("Casilla invalida");
+            alert.setHeaderText("Ese lado del mapa no te pertenece para posicionar unidades");
+            alert.showAndWait();
+        } catch (CasillaOcupadaException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Casilla ocupada");
+            alert.setHeaderText("Esa casilla ya esta ocupada por otra unidad");
             alert.showAndWait();
         }
     }
