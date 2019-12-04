@@ -32,15 +32,13 @@ public class TableroView extends Group {
                 Pane v = new Pane();
                 v.setMinHeight(tileHeigth);
                 v.setMinWidth(tileWidth);
-                //v.setStyle("-fx-background-color: #FFFFFF");
                 panes[i][j] = v;
                 table.add(v, i, j);
             }
         }
 
-        table.setVgap(1);
-        table.setHgap(1);
-        //table.setStyle("-fx-background-color: #000000");
+        table.setVgap(0);
+        table.setHgap(0);
         table.setGridLinesVisible(true);
         table.setBackground(
                 new Background(
@@ -54,9 +52,20 @@ public class TableroView extends Group {
         this.addView(table);
     }
 
-    public void updateView(Node view, int x, int y) {
-        removeView(view);
-        addViewOnMap(view, x, y);
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeigth() {
+        return heigth;
+    }
+
+    public int getTileWidth() {
+        return tileWidth;
+    }
+
+    public int getTileHeigth() {
+        return tileHeigth;
     }
 
     public void addViewOnMap(Node view, int x, int y) {
@@ -75,14 +84,13 @@ public class TableroView extends Group {
         }
     }
 
+    public void updateView(Node view, int x, int y) {
+        removeView(view);
+        addViewOnMap(view, x, y);
+    }
 
     public void addView(Node view) {
         this.getChildren().add(view);
-    }
-
-    public void updateView(Node view) {
-        getChildren().remove(view);
-        getChildren().add(view);
     }
 
     private boolean paneVacio(Pane pane) {
@@ -97,30 +105,38 @@ public class TableroView extends Group {
                 paneAdelante(unidad).setOnMouseClicked(new MovimientoAdelanteController(unidad));
                 panesAdyacentes.add(paneAdelante(unidad));
             }
-        } catch(Exception e) {}
+        } catch(Exception e) {
+            // TODO EXCEPTION
+        }
 
         try {
             if(paneVacio(paneAtras(unidad))) {
                 paneAtras(unidad).setOnMouseClicked(new MovimientoAtrasController(unidad));
                 panesAdyacentes.add(paneAtras(unidad));
             }
-        } catch(Exception e) {}
+        } catch(Exception e) {
+            // TODO EXCEPTION
+        }
 
         try {
             if(paneVacio(paneDerecha(unidad))) {
                 paneDerecha(unidad).setOnMouseClicked(new MovimientoDerechaController(unidad));
                 panesAdyacentes.add(paneDerecha(unidad));
             }
-        } catch(Exception e) {}
+        } catch(Exception e) {
+            // TODO EXCEPTION
+        }
 
         try {
             if(paneVacio(paneIzquierda(unidad))) {
                 paneIzquierda(unidad).setOnMouseClicked(new MovimientoIzquierdaController(unidad));
                 panesAdyacentes.add(paneIzquierda(unidad));
             }
-        } catch(Exception e) {}
+        } catch(Exception e) {
+            // TODO EXCEPTION
+        }
 
-        panesAdyacentes.stream().forEach(pane -> pane.setStyle("-fx-background-color: #74d575"));
+        panesAdyacentes.forEach(pane -> pane.setStyle("-fx-background-color: #79f281"));
 
         return panesAdyacentes;
     }
