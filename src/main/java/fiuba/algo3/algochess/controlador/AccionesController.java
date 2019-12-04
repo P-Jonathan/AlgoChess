@@ -1,6 +1,5 @@
-package fiuba.algo3.algochess.vista;
+package fiuba.algo3.algochess.controlador;
 
-import fiuba.algo3.algochess.controlador.MovimientoControllerNull;
 import fiuba.algo3.algochess.modelo.excepciones.UnidadFueraDeRango;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import javafx.scene.control.Alert;
@@ -9,17 +8,17 @@ import javafx.scene.layout.Pane;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Manejador {
-    private static final Manejador instancia = new Manejador();
+public class AccionesController {
+    private static final AccionesController instancia = new AccionesController();
 
     private Unidad autor;
     private List<Pane> panes;
 
-    private Manejador() {
+    private AccionesController() {
         autor = null;
     }
 
-    public static Manejador getInstancia() { return instancia; }
+    public static AccionesController getInstancia() { return instancia; }
 
     public void agregarUnidad(Unidad unidad) {
         atacar(unidad);

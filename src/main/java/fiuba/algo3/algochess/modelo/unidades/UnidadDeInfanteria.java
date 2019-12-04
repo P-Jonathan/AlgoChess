@@ -29,8 +29,10 @@ public class UnidadDeInfanteria extends Unidad {
     }
 
     public void usarHabilidad(Unidad objetivo) {
-        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario))
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
             habilidad.usarHabilidad(objetivo);
+            AdministradorDeTurnos.getInstancia().cambiarTurnos();
+        }
     }
 
     @Override
@@ -45,45 +47,61 @@ public class UnidadDeInfanteria extends Unidad {
 
     @Override
     public void moverHaciaAdelante() {
-        reclutarUnidades();
-        miBatallon.moverHaciaAdelante();
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
+            reclutarUnidades();
+            miBatallon.moverHaciaAdelante();
+            AdministradorDeTurnos.getInstancia().cambiarTurnos();
+        }
     }
 
     @Override
     public void moverALaDerecha() {
-        reclutarUnidades();
-        miBatallon.moverALaDerecha();
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
+            reclutarUnidades();
+            miBatallon.moverALaDerecha();
+            AdministradorDeTurnos.getInstancia().cambiarTurnos();
+        }
     }
 
     @Override
     public void moverHaciaAtras() {
-        reclutarUnidades();
-        miBatallon.moverHaciaAtras();
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
+            reclutarUnidades();
+            miBatallon.moverHaciaAtras();
+            AdministradorDeTurnos.getInstancia().cambiarTurnos();
+        }
     }
 
     @Override
     public void moverALaIzquierda() {
-        reclutarUnidades();
-        miBatallon.moverALaIzquierda();
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
+            reclutarUnidades();
+            miBatallon.moverALaIzquierda();
+            AdministradorDeTurnos.getInstancia().cambiarTurnos();
+        }
     }
 
     @Override
     protected void moverEnBatallonHaciaAdelante() {
-        super.moverHaciaAdelante();
+        casilla.moverUnidadHaciaAdelante();
+        notifyObservers();
     }
 
     @Override
     protected void moverEnBatallonALaDerecha() {
-        super.moverALaDerecha();
+        casilla.moverUnidadALaDerecha();
+        notifyObservers();
     }
 
     @Override
     protected void moverEnBatallonHaciaAtras() {
-        super.moverHaciaAtras();
+        casilla.moverUnidadHaciaAtras();
+        notifyObservers();
     }
 
     @Override
     protected void moverEnBatallonALaIzquierda() {
-        super.moverALaIzquierda();
+        casilla.moverUnidadALaIzquierda();
+        notifyObservers();
     }
 }

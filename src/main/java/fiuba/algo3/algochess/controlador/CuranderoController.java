@@ -2,7 +2,6 @@ package fiuba.algo3.algochess.controlador;
 
 import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
-import fiuba.algo3.algochess.vista.Manejador;
 import fiuba.algo3.algochess.vista.TableroView;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -21,14 +20,12 @@ public class CuranderoController implements EventHandler<MouseEvent> {
 
     public void handle(MouseEvent mouseEvent) {
         if(AdministradorDeTurnos.getInstancia().turnoDe(unidad.propietario())) {
-            if (!Manejador.getInstancia().tieneAutor()) {
-                ArrayList<Pane> panes = tableroView.getPanesAdyacentes(unidad);
-                panes.add(tableroView.paneActual(unidad));
+            ArrayList<Pane> panes = tableroView.getPanesAdyacentes(unidad);
+            panes.add(tableroView.paneActual(unidad));
 
-                Manejador.getInstancia().agregarUnidad(unidad, panes);
-            } else {
-                Manejador.getInstancia().agregarUnidad(unidad);
-            }
+            AccionesController.getInstancia().agregarUnidad(unidad, panes);
+        } if (AccionesController.getInstancia().tieneAutor()) {
+            AccionesController.getInstancia().agregarUnidad(unidad);
         }
     }
 }

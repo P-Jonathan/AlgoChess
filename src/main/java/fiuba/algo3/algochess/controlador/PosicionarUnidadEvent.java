@@ -44,7 +44,9 @@ public class PosicionarUnidadEvent implements EventHandler<MouseEvent> {
                     new CatapultaView(tableroView, unidad);
                 }
 
-                AdministradorDeTurnos.getInstancia().cambiarTurnosCompras();
+                AdministradorDeTurnos.getInstancia().administrarCompras();
+
+                //AdministradorDeTurnos.getInstancia().cambiarTurnosPosicionamiento();
 
                 unidad = null;
             }

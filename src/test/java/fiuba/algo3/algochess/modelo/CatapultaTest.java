@@ -48,6 +48,7 @@ class CatapultaTest {
 
         tablero.posicionarUnidad(catapulta, new Posicion(0, 0));
         tablero.posicionarUnidad(objetivo, new Posicion(0, 15));
+        AdministradorDeTurnos.getInstancia().cambiarTurnos();
         tablero.posicionarUnidad(adyacente, new Posicion(0, 16));
 
         double vidaPreviaObjetivo = objetivo.getVida();
