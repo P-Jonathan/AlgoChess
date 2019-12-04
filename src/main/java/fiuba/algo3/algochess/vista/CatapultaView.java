@@ -18,10 +18,13 @@ public class CatapultaView extends Button implements Observer {
     private TableroView tableroView;
     private Unidad unidad;
     private ImageView unitImage;
+    private double vidaUnidad;
+    private VidaView barraVida;
 
     public CatapultaView(TableroView tableroView, Unidad unidad) {
         this.unidad = unidad;
         this.tableroView = tableroView;
+        this.vidaUnidad = unidad.getVida();
 
         unidad.addObserver(this);
 
@@ -31,7 +34,10 @@ public class CatapultaView extends Button implements Observer {
         unitImage.setFitHeight(32);
         unitImage.setFitWidth(32);
 
+        barraVida = new VidaView(vidaUnidad);
         unitImage.setImage(getImage());
+
+        tableroView.addViewOnMap(barraVida, unidad.getX(), unidad.getY());
         tableroView.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
 
         unitImage.setOnMouseClicked(new CatapultaController(unidad, tableroView));
@@ -52,6 +58,11 @@ public class CatapultaView extends Button implements Observer {
 
     @Override
     public void change() {
-        System.out.println(unidad.getVida());
+        double vidaActual = unidad.getVida();
+
+        if(vidaActual != vidaUnidad) {
+            vidaUnidad = vidaActual;
+            barraVida.actualizarBarra(vidaUnidad);
+        }
     }
 }

@@ -1,7 +1,6 @@
 package fiuba.algo3.algochess.vista;
 
 import fiuba.algo3.algochess.controlador.CuranderoController;
-import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.unidades.Observer;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import javafx.embed.swing.SwingFXUtils;
@@ -17,10 +16,13 @@ public class CuranderoView implements Observer {
     private TableroView tableroView;
     private Unidad unidad;
     private ImageView unitImage;
+    private double vidaUnidad;
+    private VidaView barraVida;
 
     public CuranderoView(TableroView tableroView, Unidad unidad) {
         this.tableroView = tableroView;
         this.unidad = unidad;
+        this.vidaUnidad = unidad.getVida();
 
         unidad.addObserver(this);
 
@@ -30,7 +32,10 @@ public class CuranderoView implements Observer {
         unitImage.setFitHeight(32);
         unitImage.setFitWidth(32);
 
+        barraVida = new VidaView(vidaUnidad);
         unitImage.setImage(getImage());
+
+        tableroView.addViewOnMap(barraVida, unidad.getX(), unidad.getY());
         tableroView.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
 
         unitImage.setOnMouseClicked(new CuranderoController(unidad, tableroView));
@@ -52,6 +57,13 @@ public class CuranderoView implements Observer {
 
     @Override
     public void change() {
+        double vidaActual = unidad.getVida();
+
+        if(vidaActual != vidaUnidad) {
+            vidaUnidad = vidaActual;
+            barraVida.actualizarBarra(vidaUnidad);
+        }
+
         tableroView.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
     }
 }
