@@ -1,7 +1,9 @@
 package fiuba.algo3.algochess.vista;
 
 import fiuba.algo3.algochess.controlador.MovimientoControllerNull;
+import fiuba.algo3.algochess.modelo.excepciones.UnidadFueraDeRango;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
@@ -39,8 +41,14 @@ public class Manejador {
 
     public void atacar(Unidad unidad) {
         if(autor != unidad) {
+        	try {
             autor.usarHabilidad(unidad);
-            resetPanes();
+        	}catch (UnidadFueraDeRango e) {
+        		Alert alert = new Alert(Alert.AlertType.WARNING);
+        		alert.setContentText("La unidad que intentaste atacar esta fuera de rango.");
+        		alert.showAndWait();
+        	}
+        	resetPanes();
         }
     }
 

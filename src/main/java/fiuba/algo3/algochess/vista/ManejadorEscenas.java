@@ -28,6 +28,7 @@ public class ManejadorEscenas implements Observer {
 
     @Override
     public void change() {
-        stage.setScene(new Scene(new HBox(tableroView)));
+    	ButtonPasarTurno boton = new ButtonPasarTurno();
+        stage.setScene(new Scene(new HBox(tableroView,boton)));
     }
 }
