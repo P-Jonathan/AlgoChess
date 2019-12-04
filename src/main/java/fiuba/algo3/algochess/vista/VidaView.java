@@ -36,7 +36,11 @@ public class VidaView extends Rectangle implements Observer {
         if(unidad.getVida() <= 0) {
             tableroView.removeView(this);
         } else {
-            setWidth(unidad.getVida() * ANCHO_BARRA / vidaMax);
+            if(unidad.getVida() > vidaMax){
+                setWidth(ANCHO_BARRA);
+            } else {
+                setWidth(unidad.getVida() * ANCHO_BARRA / vidaMax);
+            }
             tableroView.updateView(this, unidad.getX(), unidad.getY());
         }
     }

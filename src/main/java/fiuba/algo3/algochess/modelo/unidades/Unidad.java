@@ -72,6 +72,9 @@ public abstract class Unidad extends Observable {
         double vidaADisminuir = valor + valor * multiplicadorDeDanio * 0.01;
         this.vida -= vidaADisminuir;
         notifyObservers();
+
+        if(this.vida <= 0)
+            casilla.removeOcupanteMuerto();
     }
 
     private boolean perteneceA(Jugador jugador) {

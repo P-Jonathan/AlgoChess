@@ -44,8 +44,12 @@ public abstract class UnidadView implements Observer {
     }
 
     public void update(){
-        unitImage.setImage(getImage());
-        tableroView.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
+        if(unidad.getVida() <= 0)
+            tableroView.removeView(unitImage);
+        else {
+            unitImage.setImage(getImage());
+            tableroView.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
+        }
     }
 
     @Override

@@ -30,6 +30,10 @@ public class Casilla {
         setEstado(new EstadoCasillaVacia(this));
     }
 
+    public void removeOcupanteMuerto() {
+        tablero.quitarUnidad(this.posicion);
+    }
+
     private void aplicarMultiplicadorDeDanio() {
         if(getOcupante().esMiPropietario(propietario))
             getOcupante().setMultiplicadorDeDanio(MULTIPLICADOR_DE_DANIO_ALIADO);

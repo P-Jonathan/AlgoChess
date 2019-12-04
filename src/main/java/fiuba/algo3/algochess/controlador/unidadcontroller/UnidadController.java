@@ -23,7 +23,7 @@ public abstract class UnidadController implements EventHandler<MouseEvent> {
     }
 
     public void handle(MouseEvent mouseEvent) {
-        if(AdministradorDeTurnos.getInstancia().turnoDe(unidad.propietario())) {
+        if(AdministradorDeTurnos.getInstancia().turnoDe(unidad.propietario()) && !AccionesController.getInstancia().tieneAutor()) {
             ArrayList<Pane> panes = tableroView.getPanesAdyacentes(unidad, unidadView);
             panes.add(tableroView.paneActual(unidad));
 
