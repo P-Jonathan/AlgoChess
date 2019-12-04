@@ -79,6 +79,7 @@ public class Batallon {
     private void moverUnidadALaIzquierda(Unidad unidad) {
         try {
             unidad.moverEnBatallonALaIzquierda();
+
         } catch (RuntimeException exception) {
             // No se pudo mover.
         }

@@ -47,43 +47,51 @@ public class UnidadDeInfanteria extends Unidad {
     public void moverHaciaAdelante() {
         reclutarUnidades();
         miBatallon.moverHaciaAdelante();
+        notifyObservers();
     }
 
     @Override
     public void moverALaDerecha() {
         reclutarUnidades();
         miBatallon.moverALaDerecha();
+        notifyObservers();
     }
 
     @Override
     public void moverHaciaAtras() {
         reclutarUnidades();
         miBatallon.moverHaciaAtras();
+        notifyObservers();
     }
 
     @Override
     public void moverALaIzquierda() {
         reclutarUnidades();
         miBatallon.moverALaIzquierda();
+        notifyObservers();
     }
 
     @Override
     protected void moverEnBatallonHaciaAdelante() {
-        super.moverHaciaAdelante();
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario))
+            casilla.moverUnidadHaciaAdelante();
     }
 
     @Override
     protected void moverEnBatallonALaDerecha() {
-        super.moverALaDerecha();
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario))
+            casilla.moverUnidadALaDerecha();
     }
 
     @Override
     protected void moverEnBatallonHaciaAtras() {
-        super.moverHaciaAtras();
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario))
+            casilla.moverUnidadHaciaAtras();
     }
 
     @Override
     protected void moverEnBatallonALaIzquierda() {
-        super.moverALaIzquierda();
+        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario))
+            casilla.moverUnidadALaIzquierda();
     }
 }

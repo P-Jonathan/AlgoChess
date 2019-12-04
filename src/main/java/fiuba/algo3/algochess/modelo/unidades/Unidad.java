@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class Unidad extends Observable {
-    Casilla casilla;
+    protected Casilla casilla;
     protected Jugador propietario;
 
     private double vida;
