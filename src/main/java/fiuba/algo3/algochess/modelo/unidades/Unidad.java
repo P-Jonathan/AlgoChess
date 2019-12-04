@@ -161,8 +161,12 @@ public abstract class Unidad extends Observable {
         return casilla.valorEnRangoLargo(distancia);
     }
 
+    private boolean turnoValido(){
+        return AdministradorDeTurnos.getInstancia().turnoDe(propietario);
+    }
+
     public void moverHaciaAdelante() {
-        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
+        if(this.turnoValido()) {
             casilla.moverUnidadHaciaAdelante();
             notifyObservers();
             AdministradorDeTurnos.getInstancia().cambiarTurnos();
@@ -170,7 +174,7 @@ public abstract class Unidad extends Observable {
     }
 
     public void moverALaDerecha() {
-        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
+        if(this.turnoValido()) {
             casilla.moverUnidadALaDerecha();
             notifyObservers();
             AdministradorDeTurnos.getInstancia().cambiarTurnos();
@@ -178,7 +182,7 @@ public abstract class Unidad extends Observable {
     }
 
     public void moverHaciaAtras() {
-        if(AdministradorDeTurnos.getInstancia().turnoDe(propietario)) {
+        if(this.turnoValido()) {
             casilla.moverUnidadHaciaAtras();
             notifyObservers();
             AdministradorDeTurnos.getInstancia().cambiarTurnos();
