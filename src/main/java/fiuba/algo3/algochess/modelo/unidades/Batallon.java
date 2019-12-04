@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.modelo.unidades;
 
 import fiuba.algo3.algochess.modelo.excepciones.BatallonCompleto;
+import fiuba.algo3.algochess.modelo.excepciones.NoSePuedeUnirABatallonRival;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,8 @@ public class Batallon {
     public void enlistarUnidad(Unidad unidad){
         if(batallonCompleto())
             throw new BatallonCompleto();
+        if(unidad.soyEnemigoDe(capitan))
+        	throw new NoSePuedeUnirABatallonRival();
         batallon.add(unidad);
     }
 
@@ -47,6 +50,8 @@ public class Batallon {
                 unidad.enlistarse(this);
             } catch(BatallonCompleto exception) {
                 // Error al unirse al batallon.
+            } catch(NoSePuedeUnirABatallonRival exception) {
+            	// Error al unirse al batallon.
             }
         }
         disolverBatallonSiEstaIncompleto();
