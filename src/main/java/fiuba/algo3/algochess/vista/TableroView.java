@@ -1,10 +1,11 @@
 package fiuba.algo3.algochess.vista;
 
-import fiuba.algo3.algochess.controlador.MovimientoAdelanteController;
-import fiuba.algo3.algochess.controlador.MovimientoAtrasController;
-import fiuba.algo3.algochess.controlador.MovimientoDerechaController;
-import fiuba.algo3.algochess.controlador.MovimientoIzquierdaController;
+import fiuba.algo3.algochess.controlador.movecontroller.MovimientoAdelanteController;
+import fiuba.algo3.algochess.controlador.movecontroller.MovimientoAtrasController;
+import fiuba.algo3.algochess.controlador.movecontroller.MovimientoDerechaController;
+import fiuba.algo3.algochess.controlador.movecontroller.MovimientoIzquierdaController;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
+import fiuba.algo3.algochess.vista.unidadview.UnidadView;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -91,26 +92,26 @@ public class TableroView extends Group {
         getChildren().add(view);
     }
 
-    public ArrayList<Pane> getPanesAdyacentes(Unidad unidad) {
+    public ArrayList<Pane> getPanesAdyacentes(Unidad unidad, UnidadView unidadView) {
         ArrayList<Pane> panesAdyacentes = new ArrayList<Pane>();
 
         if (unidad.getY() + 1 < getHeigth()) {
-            panes[unidad.getX()][unidad.getY() + 1].setOnMouseClicked(new MovimientoAdelanteController(unidad));
+            panes[unidad.getX()][unidad.getY() + 1].setOnMouseClicked(new MovimientoAdelanteController(unidad, unidadView));
             panesAdyacentes.add(panes[unidad.getX()][unidad.getY() + 1]);
         }
 
         if (unidad.getY() - 1 >= 0) {
-            panes[unidad.getX()][unidad.getY() - 1].setOnMouseClicked(new MovimientoAtrasController(unidad));
+            panes[unidad.getX()][unidad.getY() - 1].setOnMouseClicked(new MovimientoAtrasController(unidad, unidadView));
             panesAdyacentes.add(panes[unidad.getX()][unidad.getY() - 1]);
         }
 
         if (unidad.getX() + 1 <= getTileWidth()) {
-            panes[unidad.getX() + 1][unidad.getY()].setOnMouseClicked(new MovimientoDerechaController(unidad));
+            panes[unidad.getX() + 1][unidad.getY()].setOnMouseClicked(new MovimientoDerechaController(unidad, unidadView));
             panesAdyacentes.add(panes[unidad.getX() + 1][unidad.getY()]);
         }
 
         if (unidad.getX() - 1 >= 0) {
-            panes[unidad.getX() - 1][unidad.getY()].setOnMouseClicked(new MovimientoIzquierdaController(unidad));
+            panes[unidad.getX() - 1][unidad.getY()].setOnMouseClicked(new MovimientoIzquierdaController(unidad, unidadView));
             panesAdyacentes.add(panes[unidad.getX() - 1][unidad.getY()]);
         }
 

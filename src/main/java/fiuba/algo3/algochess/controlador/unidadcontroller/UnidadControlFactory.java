@@ -14,9 +14,9 @@ public class UnidadControlFactory {
 
     private static final Map<String, UnidadControlSupplier> map = new HashMap<>(Map.ofEntries(
             Map.entry(UnidadDeInfanteria.class.getName(), UnidadInfanteriaController::new),
-            Map.entry(Curandero.class.getName(), UnidadInfanteriaController::new),
-            Map.entry(Catapulta.class.getName(), UnidadInfanteriaController::new),
-            Map.entry(Jinete.class.getName(), UnidadInfanteriaController::new)
+            Map.entry(Curandero.class.getName(), CuranderoController::new),
+            Map.entry(Catapulta.class.getName(), CatapultaController::new),
+            Map.entry(Jinete.class.getName(), JineteController::new)
     ));
 
     public static UnidadController getInstance(Unidad unidad, TableroView tablero) {

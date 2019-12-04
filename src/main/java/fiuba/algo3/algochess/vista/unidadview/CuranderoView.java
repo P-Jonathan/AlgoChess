@@ -9,4 +9,24 @@ public class CuranderoView extends UnidadView {
     public CuranderoView(Unidad unidad, TableroView tableroView) {
         super(unidad, tableroView, new Sprite("src/main/resources/curandero.png", 0, 0, 32, 32));
     }
+
+    @Override
+    public void setFrameUp() {
+
+    }
+
+    @Override
+    public void setFrameDown() {
+
+    }
+
+    @Override
+    public void setFrameLeft() {
+
+    }
+
+    @Override
+    public void setFrameRight() {
+
+    }
 }

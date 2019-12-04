@@ -8,4 +8,24 @@ public class JineteView extends UnidadView {
     public JineteView(Unidad unidad, TableroView tableroView) {
         super(unidad, tableroView, new Sprite("src/main/resources/jinete.png", 4, 0, 32, 32));
     }
+
+    @Override
+    public void setFrameUp() {
+
+    }
+
+    @Override
+    public void setFrameDown() {
+
+    }
+
+    @Override
+    public void setFrameLeft() {
+
+    }
+
+    @Override
+    public void setFrameRight() {
+
+    }
 }

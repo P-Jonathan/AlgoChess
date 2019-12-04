@@ -51,4 +51,10 @@ public abstract class UnidadView implements Observer {
     public void change() {
         tableroView.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
     }
+
+    public abstract void setFrameUp();
+    public abstract void setFrameDown();
+    public abstract void setFrameLeft();
+    public abstract void setFrameRight();
+
 }
