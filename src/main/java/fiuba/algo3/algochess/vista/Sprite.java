@@ -1,11 +1,11 @@
 package fiuba.algo3.algochess.vista;
 
-import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
+import javax.imageio.ImageIO;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
+import java.io.File;
 
 public class Sprite {
     private int x;
@@ -14,19 +14,33 @@ public class Sprite {
     private int height;
     private int imageWidth;
     private int imageHeight;
+    private int outWidth;
+    private int outHeight;
     private BufferedImage image;
     private BufferedImage actualFrame;
-    private List<BufferedImage> actualFrameList;
     private List<List<BufferedImage>> frameList;
 
     public static final int DEFAULT_WIDTH = 32;
     public static final int DEFAULT_HEIGHT = 32;
+
+    public Sprite(String filePath, int x, int y, int with, int height, int outWidth, int outHeight) {
+        this.x = x;
+        this.y = y;
+        this.width = with;
+        this.height = height;
+        this.outWidth = outWidth;
+        this.outHeight = outHeight;
+        setImage(filePath);
+        setFrameList();
+    }
 
     public Sprite(String filePath, int x, int y, int with, int height) {
         this.x = x;
         this.y = y;
         this.width = with;
         this.height = height;
+        this.outWidth = with;
+        this.outHeight = height;
         setImage(filePath);
         setFrameList();
     }
@@ -36,6 +50,8 @@ public class Sprite {
         this.y = 0;
         this.width = DEFAULT_WIDTH;
         this.height = DEFAULT_HEIGHT;
+        this.outWidth = DEFAULT_WIDTH;
+        this.outHeight = DEFAULT_HEIGHT;
         setImage(filePath);
         setFrameList();
     }
@@ -56,15 +72,14 @@ public class Sprite {
     private void setFrameList() {
         frameList = new LinkedList<>();
 
-        for (int x = 0; x < imageWidth; x++) {
+        for (int y = 0; y < imageHeight; y++) {
             List<BufferedImage> frameSet = new LinkedList<>();
-            for (int y = 0; y < imageHeight; y++){
+            for (int x = 0; x < imageWidth; x++) {
                 frameSet.add(getSubImage(x, y));
             }
             frameList.add(frameSet);
         }
-        actualFrameList = frameList.get(0);
-        actualFrame = actualFrameList.get(0);
+        setActualFrame(0, 0);
     }
 
     private BufferedImage getSubImage(int x, int y) {
@@ -75,43 +90,46 @@ public class Sprite {
         return frameList.get(y).get(x);
     }
 
-    public List<BufferedImage> getFrames(int index) {
+    public List<BufferedImage> getFrameList(int index) {
         return frameList.get(index);
     }
 
-    public List<BufferedImage> getActualFrameList() {
-        return actualFrameList;
-    }
-
     public BufferedImage getActualFrame() {
-        return actualFrame;
+        if (outWidth != width || outHeight != height) {
+            try {
+                Image temp = actualFrame.getScaledInstance(outWidth, outHeight, Image.SCALE_SMOOTH);
+                BufferedImage imgOut = new BufferedImage(outWidth, outHeight, BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g2d = imgOut.createGraphics();
+                g2d.drawImage(temp, 0, 0, null);
+                g2d.dispose();
+                return imgOut;
+            } catch(Exception e) {
+                System.out.println("Failed to resize image.");
+                return actualFrame;
+            }
+        } else {
+            return actualFrame;
+        }
     }
 
     public void setActualFrame(int x, int y) {
-        BufferedImage frame = getFrame(x, y);
-        while (!frame.equals(actualFrame)) {
-            nextFrame();
-        }
+        actualFrame = getFrame(x, y);
     }
 
-    public void nextFrameList() {
-        int index = frameList.indexOf(actualFrameList);
-
-        if (index == frameList.size()) {
-            actualFrameList = frameList.get(0);
-        } else {
-            actualFrameList = frameList.get(++index);
-        }
-        actualFrame = actualFrameList.get(0);
+    public int getOutWidth() {
+        return outWidth;
     }
 
-    public void nextFrame() {
-        int index = actualFrameList.indexOf(actualFrame);
+    public int getOutHeight() {
+        return outHeight;
+    }
 
-        if (index == actualFrameList.size())
-            nextFrameList();
-        else
-            actualFrame = actualFrameList.get(++index);
+    public void setOutWidth(int outWidth) {
+        this.outWidth = outWidth;
+    }
+
+    public void setOutHeight(int outHeight) {
+        this.outHeight = outHeight;
     }
 
     public int getX() {

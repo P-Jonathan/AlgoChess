@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.controlador.unidadcontroller;
 
 import fiuba.algo3.algochess.modelo.unidades.*;
 import fiuba.algo3.algochess.vista.TableroView;
+import fiuba.algo3.algochess.vista.unidadview.UnidadView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +10,7 @@ import java.util.Map;
 public class UnidadControlFactory {
     @FunctionalInterface
     private interface UnidadControlSupplier {
-        UnidadController getUnidadController(Unidad unidad, TableroView tableroView);
+        UnidadController getUnidadController(Unidad unidad, UnidadView unidadView, TableroView tableroView);
     }
 
     private static final Map<String, UnidadControlSupplier> map = new HashMap<>(Map.ofEntries(
@@ -19,8 +20,8 @@ public class UnidadControlFactory {
             Map.entry(Jinete.class.getName(), JineteController::new)
     ));
 
-    public static UnidadController getInstance(Unidad unidad, TableroView tablero) {
-        UnidadController control = map.get(unidad.getClass().getName()).getUnidadController(unidad, tablero);
+    public static UnidadController getInstance(Unidad unidad, UnidadView unidadView, TableroView tablero) {
+        UnidadController control = map.get(unidad.getClass().getName()).getUnidadController(unidad, unidadView, tablero);
         System.out.println("Se instancio \"" + control.getClass().getName() + "\" para \"" + unidad.getClass().getName() + "\"");
         return control;
     }

@@ -25,7 +25,7 @@ public class TableroView extends Group {
     private Pane[][] panes;
 
     public TableroView() {
-        GridPane table = new GridPane();
+        table = new GridPane();
         panes = new Pane[width * tileWidth][heigth * tileHeigth];
 
         for (int i = 0; i < width; i++) {
@@ -70,6 +70,11 @@ public class TableroView extends Group {
     }
 
     public void addViewOnMap(Node view, int x, int y) {
+        panes[x][y].getChildren().remove(view);
+        panes[x][y].getChildren().add(view);
+    }
+
+    public void removeView(Node view) {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < heigth; j++) {
                 try {
@@ -79,40 +84,58 @@ public class TableroView extends Group {
                 }
             }
         }
-        panes[x][y].getChildren().add(0, view);
     }
 
+    public void updateView(Node view, int x, int y) {
+        removeView(view);
+        addViewOnMap(view, x, y);
+    }
 
     public void addView(Node view) {
         this.getChildren().add(view);
     }
 
-    public void updateView(Node view) {
-        getChildren().remove(view);
-        getChildren().add(view);
+    private boolean paneVacio(Pane pane) {
+        return pane.getChildren().isEmpty();
     }
 
     public ArrayList<Pane> getPanesAdyacentes(Unidad unidad, UnidadView unidadView) {
         ArrayList<Pane> panesAdyacentes = new ArrayList<Pane>();
 
-        if (unidad.getY() + 1 < getHeigth()) {
-            panes[unidad.getX()][unidad.getY() + 1].setOnMouseClicked(new MovimientoAdelanteController(unidad, unidadView));
-            panesAdyacentes.add(panes[unidad.getX()][unidad.getY() + 1]);
+        try {
+            if(paneVacio(paneAdelante(unidad))) {
+                paneAdelante(unidad).setOnMouseClicked(new MovimientoAdelanteController(unidad, unidadView));
+                panesAdyacentes.add(paneAdelante(unidad));
+            }
+        } catch(Exception e) {
+            // TODO EXCEPTION
         }
 
-        if (unidad.getY() - 1 >= 0) {
-            panes[unidad.getX()][unidad.getY() - 1].setOnMouseClicked(new MovimientoAtrasController(unidad, unidadView));
-            panesAdyacentes.add(panes[unidad.getX()][unidad.getY() - 1]);
+        try {
+            if(paneVacio(paneAtras(unidad))) {
+                paneAtras(unidad).setOnMouseClicked(new MovimientoAtrasController(unidad, unidadView));
+                panesAdyacentes.add(paneAtras(unidad));
+            }
+        } catch(Exception e) {
+            // TODO EXCEPTION
         }
 
-        if (unidad.getX() + 1 <= getTileWidth()) {
-            panes[unidad.getX() + 1][unidad.getY()].setOnMouseClicked(new MovimientoDerechaController(unidad, unidadView));
-            panesAdyacentes.add(panes[unidad.getX() + 1][unidad.getY()]);
+        try {
+            if(paneVacio(paneDerecha(unidad))) {
+                paneDerecha(unidad).setOnMouseClicked(new MovimientoDerechaController(unidad, unidadView));
+                panesAdyacentes.add(paneDerecha(unidad));
+            }
+        } catch(Exception e) {
+            // TODO EXCEPTION
         }
 
-        if (unidad.getX() - 1 >= 0) {
-            panes[unidad.getX() - 1][unidad.getY()].setOnMouseClicked(new MovimientoIzquierdaController(unidad, unidadView));
-            panesAdyacentes.add(panes[unidad.getX() - 1][unidad.getY()]);
+        try {
+            if(paneVacio(paneIzquierda(unidad))) {
+                paneIzquierda(unidad).setOnMouseClicked(new MovimientoIzquierdaController(unidad, unidadView));
+                panesAdyacentes.add(paneIzquierda(unidad));
+            }
+        } catch(Exception e) {
+            // TODO EXCEPTION
         }
 
         panesAdyacentes.forEach(pane -> pane.setStyle("-fx-background-color: #79f281"));
@@ -126,5 +149,19 @@ public class TableroView extends Group {
         return panes[unidad.getX()][unidad.getY()];
     }
 
-    //public void prepararParaAccion(Unidad unidad) {  }
+    public Pane paneAdelante(Unidad unidad) {
+        return panes[unidad.getX()][unidad.getY() + 1];
+    }
+
+    public Pane paneAtras(Unidad unidad) {
+        return panes[unidad.getX()][unidad.getY() - 1];
+    }
+
+    public Pane paneDerecha(Unidad unidad) {
+        return panes[unidad.getX() + 1][unidad.getY()];
+    }
+
+    public Pane paneIzquierda(Unidad unidad) {
+        return panes[unidad.getX() - 1][unidad.getY()];
+    }
 }

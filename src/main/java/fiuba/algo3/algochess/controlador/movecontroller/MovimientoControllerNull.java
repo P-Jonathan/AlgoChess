@@ -5,8 +5,8 @@ import fiuba.algo3.algochess.vista.unidadview.UnidadView;
 import javafx.scene.input.MouseEvent;
 
 public class MovimientoControllerNull extends MoveHandler {
-    public MovimientoControllerNull(Unidad unidad, UnidadView unidadView) {
-        super(unidad, unidadView);
+    public MovimientoControllerNull() {
+        super(null, null);
     }
 
     public void handle(MouseEvent mouseEvent){}

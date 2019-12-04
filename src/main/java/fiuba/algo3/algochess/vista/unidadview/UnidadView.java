@@ -28,15 +28,11 @@ public abstract class UnidadView implements Observer {
         unitImage.setImage(getImage());
         unitImage.setFitWidth(getImage().getWidth());
         unitImage.setFitHeight(getImage().getHeight());
-        unitImage.setOnMouseClicked(UnidadControlFactory.getInstance(unidad, tableroView));
+        unitImage.setOnMouseClicked(UnidadControlFactory.getInstance(unidad, this, tableroView));
 
         tableroView.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
 
         new VidaView(unidad, tableroView);
-    }
-
-    public void nextFrame() {
-        sprite.nextFrame();
     }
 
     public void setFrame(int x, int y) {
@@ -47,14 +43,22 @@ public abstract class UnidadView implements Observer {
         return SwingFXUtils.toFXImage(sprite.getActualFrame(), null);
     }
 
-    @Override
-    public void change() {
+    public void update(){
+        unitImage.setImage(getImage());
         tableroView.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
     }
 
+    @Override
+    public void change() {
+        update();
+    }
+
     public abstract void setFrameUp();
+
     public abstract void setFrameDown();
+
     public abstract void setFrameLeft();
+
     public abstract void setFrameRight();
 
 }
