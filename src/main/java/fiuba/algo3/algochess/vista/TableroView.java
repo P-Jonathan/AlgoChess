@@ -32,15 +32,13 @@ public class TableroView extends Group {
                 Pane v = new Pane();
                 v.setMinHeight(tileHeigth);
                 v.setMinWidth(tileWidth);
-                //v.setStyle("-fx-background-color: #FFFFFF");
                 panes[i][j] = v;
                 table.add(v, i, j);
             }
         }
 
-        table.setVgap(1);
-        table.setHgap(1);
-        //table.setStyle("-fx-background-color: #000000");
+        table.setVgap(0);
+        table.setHgap(0);
         table.setGridLinesVisible(true);
         table.setBackground(
                 new Background(
@@ -52,6 +50,22 @@ public class TableroView extends Group {
                                 BackgroundSize.DEFAULT)
                 ));
         this.addView(table);
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeigth() {
+        return heigth;
+    }
+
+    public int getTileWidth() {
+        return tileWidth;
+    }
+
+    public int getTileHeigth() {
+        return tileHeigth;
     }
 
     public void addViewOnMap(Node view, int x, int y) {
@@ -80,7 +94,7 @@ public class TableroView extends Group {
     public ArrayList<Pane> getPanesAdyacentes(Unidad unidad) {
         ArrayList<Pane> panesAdyacentes = new ArrayList<Pane>();
 
-        if (unidad.getY() + 1 <= 19) {
+        if (unidad.getY() + 1 < getHeigth()) {
             panes[unidad.getX()][unidad.getY() + 1].setOnMouseClicked(new MovimientoAdelanteController(unidad));
             panesAdyacentes.add(panes[unidad.getX()][unidad.getY() + 1]);
         }
@@ -90,7 +104,7 @@ public class TableroView extends Group {
             panesAdyacentes.add(panes[unidad.getX()][unidad.getY() - 1]);
         }
 
-        if (unidad.getX() + 1 <= 19) {
+        if (unidad.getX() + 1 <= getTileWidth()) {
             panes[unidad.getX() + 1][unidad.getY()].setOnMouseClicked(new MovimientoDerechaController(unidad));
             panesAdyacentes.add(panes[unidad.getX() + 1][unidad.getY()]);
         }
@@ -100,7 +114,7 @@ public class TableroView extends Group {
             panesAdyacentes.add(panes[unidad.getX() - 1][unidad.getY()]);
         }
 
-        panesAdyacentes.stream().forEach(pane -> pane.setStyle("-fx-background-color: #79f281"));
+        panesAdyacentes.forEach(pane -> pane.setStyle("-fx-background-color: #79f281"));
 
         return panesAdyacentes;
     }

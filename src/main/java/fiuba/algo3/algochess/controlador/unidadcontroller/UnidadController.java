@@ -1,5 +1,6 @@
-package fiuba.algo3.algochess.controlador;
+package fiuba.algo3.algochess.controlador.unidadcontroller;
 
+import fiuba.algo3.algochess.controlador.AccionesController;
 import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import fiuba.algo3.algochess.vista.TableroView;
@@ -9,11 +10,11 @@ import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 
-public class CuranderoController implements EventHandler<MouseEvent> {
-    private Unidad unidad;
-    private TableroView tableroView;
+public abstract class UnidadController implements EventHandler<MouseEvent> {
+    protected Unidad unidad;
+    protected TableroView tableroView;
 
-    public CuranderoController(Unidad unidad, TableroView tableroView) {
+    public UnidadController(Unidad unidad, TableroView tableroView) {
         this.unidad = unidad;
         this.tableroView = tableroView;
     }
