@@ -43,10 +43,10 @@ public abstract class UnidadView implements Observer {
         return SwingFXUtils.toFXImage(sprite.getActualFrame(), null);
     }
 
-    public void update(){
-        if(unidad.getVida() <= 0)
+    public void update() {
+        if (unidad.getVida() <= 0) {
             tableroView.removeView(unitImage);
-        else {
+        } else {
             unitImage.setImage(getImage());
             tableroView.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
         }

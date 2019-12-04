@@ -21,8 +21,6 @@ public class UnidadControlFactory {
     ));
 
     public static UnidadController getInstance(Unidad unidad, UnidadView unidadView, TableroView tablero) {
-        UnidadController control = map.get(unidad.getClass().getName()).getUnidadController(unidad, unidadView, tablero);
-        System.out.println("Se instancio \"" + control.getClass().getName() + "\" para \"" + unidad.getClass().getName() + "\"");
-        return control;
+        return map.get(unidad.getClass().getName()).getUnidadController(unidad, unidadView, tablero);
     }
 }
