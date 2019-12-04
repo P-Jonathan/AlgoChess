@@ -54,7 +54,16 @@ public class TableroView extends Group {
         this.addView(table);
     }
 
+    public void updateView(Node view, int x, int y) {
+        removeView(view);
+        addViewOnMap(view, x, y);
+    }
+
     public void addViewOnMap(Node view, int x, int y) {
+        panes[x][y].getChildren().add(0, view);
+    }
+
+    public void removeView(Node view) {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < heigth; j++) {
                 try {
@@ -64,7 +73,6 @@ public class TableroView extends Group {
                 }
             }
         }
-        panes[x][y].getChildren().add(0, view);
     }
 
 
@@ -77,30 +85,42 @@ public class TableroView extends Group {
         getChildren().add(view);
     }
 
+    private boolean paneVacio(Pane pane) {
+        return pane.getChildren().isEmpty();
+    }
+
     public ArrayList<Pane> getPanesAdyacentes(Unidad unidad) {
         ArrayList<Pane> panesAdyacentes = new ArrayList<Pane>();
 
-        if (unidad.getY() + 1 <= 19) {
-            panes[unidad.getX()][unidad.getY() + 1].setOnMouseClicked(new MovimientoAdelanteController(unidad));
-            panesAdyacentes.add(panes[unidad.getX()][unidad.getY() + 1]);
-        }
+        try {
+            if(paneVacio(paneAdelante(unidad))) {
+                paneAdelante(unidad).setOnMouseClicked(new MovimientoAdelanteController(unidad));
+                panesAdyacentes.add(paneAdelante(unidad));
+            }
+        } catch(Exception e) {}
 
-        if (unidad.getY() - 1 >= 0) {
-            panes[unidad.getX()][unidad.getY() - 1].setOnMouseClicked(new MovimientoAtrasController(unidad));
-            panesAdyacentes.add(panes[unidad.getX()][unidad.getY() - 1]);
-        }
+        try {
+            if(paneVacio(paneAtras(unidad))) {
+                paneAtras(unidad).setOnMouseClicked(new MovimientoAtrasController(unidad));
+                panesAdyacentes.add(paneAtras(unidad));
+            }
+        } catch(Exception e) {}
 
-        if (unidad.getX() + 1 <= 19) {
-            panes[unidad.getX() + 1][unidad.getY()].setOnMouseClicked(new MovimientoDerechaController(unidad));
-            panesAdyacentes.add(panes[unidad.getX() + 1][unidad.getY()]);
-        }
+        try {
+            if(paneVacio(paneDerecha(unidad))) {
+                paneDerecha(unidad).setOnMouseClicked(new MovimientoDerechaController(unidad));
+                panesAdyacentes.add(paneDerecha(unidad));
+            }
+        } catch(Exception e) {}
 
-        if (unidad.getX() - 1 >= 0) {
-            panes[unidad.getX() - 1][unidad.getY()].setOnMouseClicked(new MovimientoIzquierdaController(unidad));
-            panesAdyacentes.add(panes[unidad.getX() - 1][unidad.getY()]);
-        }
+        try {
+            if(paneVacio(paneIzquierda(unidad))) {
+                paneIzquierda(unidad).setOnMouseClicked(new MovimientoIzquierdaController(unidad));
+                panesAdyacentes.add(paneIzquierda(unidad));
+            }
+        } catch(Exception e) {}
 
-        panesAdyacentes.stream().forEach(pane -> pane.setStyle("-fx-background-color: #79f281"));
+        panesAdyacentes.stream().forEach(pane -> pane.setStyle("-fx-background-color: #74d575"));
 
         return panesAdyacentes;
     }
@@ -111,5 +131,19 @@ public class TableroView extends Group {
         return panes[unidad.getX()][unidad.getY()];
     }
 
-    //public void prepararParaAccion(Unidad unidad) {  }
+    public Pane paneAdelante(Unidad unidad) {
+        return panes[unidad.getX()][unidad.getY() + 1];
+    }
+
+    public Pane paneAtras(Unidad unidad) {
+        return panes[unidad.getX()][unidad.getY() - 1];
+    }
+
+    public Pane paneDerecha(Unidad unidad) {
+        return panes[unidad.getX() + 1][unidad.getY()];
+    }
+
+    public Pane paneIzquierda(Unidad unidad) {
+        return panes[unidad.getX() - 1][unidad.getY()];
+    }
 }

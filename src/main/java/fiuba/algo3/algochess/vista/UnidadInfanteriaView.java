@@ -41,7 +41,6 @@ public class UnidadInfanteriaView implements Observer {
         tableroView.addViewOnMap(barraVida, unidad.getX(), unidad.getY());
         tableroView.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
 
-
         unitImage.setOnMouseClicked(new UnidadInfanteriaController(unidad, tableroView));
     }
 
@@ -63,11 +62,15 @@ public class UnidadInfanteriaView implements Observer {
     public void change() {
         double vidaActual = unidad.getVida();
 
-        if(vidaActual != vidaUnidad) {
+        if(vidaActual <= 0) {
+            tableroView.removeView(unitImage);
+            tableroView.removeView(barraVida);
+        } else if(vidaActual != vidaUnidad) {
             vidaUnidad = vidaActual;
             barraVida.actualizarBarra(vidaUnidad);
+        } else {
+            tableroView.updateView(unitImage, unidad.getX(), unidad.getY());
+            tableroView.updateView(barraVida, unidad.getX(), unidad.getY());
         }
-        
-        tableroView.addViewOnMap(unitImage, unidad.getX(), unidad.getY());
     }
 }

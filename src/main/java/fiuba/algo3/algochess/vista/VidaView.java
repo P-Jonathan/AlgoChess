@@ -4,9 +4,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class VidaView extends Rectangle {
-    private static final int ANCHO_BARRA = 38;
+    private static final int ANCHO_BARRA = 28;
     private static final int ALTO_BARRA = 3;
-    private static final int X_BARRA = 5;
+    private static final int X_BARRA = 2;
     private static final int Y_BARRA = 1;
     private double vidaMax;
 
