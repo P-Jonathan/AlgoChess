@@ -17,21 +17,12 @@ public class Main extends Application {
 
     public void start(Stage theStage) {
         theStage.setTitle("AlgoChess");
-               
-        //Tablero tablero = new Tablero();
-        //TableroView tableroView = new TableroView();
         
-        //ReproductorMusica reproductor = new ReproductorMusica();
-        //reproductor.reproducirMusica();
-
-        //Shop shop = new Shop(tablero, tableroView);
-
-        //HBox hb = new HBox(tableroView, shop);
+        ReproductorMusica reproductor = new ReproductorMusica();
+        reproductor.reproducirMusica();
 
         ManejadorEscenas manejadorEscenas = new ManejadorEscenas(theStage);
 
-        //Scene theScene = new Scene(hb);
-        //theStage.setScene(theScene);
         theStage.show();
     }
 }
