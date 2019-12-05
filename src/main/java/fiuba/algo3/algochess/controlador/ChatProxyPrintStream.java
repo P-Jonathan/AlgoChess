@@ -1,8 +1,7 @@
 package fiuba.algo3.algochess.controlador;
 
-import fiuba.algo3.algochess.vista.chatbox.ChatBox;
+import fiuba.algo3.algochess.vista.ChatBox;
 
-import java.io.OutputStream;
 import java.io.PrintStream;
 
 public class ChatProxyPrintStream extends PrintStream {

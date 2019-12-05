@@ -2,7 +2,6 @@ package fiuba.algo3.algochess.vista;
 
 import fiuba.algo3.algochess.controlador.ChatProxyPrintStream;
 import fiuba.algo3.algochess.modelo.tablero.Tablero;
-import fiuba.algo3.algochess.vista.chatbox.ChatBox;
 import fiuba.algo3.algochess.vista.comprabutton.CompraDeCatapultaView;
 import fiuba.algo3.algochess.vista.comprabutton.CompraDeCuranderoView;
 import fiuba.algo3.algochess.vista.comprabutton.CompraDeJineteView;
@@ -25,11 +24,6 @@ public class ShopView extends VBox {
         addView(new CompraDeJineteView(tablero, tableroView, this));
         addView(new CompraDeCuranderoView(tablero, tableroView, this));
         addView(new CompraDeCatapultaView(tablero, tableroView, this));
-
-        ChatBox chatBox = new ChatBox();
-        PrintStream out = new ChatProxyPrintStream(System.out, chatBox);
-        System.setOut(out);
-        addView(chatBox);
     }
 
     public void addView(Node view) {

@@ -13,8 +13,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class Menu extends Group{
-	
+public class Menu extends Group {
+
     public int heigth = 5;
     public int width = 5;
 
@@ -24,12 +24,12 @@ public class Menu extends Group{
     private GridPane table;
     private Pane[][] panes;
 
-    public Menu(Tablero tablero, ManejadorEscenas manejador) {
-    	
-    	table = new GridPane();
-    	panes = new Pane[width * tileWidth][heigth * tileHeigth];
-    	
-    	for (int i = 0; i < width; i++) {
+    public Menu(Tablero tablero, AlgoChessView manejador) {
+
+        table = new GridPane();
+        panes = new Pane[width * tileWidth][heigth * tileHeigth];
+
+        for (int i = 0; i < width; i++) {
             for (int j = 0; j < heigth; j++) {
                 Pane v = new Pane();
                 v.setMinHeight(tileHeigth);
@@ -39,9 +39,9 @@ public class Menu extends Group{
             }
         }
 
-    	
+
         table.setGridLinesVisible(false);
-    	table.setBackground(
+        table.setBackground(
                 new Background(
                         new BackgroundImage(
                                 new Image("Intro.png"),
@@ -50,14 +50,14 @@ public class Menu extends Group{
                                 BackgroundPosition.DEFAULT,
                                 BackgroundSize.DEFAULT)
                 ));
-    	
-    	OpcionNombre opcionA = new OpcionNombre(tablero.getJugadorA());
-    	OpcionNombre opcionB = new OpcionNombre(tablero.getJugadorB());
-    	
-    	this.addView(table);
-    	this.addViewOnMap(new VBox(new ButtonEmpezarJuego(manejador)), 2, 2);
-    	this.addViewOnMap(opcionA.getOpcion(), 2, 3);
-    	this.addViewOnMap(opcionB.getOpcion(), 2, 4);
+
+        OpcionNombre opcionA = new OpcionNombre(tablero.getJugadorA());
+        OpcionNombre opcionB = new OpcionNombre(tablero.getJugadorB());
+
+        this.addView(table);
+        this.addViewOnMap(new VBox(new ButtonEmpezarJuego(manejador)), 2, 2);
+        this.addViewOnMap(opcionA.getOpcion(), 2, 3);
+        this.addViewOnMap(opcionB.getOpcion(), 2, 4);
     }
 
     public void addViewOnMap(Node view, int x, int y) {

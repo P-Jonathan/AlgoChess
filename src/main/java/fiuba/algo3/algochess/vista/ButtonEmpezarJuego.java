@@ -7,7 +7,7 @@ import javafx.scene.text.TextAlignment;
 
 public class ButtonEmpezarJuego extends Button {
 
-	public ButtonEmpezarJuego(ManejadorEscenas manejador) {
+	public ButtonEmpezarJuego(AlgoChessView manejador) {
         super();
         this.setMinSize(132,66);
         this.setMaxSize(132,66);

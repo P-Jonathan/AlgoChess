@@ -1,4 +1,4 @@
-package fiuba.algo3.algochess.vista.chatbox;
+package fiuba.algo3.algochess.vista;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

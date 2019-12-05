@@ -17,7 +17,7 @@ public class Main extends Application {
         ReproductorMusica reproductor = new ReproductorMusica();
         reproductor.reproducirMusica();
 
-        ManejadorEscenas manejadorEscenas = new ManejadorEscenas(theStage);
+        AlgoChessView algoChessView = new AlgoChessView(theStage);
 
         theStage.show();
     }
