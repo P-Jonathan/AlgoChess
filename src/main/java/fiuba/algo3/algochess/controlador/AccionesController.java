@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.controlador;
 
 import fiuba.algo3.algochess.controlador.movecontroller.MovimientoControllerNull;
+import fiuba.algo3.algochess.modelo.excepciones.NoSePuedeAtacarAAliados;
 import fiuba.algo3.algochess.modelo.excepciones.UnidadFueraDeRango;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import javafx.scene.control.Alert;
@@ -43,9 +44,15 @@ public class AccionesController {
         if(autor != unidad) {
         	try {
             autor.usarHabilidad(unidad);
-        	}catch (UnidadFueraDeRango e) {
+        	} catch (NoSePuedeAtacarAAliados e) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Atacar aliados");
+                alert.setHeaderText("No puedes atacar a una unidad aliada");
+                alert.showAndWait();
+            } catch (UnidadFueraDeRango e) {
         		Alert alert = new Alert(Alert.AlertType.WARNING);
-        		alert.setContentText("La unidad que intentaste atacar esta fuera de rango.");
+                alert.setTitle("Unidad fuera de rango");
+        		alert.setHeaderText("La unidad que intentaste atacar esta fuera de rango.");
         		alert.showAndWait();
         	}
         	resetPanes();
