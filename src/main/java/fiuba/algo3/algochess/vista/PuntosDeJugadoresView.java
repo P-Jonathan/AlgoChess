@@ -6,22 +6,25 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 public class PuntosDeJugadoresView extends HBox implements Observer {
-    private Jugador jugador;
-    private String texto;
+    private Jugador jugadorA;
+    private Jugador jugadorB;
     private Label label;
 
-    public PuntosDeJugadoresView(Jugador jugador, String texto) {
-        this.jugador = jugador;
-        this.texto = texto;
-        this.label = new Label(texto + jugador.getPuntos());
+    public PuntosDeJugadoresView(Jugador jugadorA, Jugador jugadorB) {
+        this.jugadorA = jugadorA;
+        this.jugadorB = jugadorB;
 
-        jugador.addObserver(this);
+        this.label = new Label("Puntos Jugador 1: " + jugadorA.getPuntos() + "   |    Puntos Jugador 2: " + jugadorB.getPuntos());
+        this.label.setStyle("-fx-font-weight: bold");
+
+        jugadorA.addObserver(this);
+        jugadorB.addObserver(this);
 
         this.getChildren().add(label);
     }
 
     @Override
     public void change() {
-        label.setText(texto + jugador.getPuntos());
+        this.label.setText("Puntos Jugador 1: " + jugadorA.getPuntos() + " | Puntos Jugador 2: " + jugadorB.getPuntos());
     }
 }
