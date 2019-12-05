@@ -1,32 +1,22 @@
 package fiuba.algo3.algochess.controlador.buttonHandler;
 
-import fiuba.algo3.algochess.controlador.PosicionarUnidadEvent;
-import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
-import fiuba.algo3.algochess.modelo.tablero.Tablero;
 import fiuba.algo3.algochess.modelo.unidades.Catapulta;
 import fiuba.algo3.algochess.vista.ReproductorMusica;
+import fiuba.algo3.algochess.modelo.tablero.Tablero;
+import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import fiuba.algo3.algochess.vista.TableroView;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 
-public class ComprarCatapultaHandler implements EventHandler<ActionEvent> {
-    private Tablero tablero;
-    private TableroView tableroView;
+public class ComprarCatapultaHandler extends CompraDeUnidadController {
+    private ReproductorMusica reproductorMusica;
 
     public ComprarCatapultaHandler(Tablero tablero, TableroView tableroView) {
-        this.tablero = tablero;
-        this.tableroView = tableroView;
+        super(tablero, tableroView);
+        reproductorMusica = new ReproductorMusica("catapulta.mp3");
     }
 
-    public void handle(ActionEvent event) {
-        try{
-            Catapulta catapulta = new Catapulta();
-            ReproductorMusica reproductor = new ReproductorMusica("catapulta.mp3");
-            reproductor.reproducirEfectoDeSonido();
-            AdministradorDeTurnos.getInstancia().jugadorActual().comprarUnidad(catapulta);
-            tableroView.setOnMousePressed(new PosicionarUnidadEvent(catapulta, tablero, tableroView));
-        } catch (RuntimeException e) {
-            System.out.println("Dinero insuficiente");
-        }
+    @Override
+    protected Unidad comprarUnidad() {
+        reproductorMusica.reproducirEfectoDeSonido();
+        return new Catapulta();
     }
 }

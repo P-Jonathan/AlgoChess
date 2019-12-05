@@ -1,32 +1,22 @@
 package fiuba.algo3.algochess.controlador.buttonHandler;
 
-import fiuba.algo3.algochess.controlador.PosicionarUnidadEvent;
-import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
-import fiuba.algo3.algochess.modelo.tablero.Tablero;
 import fiuba.algo3.algochess.modelo.unidades.UnidadDeInfanteria;
 import fiuba.algo3.algochess.vista.ReproductorMusica;
+import fiuba.algo3.algochess.modelo.tablero.Tablero;
+import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import fiuba.algo3.algochess.vista.TableroView;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 
-public class ComprarUnidadInfanteriaHandler implements EventHandler<ActionEvent> {
-    private Tablero tablero;
-    private TableroView tableroView;
+public class ComprarUnidadInfanteriaHandler extends CompraDeUnidadController {
+    private ReproductorMusica reproductorMusica;
 
     public ComprarUnidadInfanteriaHandler(Tablero tablero, TableroView tableroView) {
-        this.tablero = tablero;
-        this.tableroView = tableroView;
+        super(tablero, tableroView);
+        reproductorMusica = new ReproductorMusica("infanteria.mp3");
     }
 
-    public void handle(ActionEvent event) {
-        try{
-            UnidadDeInfanteria unidadDeInfanteria = new UnidadDeInfanteria();
-            ReproductorMusica reproductor = new ReproductorMusica("infanteria.mp3");
-            reproductor.reproducirEfectoDeSonido();
-            AdministradorDeTurnos.getInstancia().jugadorActual().comprarUnidad(unidadDeInfanteria);
-            tableroView.setOnMousePressed(new PosicionarUnidadEvent(unidadDeInfanteria, tablero, tableroView));
-        } catch (RuntimeException e) {
-            System.out.println("Dinero insuficiente");
-        }
+    @Override
+    protected Unidad comprarUnidad() {
+        reproductorMusica.reproducirEfectoDeSonido();
+        return new UnidadDeInfanteria();
     }
 }
