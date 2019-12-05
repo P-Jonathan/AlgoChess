@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.vista.unidadview;
 
 import fiuba.algo3.algochess.controlador.unidadcontroller.UnidadControlFactory;
+import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.unidades.Observer;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import fiuba.algo3.algochess.vista.Sprite;
@@ -28,6 +29,7 @@ public abstract class UnidadView implements Observer {
         unitImage.setImage(getImage());
         unitImage.setFitWidth(getImage().getWidth());
         unitImage.setFitHeight(getImage().getHeight());
+
         unitImage.setOnMouseClicked(UnidadControlFactory.getInstance(unidad, this, tableroView));
 
         tableroView.addViewOnMap(unitImage, unidad.getX(), unidad.getY());

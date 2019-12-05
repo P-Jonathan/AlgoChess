@@ -4,9 +4,10 @@ import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import fiuba.algo3.algochess.vista.Sprite;
 import fiuba.algo3.algochess.vista.TableroView;
 
-public class JineteView extends UnidadView {
-    public JineteView(Unidad unidad, TableroView tableroView) {
-        super(unidad, tableroView, new Sprite("src/main/resources/jinete.png"));
+public class CuranderoBView extends UnidadView {
+
+    public CuranderoBView(Unidad unidad, TableroView tableroView) {
+        super(unidad, tableroView, new Sprite("src/main/resources/curanderoB.png"));
     }
 
     @Override
@@ -21,11 +22,11 @@ public class JineteView extends UnidadView {
 
     @Override
     public void setFrameLeft() {
-        this.setFrame(3, 1);
+        this.setFrame(5, 4);
     }
 
     @Override
     public void setFrameRight() {
-        this.setFrame(2, 0);
+        this.setFrame(3, 4);
     }
 }

@@ -73,8 +73,10 @@ public abstract class Unidad extends Observable {
         this.vida -= vidaADisminuir;
         notifyObservers();
 
-        if(this.vida <= 0)
+        if(this.vida <= 0) {
+            propietario.quitarUnidad(this);
             casilla.removeOcupanteMuerto();
+        }
     }
 
     private boolean perteneceA(Jugador jugador) {

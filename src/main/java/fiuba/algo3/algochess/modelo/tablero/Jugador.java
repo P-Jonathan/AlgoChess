@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.modelo.tablero;
 
+import fiuba.algo3.algochess.modelo.excepciones.FinDelJuegoException;
 import fiuba.algo3.algochess.modelo.unidades.Observable;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 
@@ -55,6 +56,9 @@ public class Jugador extends Observable {
 
     public void quitarUnidad(Unidad unidad) {
         unidades.remove(unidad);
+        if(unidades.isEmpty()) {
+            throw new FinDelJuegoException();
+        }
     }
 
     public void finalizarCompras() {

@@ -6,17 +6,17 @@ import fiuba.algo3.algochess.vista.TableroView;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ViewFactory {
+public class ViewFactoryB {
     @FunctionalInterface
     private interface UnidadViewSupplier {
         UnidadView getViewIntance(Unidad unidad, TableroView tableroView);
     }
 
     private static final Map<String, UnidadViewSupplier> map = new HashMap<>(Map.ofEntries(
-            Map.entry(UnidadDeInfanteria.class.getName(), UnidadInfanteriaView::new),
-            Map.entry(Catapulta.class.getName(), CatapultaView::new),
-            Map.entry(Curandero.class.getName(), CuranderoView::new),
-            Map.entry(Jinete.class.getName(), JineteView::new)
+            Map.entry(UnidadDeInfanteria.class.getName(), UnidadInfanteriaAView::new),
+            Map.entry(Catapulta.class.getName(), CatapultaAView::new),
+            Map.entry(Curandero.class.getName(), CuranderoAView::new),
+            Map.entry(Jinete.class.getName(), JineteAView::new)
     ));
 
     @SuppressWarnings("UnusedReturnValue")

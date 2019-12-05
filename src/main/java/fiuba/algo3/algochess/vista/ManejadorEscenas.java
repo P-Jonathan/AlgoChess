@@ -1,5 +1,8 @@
 package fiuba.algo3.algochess.vista;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.tablero.Tablero;
 import fiuba.algo3.algochess.modelo.unidades.Observer;
@@ -9,7 +12,7 @@ import javafx.stage.Stage;
 
 public class ManejadorEscenas implements Observer {
     private Stage stage;
-
+    private List<HBox> escenas = new ArrayList<HBox>();
     private Tablero tablero;
     private TableroView tableroView;
 
@@ -18,17 +21,16 @@ public class ManejadorEscenas implements Observer {
 
         tablero = new Tablero();
         tableroView = new TableroView(tablero);
-
-        ShopView shop = new ShopView(tablero, tableroView);
-
+        escenas.add(new HBox(new ShopView(tablero, tableroView)));
+        escenas.add(new HBox(new ButtonPasarTurno()));
         AdministradorDeTurnos.getInstancia().addObserver(this);
 
-        stage.setScene(new Scene(new HBox(tableroView, shop)));
+        stage.setScene(new Scene(new HBox(new Menu(tablero,this))));
     }
 
     @Override
     public void change() {
-    	ButtonPasarTurno boton = new ButtonPasarTurno();
-        stage.setScene(new Scene(new HBox(tableroView,boton)));
+    	stage.setScene(new Scene(new HBox(tableroView,escenas.get(0))));
+    	escenas.remove(0);
     }
 }

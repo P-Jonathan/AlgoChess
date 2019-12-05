@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.controlador;
 
 import fiuba.algo3.algochess.controlador.movecontroller.MovimientoControllerNull;
+import fiuba.algo3.algochess.modelo.excepciones.FinDelJuegoException;
 import fiuba.algo3.algochess.modelo.excepciones.NoSePuedeAtacarAAliados;
 import fiuba.algo3.algochess.modelo.excepciones.UnidadFueraDeRango;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
@@ -9,6 +10,8 @@ import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.System.exit;
 
 public class AccionesController {
     private static final AccionesController instancia = new AccionesController();
@@ -54,7 +57,13 @@ public class AccionesController {
                 alert.setTitle("Unidad fuera de rango");
         		alert.setHeaderText("La unidad que intentaste atacar esta fuera de rango.");
         		alert.showAndWait();
-        	}
+        	} catch (FinDelJuegoException e) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Game over");
+                alert.setHeaderText("Un jugador se ha quedado sin unidades. Fin del juego");
+                alert.showAndWait();
+                exit(0);
+            }
         	reset();
         }
     }

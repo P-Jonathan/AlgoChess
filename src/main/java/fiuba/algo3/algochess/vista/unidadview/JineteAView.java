@@ -4,24 +4,24 @@ import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import fiuba.algo3.algochess.vista.Sprite;
 import fiuba.algo3.algochess.vista.TableroView;
 
-public class CatapultaView extends UnidadView {
-    public CatapultaView(Unidad unidad, TableroView tableroView) {
-        super(unidad, tableroView, new Sprite("src/main/resources/catapulta.png"));
+public class JineteAView extends UnidadView {
+    public JineteAView(Unidad unidad, TableroView tableroView) {
+        super(unidad, tableroView, new Sprite("src/main/resources/jineteA.png"));
     }
 
     @Override
     public void setFrameUp() {
-        this.setFrame(0, 0);
+        this.setFrame(4, 0);
     }
 
     @Override
     public void setFrameDown() {
-        this.setFrame(5, 0);
+        this.setFrame(0, 0);
     }
 
     @Override
     public void setFrameLeft() {
-        this.setFrame(2, 4);
+        this.setFrame(3, 1);
     }
 
     @Override
