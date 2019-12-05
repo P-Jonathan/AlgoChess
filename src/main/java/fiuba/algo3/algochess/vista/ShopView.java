@@ -44,10 +44,12 @@ public class ShopView extends Group {
     }
 
     public void addViewOnMap(Node view, int x) {
+        panes[x].getChildren().remove(view);
         panes[x].getChildren().add(0, view);
     }
 
     public void addView(Node view) {
+        this.getChildren().remove(view);
         this.getChildren().add(view);
     }
 }
