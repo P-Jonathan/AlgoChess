@@ -1,6 +1,10 @@
 package fiuba.algo3.algochess.vista;
 
 import fiuba.algo3.algochess.modelo.tablero.Tablero;
+import fiuba.algo3.algochess.vista.comprabutton.CompraDeCatapultaView;
+import fiuba.algo3.algochess.vista.comprabutton.CompraDeCuranderoView;
+import fiuba.algo3.algochess.vista.comprabutton.CompraDeJineteView;
+import fiuba.algo3.algochess.vista.comprabutton.ComprarUnidadDeInfanteriaView;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
@@ -33,10 +37,10 @@ public class ShopView extends Group {
         addView(table);
 
         addViewOnMap(new PuntosDeJugadoresView(tablero.getJugadorA(), tablero.getJugadorB()), 0);
-        addViewOnMap(new ButtonComprarUnidadInfanteria(tablero, tableroView, this), 1);
-        addViewOnMap(new ButtonComprarJinete(tablero, tableroView, this), 2);
-        addViewOnMap(new ButtonComprarCurandero(tablero, tableroView, this), 3);
-        addViewOnMap(new ButtonComprarCatapulta(tablero, tableroView, this), 4);
+        addViewOnMap(new ComprarUnidadDeInfanteriaView(tablero, tableroView, this), 1);
+        addViewOnMap(new CompraDeJineteView(tablero, tableroView, this), 2);
+        addViewOnMap(new CompraDeCuranderoView(tablero, tableroView, this), 3);
+        addViewOnMap(new CompraDeCatapultaView(tablero, tableroView, this), 4);
     }
 
     public void addViewOnMap(Node view, int x) {

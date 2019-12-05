@@ -102,7 +102,7 @@ public class TableroView extends Group {
         this.getChildren().add(view);
     }
 
-    public void pintarCasillasDelJugador() {
+    public void pintarCasillasDelJugadorActual() {
         int columna = 0;
         int limite = 10;
 

@@ -19,9 +19,8 @@ public class ViewFactory {
             Map.entry(Jinete.class.getName(), JineteView::new)
     ));
 
+    @SuppressWarnings("UnusedReturnValue")
     public static UnidadView getInstance(Unidad unidad, TableroView tablero) {
-        UnidadView view = map.get(unidad.getClass().getName()).getViewIntance(unidad, tablero);
-        System.out.println("Se instancio \"" + view.getClass().getName() + "\" para \"" + unidad.getClass().getName() + "\"");
-        return view;
+        return map.get(unidad.getClass().getName()).getViewIntance(unidad, tablero);
     }
 }
