@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 public class ManejadorEscenas implements Observer {
     private Stage stage;
-
+    private HBox escena1,escena2;
     private Tablero tablero;
     private TableroView tableroView;
 
@@ -20,16 +20,16 @@ public class ManejadorEscenas implements Observer {
         tablero = new Tablero();
         tableroView = new TableroView(tablero);
 
-        ShopView shop = new ShopView(tablero, tableroView);
-
+        escena1 = new HBox(new ShopView(tablero, tableroView));
+        escena2 = new HBox(new ButtonPasarTurno());
         AdministradorDeTurnos.getInstancia().addObserver(this);
 
-        stage.setScene(new Scene(new HBox(tableroView, shop)));
+        stage.setScene(new Scene(new HBox(new Menu(tablero,this))));
     }
 
     @Override
     public void change() {
-        ButtonPasarTurno boton = new ButtonPasarTurno();
-        stage.setScene(new Scene(new HBox(tableroView, boton)));
+    	stage.setScene(new Scene(new HBox(tableroView,escena1)));
+    	escena1 = escena2;
     }
 }

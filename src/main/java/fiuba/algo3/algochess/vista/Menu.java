@@ -28,7 +28,7 @@ public class Menu extends Group{
     private GridPane table;
     private Pane[][] panes;
 
-    public Menu(Tablero tablero) {
+    public Menu(Tablero tablero, ManejadorEscenas manejador) {
     	
     	table = new GridPane();
     	panes = new Pane[width * tileWidth][heigth * tileHeigth];
@@ -55,7 +55,7 @@ public class Menu extends Group{
                 ));
     	
     	this.addView(table);
-    	this.addViewOnMap(new VBox(new ButtonEmpezarJuego()),2,2);
+    	this.addViewOnMap(new VBox(new ButtonEmpezarJuego(manejador)),2,2);
     }
 
     public void addViewOnMap(Node view, int x, int y) {

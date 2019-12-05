@@ -7,12 +7,12 @@ import javafx.scene.text.TextAlignment;
 
 public class ButtonEmpezarJuego extends Button {
 
-	public ButtonEmpezarJuego() {
+	public ButtonEmpezarJuego(ManejadorEscenas manejador) {
         super();
         this.setMinSize(132,66);
         this.setMaxSize(132,66);
         this.setText("Start");
         this.setTextAlignment(TextAlignment.CENTER);
-        this.setOnAction(new EmpezarJuegoHandler());
+        this.setOnAction(new EmpezarJuegoHandler(manejador));
     }
 }
