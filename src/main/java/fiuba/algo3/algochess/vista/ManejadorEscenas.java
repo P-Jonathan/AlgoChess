@@ -35,6 +35,7 @@ public class ManejadorEscenas implements Observer {
     @Override
     public void change() {
     	stage.setScene(new Scene(new HBox(tableroView,escenas.get(0))));
+    	tableroView.setDisable(false);
     	escenas.remove(0);
     }
 }
