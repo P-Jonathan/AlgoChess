@@ -25,7 +25,7 @@ public class ReproductorMusica {
 	    Media media = new Media(new File(path).toURI().toString());
 	    reproductor = new AudioClip(media.getSource()); 
 	    reproductor.setCycleCount(AudioClip.INDEFINITE); 
-	    reproductor.play();
+	    reproductor.play(0.2);
 		 
 	}
 	
@@ -35,7 +35,7 @@ public class ReproductorMusica {
 	    
 	    Media media = new Media(new File(path).toURI().toString());
 	    reproductor = new AudioClip(media.getSource()); 
-	    reproductor.play();
+	    reproductor.play(0.05);
 	}
 	
 }
