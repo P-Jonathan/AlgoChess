@@ -33,9 +33,10 @@ public abstract class CompraDeUnidadView extends Button {
     }
 
     private ImageView getImageView() {
-        ImageView imageView = new ImageView(getImage());
-        imageView.setFitHeight(getImage().getHeight());
-        imageView.setFitWidth(getImage().getWidth());
+        Image img = getImage();
+        ImageView imageView = new ImageView(img);
+        imageView.setFitHeight(img.getHeight());
+        imageView.setFitWidth(img.getWidth());
 
         return imageView;
     }

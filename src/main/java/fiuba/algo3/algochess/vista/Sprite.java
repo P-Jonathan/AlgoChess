@@ -79,7 +79,7 @@ public class Sprite {
             }
             frameList.add(frameSet);
         }
-        setActualFrame(0, 0);
+        setActualFrame(x, y);
     }
 
     private BufferedImage getSubImage(int x, int y) {
