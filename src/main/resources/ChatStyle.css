@@ -1,0 +1,19 @@
+.scrollpanel {
+    -fx-background-color: #333333;
+}
+
+.chatbox {
+    -fx-background-color: #333333;
+    -fx-min-height: 200px;
+    -fx-min-width: 320px;
+}
+
+.label {
+    -fx-background-color: #1e69f4;
+    -fx-text-fill: white;
+}
+
+.button {
+    -fx-background-color: #1e69f4;
+    -fx-text-fill: white;
+}
