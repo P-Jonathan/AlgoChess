@@ -5,13 +5,15 @@ import fiuba.algo3.algochess.vista.TableroView;
 import fiuba.algo3.algochess.vista.Sprite;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 
 public abstract class CompraDeUnidadView extends Button {
     private static final int DEFAULT_BUTTON_WIDTH = 320;
-    private static final int DEFAULT_BUTTON_HEIGHT = 56;
+    private static final int DEFAULT_BUTTON_HEIGHT = 100;
 
     protected CompraDeUnidadController cuc;
     protected TableroView tableroView;
@@ -21,14 +23,13 @@ public abstract class CompraDeUnidadView extends Button {
         this.tableroView = tableroView;
         this.sprite = sprite;
         this.cuc = cuc;
-/*
-        this.setMinSize(sprite.getOutWidth(), sprite.getOutHeight());
-        this.setMaxSize(sprite.getOutWidth(), sprite.getOutHeight());*/
+
         this.setMinSize(DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
         this.setMaxSize(DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
         this.setTextAlignment(TextAlignment.CENTER);
         this.setGraphic(getImageView());
         this.setText("Buy Button");
+        this.setWrapText(true);
         this.setOnAction(cuc);
     }
 

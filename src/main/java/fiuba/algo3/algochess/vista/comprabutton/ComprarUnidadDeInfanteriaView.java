@@ -11,6 +11,7 @@ public class ComprarUnidadDeInfanteriaView extends CompraDeUnidadView {
         super(new ComprarUnidadInfanteriaHandler(tablero, tableroView, shopView), tableroView,
                 new Sprite("src/main/resources/caras.png", 0, 0, 27, 19, 50, 50)
         );
-        this.setText("Unidad de Infanteria");
+        this.setText("Infanteria\nCosto(1)\nAtaque a distancia corta(10)");
+        this.setWrapText(false);
     }
 }

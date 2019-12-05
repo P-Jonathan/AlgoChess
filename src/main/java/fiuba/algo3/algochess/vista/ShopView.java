@@ -19,12 +19,12 @@ public class ShopView extends Group {
 
     public ShopView(Tablero tablero, TableroView tableroView) {
         GridPane table = new GridPane();
-        panes = new Pane[5];
+        panes = new Pane[7];
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 7; i++) {
             Pane v = new Pane();
-            v.setMinHeight(56);
-            v.setMinWidth(56);
+            v.setMinHeight(50);
+            v.setMinWidth(320);
             v.setStyle("-fx-background-color: #FFFFFF");
             panes[i] = v;
             table.add(v , 0, i);
@@ -36,11 +36,13 @@ public class ShopView extends Group {
 
         addView(table);
 
-        addViewOnMap(new PuntosDeJugadoresView(tablero.getJugadorA(), tablero.getJugadorB()), 0);
-        addViewOnMap(new ComprarUnidadDeInfanteriaView(tablero, tableroView, this), 1);
-        addViewOnMap(new CompraDeJineteView(tablero, tableroView, this), 2);
-        addViewOnMap(new CompraDeCuranderoView(tablero, tableroView, this), 3);
-        addViewOnMap(new CompraDeCatapultaView(tablero, tableroView, this), 4);
+        addViewOnMap(new TurnosView(tablero), 0);
+        addViewOnMap(new PuntosDeJugadoresView(tablero.getJugadorA(), "Puntos del jugador A: "), 1);
+        addViewOnMap(new PuntosDeJugadoresView(tablero.getJugadorB(), "Puntos del jugador B: "), 2);
+        addViewOnMap(new ComprarUnidadDeInfanteriaView(tablero, tableroView, this), 3);
+        addViewOnMap(new CompraDeJineteView(tablero, tableroView, this), 4);
+        addViewOnMap(new CompraDeCuranderoView(tablero, tableroView, this), 5);
+        addViewOnMap(new CompraDeCatapultaView(tablero, tableroView, this), 6);
     }
 
     public void addViewOnMap(Node view, int x) {

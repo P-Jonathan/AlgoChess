@@ -11,6 +11,7 @@ public class CompraDeJineteView extends CompraDeUnidadView {
         super(new ComprarJineteHandler(tablero, tableroView, shopView), tableroView,
                 new Sprite("src/main/resources/caras.png", 8, 0, 27, 19, 50, 50)
         );
-        this.setText("Jinete");
+        this.setText("Jinete\nCosto(3)\nAtaque a distancia media(15)\nAtaque a distancia corta(5)");
+        this.setWrapText(false);
     }
 }

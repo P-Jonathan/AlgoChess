@@ -28,7 +28,9 @@ public class ManejadorEscenas implements Observer {
 
     @Override
     public void change() {
-    	ButtonPasarTurno boton = new ButtonPasarTurno();
-        stage.setScene(new Scene(new HBox(tableroView,boton)));
+        if(AdministradorDeTurnos.getInstancia().finalizaronCompras()) {
+            ButtonPasarTurno boton = new ButtonPasarTurno();
+            stage.setScene(new Scene(new HBox(tableroView, boton)));
+        }
     }
 }
