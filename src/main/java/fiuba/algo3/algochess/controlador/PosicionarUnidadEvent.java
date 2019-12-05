@@ -38,7 +38,12 @@ public class PosicionarUnidadEvent implements EventHandler<MouseEvent> {
                 tablero.posicionarUnidad(unidad, new Posicion(x, y));
                 tableroView.resetearCasillas();
                 shopView.setDisable(false);
-                ViewFactory.getInstance(unidad, tableroView);
+
+                if(AdministradorDeTurnos.getInstancia().turnoDe(tablero.getJugadorB()))
+                    ViewFactoryB.getInstance(unidad, tableroView);
+                else
+                    ViewFactoryA.getInstance(unidad, tableroView);
+
                 AdministradorDeTurnos.getInstancia().administrarCompras();
                 unidad = null;
             }
