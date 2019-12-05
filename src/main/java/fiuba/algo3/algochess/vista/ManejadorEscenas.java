@@ -17,9 +17,9 @@ public class ManejadorEscenas implements Observer {
         this.stage = stage;
 
         tablero = new Tablero();
-        tableroView = new TableroView();
+        tableroView = new TableroView(tablero);
 
-        Shop shop = new Shop(tablero, tableroView);
+        ShopView shop = new ShopView(tablero, tableroView);
 
         AdministradorDeTurnos.getInstancia().addObserver(this);
 

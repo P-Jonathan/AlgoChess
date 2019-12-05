@@ -15,14 +15,14 @@ import java.io.IOException;
 
 public class ButtonComprarJinete extends Button {
 
-    public ButtonComprarJinete(Tablero tablero, TableroView tableroView) {
+    public ButtonComprarJinete(Tablero tablero, TableroView tableroView, ShopView shopView) {
         super();
         this.setMinSize(320,56);
         this.setMaxSize(320,56);
         this.setGraphic(getImageView());
         this.setText("Jinete");
         this.setTextAlignment(TextAlignment.CENTER);
-        this.setOnAction(new ComprarJineteHandler(tablero, tableroView));
+        this.setOnAction(new ComprarJineteHandler(tablero, tableroView, shopView));
     }
 
     private ImageView getImageView() {

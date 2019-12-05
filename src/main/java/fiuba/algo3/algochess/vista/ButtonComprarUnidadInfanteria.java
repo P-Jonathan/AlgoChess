@@ -15,14 +15,14 @@ import java.io.IOException;
 
 public class ButtonComprarUnidadInfanteria extends Button {
 
-    public ButtonComprarUnidadInfanteria(Tablero tablero, TableroView tableroView) {
+    public ButtonComprarUnidadInfanteria(Tablero tablero, TableroView tableroView, ShopView shopView) {
         super();
         this.setMinSize(320,56);
         this.setMaxSize(320,56);
         this.setGraphic(getImageView());
         this.setText("Unidad de Infanteria");
         this.setTextAlignment(TextAlignment.CENTER);
-        this.setOnAction(new ComprarUnidadInfanteriaHandler(tablero, tableroView));
+        this.setOnAction(new ComprarUnidadInfanteriaHandler(tablero, tableroView, shopView));
     }
 
     private ImageView getImageView() {

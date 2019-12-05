@@ -18,14 +18,14 @@ public class CatapultaController extends UnidadController {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        if (AdministradorDeTurnos.getInstancia().turnoDe(unidad.propietario())) {
+        if(AdministradorDeTurnos.getInstancia().turnoDe(unidad.propietario()) && !AccionesController.getInstancia().tieneAutor()) {
             ArrayList<Pane> panes = new ArrayList<Pane>();
             panes.add(tableroView.paneActual(unidad));
 
             AccionesController.getInstancia().agregarUnidad(unidad, panes);
         }
         if (AccionesController.getInstancia().tieneAutor()) {
-            AccionesController.getInstancia().agregarUnidad(unidad);
+            AccionesController.getInstancia().agregarObjetivo(unidad);
         }
     }
 }

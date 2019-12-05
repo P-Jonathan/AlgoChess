@@ -15,6 +15,6 @@ public class MovimientoAdelanteController extends MoveHandler {
         unidad.moverHaciaAdelante();
         unidadView.setFrameUp();
         unidadView.change();
-        AccionesController.getInstancia().resetPanes();
+        AccionesController.getInstancia().reset();
     }
 }

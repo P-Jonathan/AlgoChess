@@ -16,14 +16,14 @@ import java.io.IOException;
 
 public class ButtonComprarCurandero extends Button {
 
-    public ButtonComprarCurandero(Tablero tablero, TableroView tableroView) {
+    public ButtonComprarCurandero(Tablero tablero, TableroView tableroView, ShopView shopView) {
         super();
         this.setMinSize(320,56);
         this.setMaxSize(320,56);
         this.setGraphic(getImageView());
         this.setText("Curandero");
         this.setTextAlignment(TextAlignment.CENTER);
-        this.setOnAction(new ComprarCuranderoHandler(tablero, tableroView));
+        this.setOnAction(new ComprarCuranderoHandler(tablero, tableroView, shopView));
     }
 
     private ImageView getImageView() {

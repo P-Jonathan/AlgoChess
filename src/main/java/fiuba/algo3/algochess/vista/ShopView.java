@@ -6,14 +6,14 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
-public class Shop extends Group {
+public class ShopView extends Group {
     public int width = 320;
     public int height = 640;
 
     private GridPane table;
     private Pane[] panes;
 
-    public Shop(Tablero tablero, TableroView tableroView) {
+    public ShopView(Tablero tablero, TableroView tableroView) {
         GridPane table = new GridPane();
         panes = new Pane[5];
 
@@ -33,10 +33,10 @@ public class Shop extends Group {
         addView(table);
 
         addViewOnMap(new PuntosDeJugadoresView(tablero.getJugadorA(), tablero.getJugadorB()), 0);
-        addViewOnMap(new ButtonComprarUnidadInfanteria(tablero, tableroView), 1);
-        addViewOnMap(new ButtonComprarJinete(tablero, tableroView), 2);
-        addViewOnMap(new ButtonComprarCurandero(tablero, tableroView), 3);
-        addViewOnMap(new ButtonComprarCatapulta(tablero, tableroView), 4);
+        addViewOnMap(new ButtonComprarUnidadInfanteria(tablero, tableroView, this), 1);
+        addViewOnMap(new ButtonComprarJinete(tablero, tableroView, this), 2);
+        addViewOnMap(new ButtonComprarCurandero(tablero, tableroView, this), 3);
+        addViewOnMap(new ButtonComprarCatapulta(tablero, tableroView, this), 4);
     }
 
     public void addViewOnMap(Node view, int x) {

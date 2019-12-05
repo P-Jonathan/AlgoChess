@@ -4,6 +4,8 @@ import fiuba.algo3.algochess.controlador.movecontroller.MovimientoAdelanteContro
 import fiuba.algo3.algochess.controlador.movecontroller.MovimientoAtrasController;
 import fiuba.algo3.algochess.controlador.movecontroller.MovimientoDerechaController;
 import fiuba.algo3.algochess.controlador.movecontroller.MovimientoIzquierdaController;
+import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
+import fiuba.algo3.algochess.modelo.tablero.Tablero;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import fiuba.algo3.algochess.vista.unidadview.UnidadView;
 import javafx.scene.Group;
@@ -11,11 +13,13 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class TableroView extends Group {
-    public int width = 20;
-    public int heigth = 20;
+    private Tablero tablero;
+    private int width = 20;
+    private int heigth = 20;
 
     private int tileWidth = 32;
     private int tileHeigth = 32;
@@ -24,8 +28,11 @@ public class TableroView extends Group {
 
     private Pane[][] panes;
 
-    public TableroView() {
+    public TableroView(Tablero tablero) {
         table = new GridPane();
+        this.tablero = tablero;
+        this.width = tablero.getWidth();
+        this.heigth = tablero.getHeight();
         panes = new Pane[width * tileWidth][heigth * tileHeigth];
 
         for (int i = 0; i < width; i++) {
@@ -93,6 +100,38 @@ public class TableroView extends Group {
 
     public void addView(Node view) {
         this.getChildren().add(view);
+    }
+
+    public void pintarCasillasDelJugador() {
+        int columna = 0;
+        int limite = 10;
+
+        if(tablero.getJugadorB() == AdministradorDeTurnos.getInstancia().jugadorActual()) {
+            columna = 10;
+            limite = 20;
+        }
+
+        for(int i = 0; i < width; i++) {
+            for(int j = columna; j < limite; j++) {
+                panes[i][j].setStyle("-fx-background-color: rgba(70,222,32,0.43)");
+            }
+        }
+    }
+
+    public void resetearCasillas() {
+        int columna = 10;
+        int limite = 20;
+
+        if(tablero.getJugadorB() == AdministradorDeTurnos.getInstancia().jugadorActual()) {
+            columna = 0;
+            limite = 10;
+        }
+
+        for(int i = 0; i < width; i++) {
+            for(int j = columna; j < limite; j++) {
+                panes[i][j].setStyle("-fx-background-color: rgba(255,255,255,0)");
+            }
+        }
     }
 
     private boolean paneVacio(Pane pane) {

@@ -29,7 +29,7 @@ public abstract class UnidadController implements EventHandler<MouseEvent> {
 
             AccionesController.getInstancia().agregarUnidad(unidad, panes);
         } if (AccionesController.getInstancia().tieneAutor()) {
-            AccionesController.getInstancia().agregarUnidad(unidad);
+            AccionesController.getInstancia().agregarObjetivo(unidad);
         }
     }
 }

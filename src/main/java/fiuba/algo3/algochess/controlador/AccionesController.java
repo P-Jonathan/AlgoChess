@@ -22,8 +22,8 @@ public class AccionesController {
 
     public static AccionesController getInstancia() { return instancia; }
 
-    public void agregarUnidad(Unidad unidad) {
-        atacar(unidad);
+    public void agregarObjetivo(Unidad objetivo) {
+        atacar(objetivo);
     }
 
     public void agregarUnidad(Unidad unidad, ArrayList<Pane> panes) {
@@ -31,7 +31,7 @@ public class AccionesController {
         this.panes = panes;
     }
 
-    public void resetPanes() {
+    public void reset() {
         panes.forEach(pane -> {
             pane.setStyle("-fx-background-color: #000ff");
             pane.setOnMouseClicked(new MovimientoControllerNull());
@@ -40,10 +40,10 @@ public class AccionesController {
         autor = null;
     }
 
-    public void atacar(Unidad unidad) {
-        if(autor != unidad) {
+    public void atacar(Unidad objetivo) {
+        if(autor != objetivo) {
         	try {
-            autor.usarHabilidad(unidad);
+                autor.usarHabilidad(objetivo);
         	} catch (NoSePuedeAtacarAAliados e) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Atacar aliados");
@@ -55,7 +55,7 @@ public class AccionesController {
         		alert.setHeaderText("La unidad que intentaste atacar esta fuera de rango.");
         		alert.showAndWait();
         	}
-        	resetPanes();
+        	reset();
         }
     }
 
