@@ -18,14 +18,18 @@ public class ManejadorEscenas implements Observer {
 
     public ManejadorEscenas(Stage stage) {
         this.stage = stage;
-
+        
         tablero = new Tablero();
         tableroView = new TableroView(tablero);
+        
+        Menu menu = new Menu(tablero,this);
+
         escenas.add(new HBox(new ShopView(tablero, tableroView)));
         escenas.add(new HBox(new ButtonPasarTurno()));
+        
         AdministradorDeTurnos.getInstancia().addObserver(this);
-
-        stage.setScene(new Scene(new HBox(new Menu(tablero,this))));
+        
+        stage.setScene(new Scene(new HBox(menu)));
     }
 
     @Override

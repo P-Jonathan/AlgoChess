@@ -3,7 +3,6 @@ package fiuba.algo3.algochess.vista;
 import fiuba.algo3.algochess.modelo.tablero.Tablero;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -11,13 +10,10 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class Menu extends Group{
-	private VBox menu;
 	
     public int heigth = 5;
     public int width = 5;
@@ -42,6 +38,7 @@ public class Menu extends Group{
                 table.add(v, i, j);
             }
         }
+
     	
         table.setGridLinesVisible(false);
     	table.setBackground(
@@ -54,8 +51,13 @@ public class Menu extends Group{
                                 BackgroundSize.DEFAULT)
                 ));
     	
+    	OpcionNombre opcionA = new OpcionNombre(tablero.getJugadorA());
+    	OpcionNombre opcionB = new OpcionNombre(tablero.getJugadorB());
+    	
     	this.addView(table);
-    	this.addViewOnMap(new VBox(new ButtonEmpezarJuego(manejador)),2,2);
+    	this.addViewOnMap(new VBox(new ButtonEmpezarJuego(manejador)), 2, 2);
+    	this.addViewOnMap(opcionA.getOpcion(), 2, 3);
+    	this.addViewOnMap(opcionB.getOpcion(), 2, 4);
     }
 
     public void addViewOnMap(Node view, int x, int y) {

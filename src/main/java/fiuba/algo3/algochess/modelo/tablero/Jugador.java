@@ -80,4 +80,9 @@ public class Jugador extends Observable {
     public boolean noEsMiUnidad(Unidad unidad) {
         return !esMiUnidad(unidad);
     }
+
+	public void setBando(String nombre) {
+		this.bando = nombre;
+		
+	}
 }

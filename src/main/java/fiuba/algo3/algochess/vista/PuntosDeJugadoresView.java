@@ -14,7 +14,7 @@ public class PuntosDeJugadoresView extends HBox implements Observer {
         this.jugadorA = jugadorA;
         this.jugadorB = jugadorB;
 
-        this.label = new Label("Puntos Jugador 1: " + jugadorA.getPuntos() + "   |    Puntos Jugador 2: " + jugadorB.getPuntos());
+        this.label = new Label("Puntos "+jugadorA.getBando() + ": " + jugadorA.getPuntos() + "   |    Puntos " + jugadorB.getBando() +": " + jugadorB.getPuntos());
         this.label.setStyle("-fx-font-weight: bold");
 
         jugadorA.addObserver(this);
@@ -25,6 +25,6 @@ public class PuntosDeJugadoresView extends HBox implements Observer {
 
     @Override
     public void change() {
-        this.label.setText("Puntos Jugador 1: " + jugadorA.getPuntos() + " | Puntos Jugador 2: " + jugadorB.getPuntos());
+        this.label.setText("Puntos "+jugadorA.getBando() + ": " + jugadorA.getPuntos() + "   |    Puntos " + jugadorB.getBando() +": " + jugadorB.getPuntos());
     }
 }
