@@ -7,42 +7,44 @@ import fiuba.algo3.algochess.controlador.ChatProxyPrintStream;
 import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.tablero.Tablero;
 import fiuba.algo3.algochess.modelo.unidades.Observer;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class AlgoChessView implements Observer {
     private Stage stage;
-    private List<VBox> escenas = new ArrayList<>();
+    private List<Node> escenas = new ArrayList<>();
     private TableroView tableroView;
-
+    private ChatBox chat;
     public AlgoChessView(Stage stage) {
         this.stage = stage;
 
         Tablero tablero = new Tablero();
         tableroView = new TableroView(tablero);
 
-
-        // Creo el chat y redirecciono la salida estandar hacia este utilizando un proxy
-        ChatBox chat = new ChatBox();
-        System.setOut(new ChatProxyPrintStream(System.out, chat));
-
         AdministradorDeTurnos.getInstancia().addObserver(this);
 
         Menu menu = new Menu(tablero, this);
 
-        ShopView shop = new ShopView(tablero, tableroView);
-        shop.addView(chat);
-        escenas.add(new VBox(shop));
-        escenas.add(new VBox(new ButtonPasarTurno(), chat));
+        escenas.add(new ShopView(tablero, tableroView));
+        escenas.add(new ButtonPasarTurno());
+
+        // Creo el chat y redirecciono la salida estandar hacia este utilizando un proxy
+        chat = new ChatBox();
+        System.setOut(new ChatProxyPrintStream(System.out, chat));
 
         stage.setScene(new Scene(new HBox(menu)));
     }
 
     @Override
     public void change() {
-        stage.setScene(new Scene(new HBox(tableroView, escenas.get(0))));
+        VBox vBox = new VBox(escenas.get(0), chat);
+        vBox.setMinHeight(640);
+        vBox.setMaxHeight(640);
+        stage.setScene(new Scene(new HBox(tableroView, vBox)));
         tableroView.setDisable(false);
         escenas.remove(0);
     }

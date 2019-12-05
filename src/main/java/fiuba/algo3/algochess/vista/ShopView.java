@@ -11,9 +11,9 @@ import javafx.scene.layout.VBox;
 
 public class ShopView extends VBox {
     private static final int DEFAULT_SHOP_WITDH = 320;
-    private static final int DEFAULT_SHOP_HEIGHT = 400;
 
     public ShopView(Tablero tablero, TableroView tableroView) {
+        this.setWidth(DEFAULT_SHOP_WITDH);
 
         addView(new PuntosDeJugadoresView(tablero.getJugadorA(), tablero.getJugadorB()));
         addView(new ComprarUnidadDeInfanteriaView(tablero, tableroView, this));
