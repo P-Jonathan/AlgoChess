@@ -29,6 +29,7 @@ public abstract class CompraDeUnidadController implements EventHandler<ActionEve
             Unidad unidad = comprarUnidad();
             AdministradorDeTurnos.getInstancia().jugadorActual().comprarUnidad(unidad);
             shopView.setDisable(true);
+            tableroView.setDisable(false);
             tableroView.pintarCasillasDelJugadorActual();
             tableroView.setOnMousePressed(new PosicionarUnidadEvent(unidad, tablero, tableroView, shopView));
         } catch (RuntimeException e) {

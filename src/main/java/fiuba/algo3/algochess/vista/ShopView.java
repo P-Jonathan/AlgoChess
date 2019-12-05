@@ -9,15 +9,11 @@ import fiuba.algo3.algochess.vista.comprabutton.ComprarUnidadDeInfanteriaView;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 
-import java.io.PrintStream;
-
 public class ShopView extends VBox {
     private static final int DEFAULT_SHOP_WITDH = 320;
-    private static final int DEFAULT_SHOP_HEIGHT = 640;
+    private static final int DEFAULT_SHOP_HEIGHT = 400;
 
     public ShopView(Tablero tablero, TableroView tableroView) {
-        this.setMinSize(DEFAULT_SHOP_WITDH, DEFAULT_SHOP_HEIGHT);
-        this.setMaxSize(DEFAULT_SHOP_WITDH, DEFAULT_SHOP_HEIGHT);
 
         addView(new PuntosDeJugadoresView(tablero.getJugadorA(), tablero.getJugadorB()));
         addView(new ComprarUnidadDeInfanteriaView(tablero, tableroView, this));
