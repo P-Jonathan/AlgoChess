@@ -34,7 +34,7 @@ public class AdministradorDeTurnos extends Observable {
             cambiarTurnos();
     }
 
-    private boolean finalizaronCompras() {
+    public boolean finalizaronCompras() {
         return actual.getPuntos() == 0 && enEspera.getPuntos() == 0;
     }
 

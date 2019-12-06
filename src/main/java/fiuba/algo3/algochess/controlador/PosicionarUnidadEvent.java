@@ -9,7 +9,6 @@ import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import fiuba.algo3.algochess.vista.*;
 import fiuba.algo3.algochess.vista.unidadview.*;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 
 public class PosicionarUnidadEvent implements EventHandler<MouseEvent> {
@@ -47,24 +46,13 @@ public class PosicionarUnidadEvent implements EventHandler<MouseEvent> {
                 unidad = null;
             }
         } catch (NoSePuedePosicionarEnTerrenoEnemigo e) {
-            /*
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Casilla invalida");
-            alert.setHeaderText("Ese lado del mapa no te pertenece para posicionar unidades");
-            alert.showAndWait();
-            */
             System.out.println(
-                    "Casilla invalida"
+                    "Casilla invalida\n"
                     + "Ese lado del mapa no te pertenece para posicionar unidades"
             );
         } catch (CasillaOcupadaException e) {
-            /*
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Casilla ocupada");
-            alert.setHeaderText("Esa casilla ya esta ocupada por otra unidad");
-            alert.showAndWait();*/
             System.out.println(
-                    "Casilla ocupada"
+                    "Casilla ocupada\n"
                     + "Esa casilla ya esta ocupada por otra unidad"
             );
         }

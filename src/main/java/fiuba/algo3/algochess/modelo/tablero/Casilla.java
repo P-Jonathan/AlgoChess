@@ -1,6 +1,5 @@
 package fiuba.algo3.algochess.modelo.tablero;
 
-import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 
 import java.util.List;
@@ -45,13 +44,7 @@ public class Casilla {
         this.propietario = propietario;
     }
 
-   /*public void setPosicion(Posicion posicion) {
-        this.posicion = posicion;
-    }*/
-
-    /************************************************/
     public Posicion getPosicion() { return posicion; }
-    /************************************************/
 
     public void setOcupante(Unidad ocupante) {
         estado.setOcupante(ocupante);

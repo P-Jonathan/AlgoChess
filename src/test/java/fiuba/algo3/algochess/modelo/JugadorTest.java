@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.modelo;
 
+import fiuba.algo3.algochess.modelo.excepciones.FinDelJuegoException;
 import fiuba.algo3.algochess.modelo.excepciones.PuntosInsuficientesException;
 import fiuba.algo3.algochess.modelo.tablero.Jugador;
 import fiuba.algo3.algochess.modelo.tablero.Tablero;
@@ -74,34 +75,13 @@ class JugadorTest {
     }
 
     @Test
-    void jugadorPierdeCuandoFinalizaSusComprasSinNingunaUnidadComprada() {
+    void seVerificaQueAlQuedarseSinUnidadesElJugadorPierdeElJuego() {
         Tablero tablero = new Tablero();
+        UnidadDeInfanteria unidad = new UnidadDeInfanteria();
+        tablero.getJugadorA().comprarUnidad(unidad);
 
-        Jugador jugadorA = tablero.getJugadorA();
-
-        jugadorA.finalizarCompras();
-
-        assertTrue(jugadorA.perdioElJuego());
-    }
-
-    @Test
-    void jugadorNoPierdeCuandoNoFinalizoSusCompras() {
-        Tablero tablero = new Tablero();
-
-        Jugador jugadorA = tablero.getJugadorA();
-
-        assertFalse(jugadorA.perdioElJuego());
-    }
-
-    @Test
-    void jugadorNoPierdeCuandoFinalizaSusComprasComprandoUnaUnidad() {
-        Tablero tablero = new Tablero();
-
-        Jugador jugadorA = tablero.getJugadorA();
-        jugadorA.comprarUnidad(new UnidadDeInfanteria());
-
-        jugadorA.finalizarCompras();
-
-        assertFalse(jugadorA.perdioElJuego());
+        assertThrows(FinDelJuegoException.class, ()-> {
+            unidad.disminuirVida(100);
+        });
     }
 }

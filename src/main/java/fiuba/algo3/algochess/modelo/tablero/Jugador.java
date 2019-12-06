@@ -22,7 +22,7 @@ public class Jugador extends Observable {
     protected Jugador() {
         unidades = new ArrayList<>();
         billetera = new Billetera(PUNTOS_INICIALES);
-        gestorDeCompras = new GestorDeComprasNormal(this);
+        gestorDeCompras = new GestorDeCompras(this);
 
         if(numeroJugador == 1){
             bando = NOMBRE_DEFAULT_BANDO_A;
@@ -61,17 +61,9 @@ public class Jugador extends Observable {
         }
     }
 
-    public void finalizarCompras() {
-        gestorDeCompras = new GestosDeComprasBloqueado(this);
-    }
-
-    public void reanudarCompras() {
-        gestorDeCompras = new GestorDeComprasNormal(this);
-    }
-
-    public boolean perdioElJuego() {
+    /*public boolean perdioElJuego() {
         return getUnidades().size() == 0 && !gestorDeCompras.puedeComprar();
-    }
+    }*/
 
     public boolean esMiUnidad(Unidad unidad) {
         return unidades.contains(unidad);

@@ -41,7 +41,6 @@ public abstract class Unidad extends Observable {
         multiplicadorDeDanio = valor;
     }
 
-    /*********************************************************/
     public int getX() {
         return casilla.getPosicion().getX();
     }
@@ -49,7 +48,6 @@ public abstract class Unidad extends Observable {
     public int getY() {
         return casilla.getPosicion().getY();
     }
-    /*********************************************************/
 
     public double getVida() {
         return vida;
