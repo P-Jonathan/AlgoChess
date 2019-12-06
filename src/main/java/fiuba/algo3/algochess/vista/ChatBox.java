@@ -1,10 +1,8 @@
 package fiuba.algo3.algochess.vista;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 
-import java.io.File;
 import java.util.List;
 import java.util.LinkedList;
 

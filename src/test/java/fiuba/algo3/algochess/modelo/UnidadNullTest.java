@@ -1,13 +1,12 @@
 package fiuba.algo3.algochess.modelo;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import fiuba.algo3.algochess.modelo.unidades.UnidadDeInfanteria;
 import fiuba.algo3.algochess.modelo.unidades.UnidadNull;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UnidadNullTest {
     @Test
@@ -24,9 +23,8 @@ public class UnidadNullTest {
     	Unidad unidad = new UnidadNull();
     	Unidad unidad2 = new UnidadDeInfanteria();
     	
-    	assertTrue(!(unidad.soyAliadoDe(unidad2)));
-    	assertTrue(!(unidad.soyEnemigoDe(unidad2)));
-
+    	assertFalse(unidad.soyAliadoDe(unidad2));
+    	assertFalse(unidad.soyEnemigoDe(unidad2));
     }
 
 }

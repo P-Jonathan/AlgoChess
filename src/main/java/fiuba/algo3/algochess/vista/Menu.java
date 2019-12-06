@@ -24,12 +24,11 @@ public class Menu extends Group {
     private int tileHeigth = 132;
     private int tileWidth = 132;
 
-    private GridPane table;
     private Pane[][] panes;
 
     public Menu(Tablero tablero, AlgoChessView manejador) {
         this.getStylesheets().add(new File(STYLE_PATH).toString());
-        table = new GridPane();
+        GridPane table = new GridPane();
         panes = new Pane[width * tileWidth][heigth * tileHeigth];
 
         for (int i = 0; i < width; i++) {

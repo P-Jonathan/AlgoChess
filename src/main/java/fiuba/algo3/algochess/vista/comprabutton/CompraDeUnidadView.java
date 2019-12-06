@@ -5,11 +5,9 @@ import fiuba.algo3.algochess.vista.TableroView;
 import fiuba.algo3.algochess.vista.Sprite;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 
 public abstract class CompraDeUnidadView extends Button {

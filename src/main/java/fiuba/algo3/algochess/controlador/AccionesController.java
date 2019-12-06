@@ -41,7 +41,7 @@ public class AccionesController {
     }
 
     public void atacar(Unidad objetivo) {
-        if(autor != objetivo) {
+        if(!autor.equals(objetivo)) {
         	try {
                 autor.usarHabilidad(objetivo);
         	} catch (NoSePuedeAtacarAAliados e) {

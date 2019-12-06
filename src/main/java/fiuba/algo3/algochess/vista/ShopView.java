@@ -1,6 +1,5 @@
 package fiuba.algo3.algochess.vista;
 
-import fiuba.algo3.algochess.controlador.ChatProxyPrintStream;
 import fiuba.algo3.algochess.modelo.tablero.Tablero;
 import fiuba.algo3.algochess.vista.comprabutton.CompraDeCatapultaView;
 import fiuba.algo3.algochess.vista.comprabutton.CompraDeCuranderoView;

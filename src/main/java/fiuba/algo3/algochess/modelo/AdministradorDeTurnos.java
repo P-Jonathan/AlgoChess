@@ -49,6 +49,6 @@ public class AdministradorDeTurnos extends Observable {
     }
 
     public boolean turnoDe(Jugador jugador) {
-        return actual == jugador;
+        return actual.equals(jugador);
     }
 }

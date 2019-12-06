@@ -13,7 +13,6 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class TableroView extends Group {
@@ -24,12 +23,10 @@ public class TableroView extends Group {
     private int tileWidth = 32;
     private int tileHeigth = 32;
 
-    private GridPane table;
-
     private Pane[][] panes;
 
     public TableroView(Tablero tablero) {
-        table = new GridPane();
+        GridPane table = new GridPane();
         this.tablero = tablero;
         this.width = tablero.getWidth();
         this.heigth = tablero.getHeight();
@@ -60,13 +57,6 @@ public class TableroView extends Group {
         this.addView(table);
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeigth() {
-        return heigth;
-    }
 
     public int getTileWidth() {
         return tileWidth;

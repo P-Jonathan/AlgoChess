@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.modelo.tablero;
 
 import fiuba.algo3.algochess.modelo.AdministradorDeTurnos;
+import fiuba.algo3.algochess.modelo.excepciones.NoExisteCasillaEnPosicionException;
 import fiuba.algo3.algochess.modelo.excepciones.NoSePuedePosicionarEnTerrenoEnemigo;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 
@@ -56,7 +57,7 @@ public class Tablero {
         if(optionalCasilla.isPresent())
             return optionalCasilla.get();
 
-        throw new RuntimeException();
+        throw new NoExisteCasillaEnPosicionException();
     }
 
     public int getWidth() {

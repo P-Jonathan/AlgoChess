@@ -10,8 +10,6 @@ import fiuba.algo3.algochess.modelo.unidades.Jinete;
 import fiuba.algo3.algochess.modelo.unidades.Unidad;
 import fiuba.algo3.algochess.modelo.unidades.UnidadDeInfanteria;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class JineteTest {

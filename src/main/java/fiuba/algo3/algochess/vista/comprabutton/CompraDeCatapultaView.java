@@ -5,7 +5,6 @@ import fiuba.algo3.algochess.modelo.tablero.Tablero;
 import fiuba.algo3.algochess.vista.ShopView;
 import fiuba.algo3.algochess.vista.TableroView;
 import fiuba.algo3.algochess.vista.Sprite;
-import javafx.scene.control.Label;
 
 public class CompraDeCatapultaView extends CompraDeUnidadView {
     public CompraDeCatapultaView(Tablero tablero, TableroView tableroView, ShopView shopView) {

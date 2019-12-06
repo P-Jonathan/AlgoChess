@@ -1,7 +1,6 @@
 package fiuba.algo3.algochess.modelo;
 
 import fiuba.algo3.algochess.modelo.tablero.Posicion;
-import fiuba.algo3.algochess.modelo.unidades.Jinete;
 import org.junit.jupiter.api.Test;
 
 import fiuba.algo3.algochess.modelo.tablero.Tablero;

@@ -8,7 +8,6 @@ import fiuba.algo3.algochess.vista.ShopView;
 import fiuba.algo3.algochess.vista.TableroView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
 
 public abstract class CompraDeUnidadController implements EventHandler<ActionEvent> {
     protected TableroView tableroView;
@@ -33,11 +32,7 @@ public abstract class CompraDeUnidadController implements EventHandler<ActionEve
             tableroView.pintarCasillasDelJugadorActual();
             tableroView.setOnMousePressed(new PosicionarUnidadEvent(unidad, tablero, tableroView, shopView));
         } catch (RuntimeException e) {
-            /*Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Dinero insuficiente");
-            alert.setHeaderText("No tienes suficiente dinero para comprar esta unidad");
-            alert.showAndWait();*/
-            System.out.println("Dinero insuficiente"
+            System.out.println("Dinero insuficiente\n"
                     + "No tienes suficiente dinero para comprar esta unidad");
         }
     }
