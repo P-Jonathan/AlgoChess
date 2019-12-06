@@ -13,7 +13,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+import java.io.File;
+
 public class Menu extends Group {
+    private static final String STYLE_PATH = "ChatStyle.css";
 
     public int heigth = 5;
     public int width = 5;
@@ -25,7 +28,7 @@ public class Menu extends Group {
     private Pane[][] panes;
 
     public Menu(Tablero tablero, AlgoChessView manejador) {
-
+        this.getStylesheets().add(new File(STYLE_PATH).toString());
         table = new GridPane();
         panes = new Pane[width * tileWidth][heigth * tileHeigth];
 

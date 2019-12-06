@@ -31,8 +31,6 @@ public class PosicionarUnidadEvent implements EventHandler<MouseEvent> {
         int x = (int) mouseX / tableroView.getTileWidth();
         int y = (int) mouseY / tableroView.getTileHeigth();
 
-        System.out.println("Pane position: (" + x + "," + y + ")");
-
         try {
             if (unidad != null) {
                 tablero.posicionarUnidad(unidad, new Posicion(x, y));
@@ -49,15 +47,26 @@ public class PosicionarUnidadEvent implements EventHandler<MouseEvent> {
                 unidad = null;
             }
         } catch (NoSePuedePosicionarEnTerrenoEnemigo e) {
+            /*
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Casilla invalida");
             alert.setHeaderText("Ese lado del mapa no te pertenece para posicionar unidades");
             alert.showAndWait();
+            */
+            System.out.println(
+                    "Casilla invalida"
+                    + "Ese lado del mapa no te pertenece para posicionar unidades"
+            );
         } catch (CasillaOcupadaException e) {
+            /*
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Casilla ocupada");
             alert.setHeaderText("Esa casilla ya esta ocupada por otra unidad");
-            alert.showAndWait();
+            alert.showAndWait();*/
+            System.out.println(
+                    "Casilla ocupada"
+                    + "Esa casilla ya esta ocupada por otra unidad"
+            );
         }
     }
 }

@@ -48,21 +48,28 @@ public class AccionesController {
         	try {
                 autor.usarHabilidad(objetivo);
         	} catch (NoSePuedeAtacarAAliados e) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
+                /*Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Atacar aliados");
                 alert.setHeaderText("No puedes atacar a una unidad aliada");
-                alert.showAndWait();
+                alert.showAndWait();*/
+                System.out.println("Atacar aliados.\n"
+                        + "No puedes atacar a una unidad aliada");
             } catch (UnidadFueraDeRango e) {
-        		Alert alert = new Alert(Alert.AlertType.WARNING);
+        		/*Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Unidad fuera de rango");
         		alert.setHeaderText("La unidad que intentaste atacar esta fuera de rango.");
-        		alert.showAndWait();
+        		alert.showAndWait();*/
+        		System.out.println("Unidad fuera de rango.\n"
+                        + "La unidad que intentaste atacar esta fuera de rango.");
         	} catch (FinDelJuegoException e) {
+        	    /*
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Game over");
                 alert.setHeaderText("Un jugador se ha quedado sin unidades. Fin del juego");
                 alert.showAndWait();
-                exit(0);
+                */
+                System.out.println("Game over\n"
+                        + "Un jugador se ha quedado sin unidades. Fin del juego");
             }
         	reset();
         }

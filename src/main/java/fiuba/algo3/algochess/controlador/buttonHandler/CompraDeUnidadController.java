@@ -33,10 +33,12 @@ public abstract class CompraDeUnidadController implements EventHandler<ActionEve
             tableroView.pintarCasillasDelJugadorActual();
             tableroView.setOnMousePressed(new PosicionarUnidadEvent(unidad, tablero, tableroView, shopView));
         } catch (RuntimeException e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+            /*Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Dinero insuficiente");
             alert.setHeaderText("No tienes suficiente dinero para comprar esta unidad");
-            alert.showAndWait();
+            alert.showAndWait();*/
+            System.out.println("Dinero insuficiente"
+                    + "No tienes suficiente dinero para comprar esta unidad");
         }
     }
 }

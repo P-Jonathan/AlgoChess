@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.vista;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class AlgoChessView implements Observer {
+    private static final String STYLE_PATH = "ChatStyle.css";
+
     private Stage stage;
     private List<Node> escenas = new ArrayList<>();
     private TableroView tableroView;
@@ -42,6 +45,8 @@ public class AlgoChessView implements Observer {
     @Override
     public void change() {
         VBox vBox = new VBox(escenas.get(0), chat);
+        vBox.getStylesheets().add(new File(STYLE_PATH).toString());
+        vBox.getStyleClass().add("vbox");
         vBox.setMinHeight(640);
         vBox.setMaxHeight(640);
         stage.setScene(new Scene(new HBox(tableroView, vBox)));

@@ -23,9 +23,6 @@ public class AtaqueJinete extends Habilidad {
 
     @Override
     public void usarHabilidad(Unidad objetivo) {
-        if (portador.soyAliadoDe(objetivo))
-            throw new NoSePuedeAtacarAAliados();
-
         Habilidad habilidad = getAtaque();
 
         habilidad.usarHabilidad(objetivo);

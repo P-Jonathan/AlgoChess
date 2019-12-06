@@ -58,11 +58,11 @@ public class Sprite {
 
     private void setImage(String filePath) {
         try {
-            System.out.println("Loading file: " + filePath + "...");
+            //System.out.println("Loading file: " + filePath + "...");
             image = ImageIO.read(new File(filePath));
             imageWidth = image.getWidth() / width;
             imageHeight = image.getHeight() / height;
-            System.out.println("File loaded successfully: " + filePath + " - OK");
+            //System.out.println("File loaded successfully: " + filePath + " - OK");
         } catch (Exception exception) {
             System.out.println("Error loading file: " + filePath + " - X");
             image = null;

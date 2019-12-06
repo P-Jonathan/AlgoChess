@@ -16,7 +16,7 @@ public class PuntosDeJugadoresView extends HBox implements Observer {
 
         this.label = new Label("Puntos "+jugadorA.getBando() + ": " + jugadorA.getPuntos() + "   |    Puntos " + jugadorB.getBando() +": " + jugadorB.getPuntos());
         this.label.setStyle("-fx-font-weight: bold");
-
+        this.label.setMinWidth(320);
         jugadorA.addObserver(this);
         jugadorB.addObserver(this);
 
