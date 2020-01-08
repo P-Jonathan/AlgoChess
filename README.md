@@ -5,3 +5,9 @@
 Videojuego al estilo TRPG (Tactical role-playing game) donde dos jugadores se batirán en un duelo por turnos con el único objetivo de destruir todas la unidades del jugador contrincante!
 
 Informe: https://github.com/P-Jonathan/AlgoChess/blob/master/Informe-tp2.pdf
+
+<div style="width: 100%">
+  <img width="49.15%" src="https://github.com/P-Jonathan/Sources/blob/master/img/algochess-1.PNG"/>
+  <img width="49.15%" src="https://github.com/P-Jonathan/Sources/blob/master/img/algochess-2.PNG"/>
+</div>
+<img src="https://github.com/P-Jonathan/Sources/blob/master/img/algochess-3.PNG"/>
